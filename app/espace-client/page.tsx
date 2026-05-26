@@ -14,6 +14,7 @@ export default function EspaceClientPage() {
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <>
@@ -109,7 +110,6 @@ export default function EspaceClientPage() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="prenom.nom@novabanque.ch"
                     className="w-full bg-transparent border-0 border-b border-charcoal/30 focus:border-charcoal focus:outline-none py-3 text-lg font-display"
                   />
                 </div>
@@ -120,22 +120,68 @@ export default function EspaceClientPage() {
                   >
                     Mot de passe
                   </label>
-                  <input
-                    id="password"
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••••••"
-                    className="w-full bg-transparent border-0 border-b border-charcoal/30 focus:border-charcoal focus:outline-none py-3 text-lg font-display tracking-widest"
-                  />
+                  <div className="relative">
+                    <input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="w-full bg-transparent border-0 border-b border-charcoal/30 focus:border-charcoal focus:outline-none py-3 pr-10 text-lg font-display tracking-widest"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((v) => !v)}
+                      aria-label={
+                        showPassword
+                          ? "Masquer le mot de passe"
+                          : "Afficher le mot de passe"
+                      }
+                      aria-pressed={showPassword}
+                      className="absolute right-0 top-1/2 -translate-y-1/2 p-2 text-charcoal-2 hover:text-charcoal transition-colors"
+                    >
+                      {showPassword ? (
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden
+                        >
+                          <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" />
+                          <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" />
+                          <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61" />
+                          <line x1="2" y1="2" x2="22" y2="22" />
+                        </svg>
+                      ) : (
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden
+                        >
+                          <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                          <circle cx="12" cy="12" r="3" />
+                        </svg>
+                      )}
+                    </button>
+                  </div>
                 </div>
                 <div>
                   <label
                     htmlFor="token"
                     className="block text-[11px] tracking-[0.3em] uppercase text-charcoal-2 mb-3"
                   >
-                    Code authenticator (6 chiffres)
+                    Code de sécurité
                   </label>
                   <input
                     id="token"
@@ -144,7 +190,6 @@ export default function EspaceClientPage() {
                     maxLength={6}
                     value={token}
                     onChange={(e) => setToken(e.target.value.replace(/\D/g, ""))}
-                    placeholder="000000"
                     className="w-full bg-transparent border-0 border-b border-charcoal/30 focus:border-charcoal focus:outline-none py-3 text-2xl font-mono tracking-[0.5em]"
                   />
                 </div>
