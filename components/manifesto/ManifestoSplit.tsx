@@ -15,7 +15,6 @@ export default function ManifestoSplit() {
           <ImageReveal
             src={images.manifesto.src}
             alt={images.manifesto.alt}
-            blurDataURL={images.manifesto.blurDataURL}
             sizes="(max-width: 1024px) 100vw, 50vw"
             aspect="aspect-[4/5]"
           />
@@ -52,7 +51,7 @@ export default function ManifestoSplit() {
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-10">
-            <EditorialLink href="#" size="lg">
+            <EditorialLink href="/notre-approche" size="lg">
               {manifesto.linkLabel}
             </EditorialLink>
           </motion.div>

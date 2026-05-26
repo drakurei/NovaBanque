@@ -86,7 +86,7 @@ export default function FeaturedVillaStyle() {
           viewport={viewportOnce}
           className="mt-12 flex justify-end"
         >
-          <EditorialLink href="#inventaire" size="md">
+          <EditorialLink href="/services" size="md">
             Voir tous nos services
           </EditorialLink>
         </motion.div>

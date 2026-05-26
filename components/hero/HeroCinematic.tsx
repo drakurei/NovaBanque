@@ -67,10 +67,10 @@ export default function HeroCinematic() {
         </motion.p>
 
         <motion.div variants={fadeUp} className="flex flex-wrap gap-10 mt-10">
-          <EditorialLink href="#inventaire" light size="lg">
+          <EditorialLink href="/services" light size="lg">
             Découvrir nos services privés
           </EditorialLink>
-          <EditorialLink href="#rendezvous" light size="lg" arrow={false}>
+          <EditorialLink href="/rendez-vous" light size="lg" arrow={false}>
             Prendre rendez-vous
           </EditorialLink>
         </motion.div>

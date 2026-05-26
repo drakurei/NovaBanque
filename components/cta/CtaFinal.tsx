@@ -29,7 +29,7 @@ export default function CtaFinal() {
           {ctaFinal.body}
         </motion.p>
         <motion.div variants={fadeUp} className="mt-12 inline-block">
-          <EditorialLink href="#" size="lg">
+          <EditorialLink href="/rendez-vous" size="lg">
             {ctaFinal.linkLabel}
           </EditorialLink>
         </motion.div>

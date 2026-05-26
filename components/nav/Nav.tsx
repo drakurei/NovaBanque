@@ -4,16 +4,20 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { navLinks } from "@/lib/content";
 
-export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
+export default function Nav({ solid = false }: { solid?: boolean }) {
+  const [scrolled, setScrolled] = useState(solid);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    if (solid) {
+      setScrolled(true);
+      return;
+    }
     const onScroll = () => setScrolled(window.scrollY > 80);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [solid]);
 
   return (
     <header
@@ -36,7 +40,7 @@ export default function Nav() {
         <ul className="hidden lg:flex items-center gap-10">
           {navLinks.map((l) => (
             <li key={l.href}>
-              <a
+              <Link
                 href={l.href}
                 className={`text-[13px] tracking-wide transition-colors ${
                   scrolled
@@ -45,14 +49,14 @@ export default function Nav() {
                 }`}
               >
                 {l.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
         <div className="hidden lg:flex items-center gap-6">
-          <a
-            href="#client"
+          <Link
+            href="/espace-client"
             className={`text-[13px] transition-colors ${
               scrolled
                 ? "text-charcoal-2 hover:text-charcoal"
@@ -60,9 +64,9 @@ export default function Nav() {
             }`}
           >
             Espace client
-          </a>
-          <a
-            href="#rendezvous"
+          </Link>
+          <Link
+            href="/rendez-vous"
             className={`text-[13px] tracking-wide px-5 py-2.5 transition-colors ${
               scrolled
                 ? "bg-charcoal text-ivoire hover:bg-leman-deep"
@@ -70,7 +74,7 @@ export default function Nav() {
             }`}
           >
             Prendre rendez-vous
-          </a>
+          </Link>
         </div>
 
         <button
@@ -102,22 +106,32 @@ export default function Nav() {
           <ul className="flex flex-col px-8 py-6 gap-4">
             {navLinks.map((l) => (
               <li key={l.href}>
-                <a
+                <Link
                   href={l.href}
                   onClick={() => setOpen(false)}
                   className="block py-2 text-charcoal-2"
                 >
                   {l.label}
-                </a>
+                </Link>
               </li>
             ))}
+            <li>
+              <Link
+                href="/espace-client"
+                onClick={() => setOpen(false)}
+                className="block py-2 text-charcoal-2"
+              >
+                Espace client
+              </Link>
+            </li>
             <li className="pt-4">
-              <a
-                href="#rendezvous"
+              <Link
+                href="/rendez-vous"
+                onClick={() => setOpen(false)}
                 className="block w-full text-center px-5 py-3 bg-charcoal text-ivoire text-sm"
               >
                 Prendre rendez-vous
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

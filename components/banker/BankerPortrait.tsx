@@ -60,7 +60,7 @@ export default function BankerPortrait() {
           </div>
         </motion.div>
         <motion.div variants={fadeUp} className="mt-12">
-          <EditorialLink href="#rendezvous" light size="lg">
+          <EditorialLink href="/rendez-vous" light size="lg">
             Réserver un appel privé
           </EditorialLink>
         </motion.div>

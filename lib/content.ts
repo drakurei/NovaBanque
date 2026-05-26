@@ -1,8 +1,8 @@
 export const navLinks = [
-  { href: "#approche", label: "Notre approche" },
-  { href: "#inventaire", label: "Services" },
-  { href: "#banker", label: "Votre banker" },
-  { href: "#distinctions", label: "Reconnaissance" },
+  { href: "/notre-approche", label: "Notre approche" },
+  { href: "/services", label: "Services" },
+  { href: "/votre-banker", label: "Votre banker" },
+  { href: "/reconnaissance", label: "Reconnaissance" },
 ] as const;
 
 export const cities = ["Genève", "Lausanne", "Zurich", "Monaco", "Singapour"];
@@ -113,19 +113,19 @@ export const footerColumns = [
   {
     title: "Services",
     links: [
-      { label: "Compte Or", href: "#" },
-      { label: "Mandat de gestion", href: "#" },
-      { label: "Crédit lombard", href: "#" },
-      { label: "Family Office", href: "#" },
+      { label: "Compte Or", href: "/services" },
+      { label: "Mandat de gestion", href: "/services" },
+      { label: "Crédit lombard", href: "/services" },
+      { label: "Family Office", href: "/services" },
     ],
   },
   {
     title: "Maison",
     links: [
-      { label: "Notre histoire", href: "#" },
-      { label: "Nos bankers", href: "#" },
-      { label: "Presse", href: "#" },
-      { label: "Carrières", href: "#" },
+      { label: "Notre approche", href: "/notre-approche" },
+      { label: "Nos bankers", href: "/votre-banker" },
+      { label: "Reconnaissance", href: "/reconnaissance" },
+      { label: "Espace client", href: "/espace-client" },
     ],
   },
   {
