@@ -77,28 +77,28 @@ export const bankerQuote = {
 
 export const distinctions = [
   {
-    logo: "/press/les-echos.svg",
     name: "Les Échos",
+    wordmarkClass: "font-display font-bold text-2xl tracking-tight",
     quote: "« Une nouvelle référence sur la place de Genève. »",
   },
   {
-    logo: "/press/bilan.svg",
-    name: "Bilan",
+    name: "BILAN",
+    wordmarkClass: "font-sans font-extrabold text-2xl tracking-[0.15em]",
     quote: "« L'élégance discrète d'une vraie maison de patrimoine. »",
   },
   {
-    logo: "/press/le-figaro.svg",
     name: "Le Figaro Patrimoine",
+    wordmarkClass: "font-display italic text-xl tracking-tight",
     quote: "« La banque privée que la nouvelle fortune attendait. »",
   },
   {
-    logo: "/press/forbes.svg",
     name: "Forbes",
+    wordmarkClass: "font-display font-bold text-2xl tracking-tight",
     quote: "« Swiss banking, reinvented for the next generation. »",
   },
   {
-    logo: "/press/ft-wealth.svg",
     name: "FT Wealth",
+    wordmarkClass: "font-display font-semibold text-xl tracking-tight",
     quote: "« A house that feels older than it is — in the best way. »",
   },
 ];
