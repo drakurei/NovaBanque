@@ -32,7 +32,7 @@ export const images = {
     alt: "Villa contemporaine au bord d'un lac alpin",
   },
   banker: {
-    src: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=2400&q=85&auto=format&fit=crop",
-    alt: "Banker dans son bureau lumineux face au lac",
+    src: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=2400&q=85&auto=format&fit=crop",
+    alt: "Claire Moreau, banker privée senior, dans son bureau à Genève",
   },
 };
