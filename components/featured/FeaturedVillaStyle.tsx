@@ -35,8 +35,8 @@ export default function FeaturedVillaStyle() {
 
         <div className="relative">
           <motion.div
-            initial={{ clipPath: "inset(0 0 100% 0)" }}
-            whileInView={{ clipPath: "inset(0 0 0% 0)" }}
+            initial={{ opacity: 0, scale: 1.04 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={viewportOnce}
             transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             className="relative aspect-[16/10] lg:aspect-[16/8] overflow-hidden"

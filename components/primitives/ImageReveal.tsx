@@ -22,10 +22,10 @@ export default function ImageReveal({
 }) {
   return (
     <motion.div
-      initial={{ clipPath: "inset(0 0 100% 0)" }}
-      whileInView={{ clipPath: "inset(0 0 0% 0)" }}
+      initial={{ opacity: 0, scale: 1.04 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
       className={`relative overflow-hidden ${aspect} ${className}`}
     >
       <Image
