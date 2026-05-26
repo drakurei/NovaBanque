@@ -29,9 +29,10 @@ export default function Nav({ solid = false }: { solid?: boolean }) {
     >
       <nav className="max-w-[1440px] mx-auto flex items-center justify-between px-8 lg:px-12 py-6">
         <Link
-          href="#"
+          href="/"
+          aria-label="NovaBanque — Retour à l'accueil"
           className={`font-display text-2xl tracking-tight transition-colors ${
-            scrolled ? "text-charcoal" : "text-ivoire"
+            scrolled ? "text-charcoal hover:text-or-soft" : "text-ivoire hover:text-or-soft"
           }`}
         >
           Nova<span className="italic">Banque</span>

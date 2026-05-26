@@ -39,7 +39,7 @@ export default function FeaturedVillaStyle() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={viewportOnce}
             transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            className="relative aspect-[16/10] lg:aspect-[16/8] overflow-hidden"
+            className="relative aspect-[4/5] sm:aspect-[16/10] lg:aspect-[16/8] overflow-hidden"
           >
             <Image
               src={images.featured.src}
@@ -54,18 +54,20 @@ export default function FeaturedVillaStyle() {
             />
           </motion.div>
 
+          {/* Cards : empilées en dessous sur mobile, en overlay flottant sur desktop */}
           <motion.div
             variants={stagger(0.15)}
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            className="absolute top-1/2 -translate-y-1/2 right-4 lg:right-8 w-[88%] max-w-[420px] space-y-3"
+            className="grid grid-cols-1 gap-4 mt-6
+                       lg:mt-0 lg:gap-3 lg:block lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:right-8 lg:w-[88%] lg:max-w-[420px] lg:space-y-3"
           >
             {featured.cards.map((c) => (
               <motion.article
                 key={c.title}
                 variants={fadeUp}
-                className="backdrop-blur-md bg-ivoire/85 hairline px-6 py-5"
+                className="bg-ivoire-2 hairline px-6 py-5 lg:bg-ivoire/90 lg:backdrop-blur-md"
               >
                 <p className="text-[10px] tracking-[0.3em] uppercase text-charcoal-2">
                   {c.tag}

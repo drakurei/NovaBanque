@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { footerColumns, footerMention } from "@/lib/content";
 
 export default function Footer() {
@@ -6,9 +7,13 @@ export default function Footer() {
       <div className="max-w-[1440px] mx-auto px-8 lg:px-12 py-20 lg:py-24">
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
           <div className="col-span-2 lg:col-span-1">
-            <p className="font-display text-2xl tracking-tight">
+            <Link
+              href="/"
+              aria-label="NovaBanque — Retour à l'accueil"
+              className="font-display text-2xl tracking-tight hover:text-or-soft transition-colors inline-block"
+            >
               Nova<span className="italic">Banque</span>
-            </p>
+            </Link>
             <p className="text-sm text-charcoal-2 mt-4 max-w-xs leading-relaxed">
               Banque privée du Léman. Genève, Lausanne, Zurich, Monaco, Singapour.
             </p>
