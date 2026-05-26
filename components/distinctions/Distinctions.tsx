@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 import { fadeUp, stagger, viewportOnce } from "@/lib/motion";
 import { distinctions } from "@/lib/content";
 
@@ -31,10 +32,12 @@ export default function Distinctions() {
               variants={fadeUp}
               className="text-center text-charcoal-2"
             >
-              <img
+              <Image
                 src={d.logo}
                 alt={d.name}
-                className="h-7 lg:h-8 mx-auto opacity-70"
+                width={200}
+                height={32}
+                className="h-7 lg:h-8 w-auto mx-auto opacity-70"
               />
               <blockquote className="font-display italic text-base lg:text-lg leading-snug mt-6 text-charcoal max-w-[200px] mx-auto">
                 {d.quote}

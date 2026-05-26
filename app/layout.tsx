@@ -17,6 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://drakurei.github.io/NovaBanque"),
   title: "NovaBanque — Banque privée du Léman",
   description:
     "Là où le patrimoine rencontre le Léman. Banque privée francophone. Genève, Lausanne, Zurich, Monaco, Singapour.",
