@@ -4,6 +4,7 @@ import ManifestoSplit from "@/components/manifesto/ManifestoSplit";
 import Inventaire from "@/components/inventaire/Inventaire";
 import FeaturedVillaStyle from "@/components/featured/FeaturedVillaStyle";
 import BankerPortrait from "@/components/banker/BankerPortrait";
+import Distinctions from "@/components/distinctions/Distinctions";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <Inventaire />
         <FeaturedVillaStyle />
         <BankerPortrait />
+        <Distinctions />
       </main>
     </>
   );
