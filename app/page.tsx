@@ -3,6 +3,7 @@ import HeroCinematic from "@/components/hero/HeroCinematic";
 import ManifestoSplit from "@/components/manifesto/ManifestoSplit";
 import Inventaire from "@/components/inventaire/Inventaire";
 import FeaturedVillaStyle from "@/components/featured/FeaturedVillaStyle";
+import BankerPortrait from "@/components/banker/BankerPortrait";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         <ManifestoSplit />
         <Inventaire />
         <FeaturedVillaStyle />
+        <BankerPortrait />
       </main>
     </>
   );
