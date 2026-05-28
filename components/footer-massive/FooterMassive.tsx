@@ -27,12 +27,12 @@ export default function FooterMassive() {
         {/* Left : contact */}
         <motion.div variants={fadeUp} className="lg:col-span-6">
           <p className="text-[11px] tracking-[0.35em] uppercase text-ink-2 mb-4">
-            Link contact
+            Nous contacter
           </p>
           <a
             href="mailto:private@novabanque.ch"
             data-cursor="hover"
-            className="font-display text-2xl lg:text-4xl tracking-tight hover:text-navy transition-colors"
+            className="font-display text-2xl lg:text-4xl tracking-tight hover:text-navy transition-colors break-all"
           >
             private@novabanque.ch
           </a>
@@ -46,7 +46,7 @@ export default function FooterMassive() {
               LinkedIn
             </a>
             <a href="#" data-cursor="hover" className="hover:text-ink transition-colors">
-              X (Twitter)
+              X
             </a>
             <a href="#" data-cursor="hover" className="hover:text-ink transition-colors">
               YouTube
@@ -57,17 +57,17 @@ export default function FooterMassive() {
         {/* Right : signup */}
         <motion.div variants={fadeUp} className="lg:col-span-6 lg:pl-8">
           <p className="text-[11px] tracking-[0.35em] uppercase text-ink-2 mb-4">
-            Upgrade your wealth
+            Liste privée
           </p>
           <p className="text-ink-2 max-w-md mb-6">
             Rejoignez la liste privée. Vous recevrez nos analyses patrimoniales
-            mensuelles + l&apos;accès anticipé à nos opportunités d&apos;investissement.
+            mensuelles et l&apos;accès anticipé à nos opportunités d&apos;investissement.
           </p>
           <form className="flex flex-col sm:flex-row gap-3 max-w-md">
             <input
               type="email"
               required
-              placeholder="vous@maison.com"
+              placeholder="votre@email.com"
               className="flex-1 bg-paper-2 hairline rounded-full px-5 py-3 text-sm focus:outline-none focus:border-navy text-ink placeholder:text-ink-3"
             />
             <button

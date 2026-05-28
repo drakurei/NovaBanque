@@ -6,7 +6,7 @@ import { stagger, fadeUp, easeEditorial } from "@/lib/motion";
 
 export default function HeroCinematic() {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden flex items-center justify-center py-24 lg:py-20">
+    <section className="relative min-h-screen w-full overflow-hidden flex items-center justify-center pt-28 pb-12 lg:pt-32 lg:pb-16">
       {/* Radial glow background */}
       <div
         aria-hidden
@@ -42,24 +42,24 @@ export default function HeroCinematic() {
           className="text-[11px] tracking-[0.35em] uppercase text-ink-2 mb-5 flex items-center justify-center gap-3"
         >
           <Sparkles size={14} className="text-navy" />
-          The fine-tech private banking app
+          La banque privée nouvelle génération
           <Sparkles size={14} className="text-navy" />
         </motion.p>
 
-        {/* Wordmark — sized to fit comfortably in viewport above mockup */}
+        {/* Wordmark — fits comfortably above mockup in viewport */}
         <motion.h1
           initial={{ opacity: 0, scale: 1.1, filter: "blur(16px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 1.8, ease: easeEditorial, delay: 0.2 }}
           className="font-display text-ink leading-[0.9] tracking-tighter font-bold"
-          style={{ fontSize: "clamp(56px, 9vw, 130px)" }}
+          style={{ fontSize: "clamp(42px, 6.5vw, 96px)" }}
         >
           NovaBanque
         </motion.h1>
 
         <motion.p
           variants={fadeUp}
-          className="text-ink-2 text-sm lg:text-base mt-5 max-w-md mx-auto leading-relaxed"
+          className="text-ink-2 text-sm lg:text-base mt-4 max-w-md mx-auto leading-relaxed"
         >
           Banque privée, gestion d&apos;investissement et conseil immobilier.
           Trois métiers réunis à Genève depuis 1987.
@@ -70,8 +70,8 @@ export default function HeroCinematic() {
           initial={{ opacity: 0, y: 40, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.4, ease: easeEditorial, delay: 0.7 }}
-          className="relative mt-8 mx-auto"
-          style={{ width: 240, maxWidth: "60vw" }}
+          className="relative mt-6 mx-auto"
+          style={{ width: 200, maxWidth: "55vw" }}
         >
           <div className="absolute -inset-10 bg-navy/30 rounded-full blur-3xl animate-glow-pulse" />
           <div
@@ -129,14 +129,14 @@ export default function HeroCinematic() {
 
         <motion.div
           variants={fadeUp}
-          className="mt-8 flex items-center justify-center gap-3 flex-wrap"
+          className="mt-6 flex items-center justify-center gap-3 flex-wrap"
         >
           <a
             href="/services"
             data-cursor="hover"
             className="inline-flex items-center gap-2 bg-navy hover:bg-navy-deep text-white px-6 py-2.5 rounded-full text-sm font-medium transition-colors"
           >
-            Découvrir l&apos;app
+            Découvrir l&apos;application
             <span aria-hidden>→</span>
           </a>
           <a
@@ -144,7 +144,7 @@ export default function HeroCinematic() {
             data-cursor="hover"
             className="inline-flex items-center gap-2 hairline hover:bg-paper-2 text-ink px-6 py-2.5 rounded-full text-sm font-medium transition-colors"
           >
-            Disponible printemps 2026
+            Disponible au printemps 2026
           </a>
         </motion.div>
       </motion.div>
