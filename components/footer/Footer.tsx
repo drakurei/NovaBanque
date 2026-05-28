@@ -10,9 +10,9 @@ export default function Footer() {
             <Link
               href="/"
               aria-label="NovaBanque — Retour à l'accueil"
-              className="font-display text-2xl tracking-tight hover:text-or-soft transition-colors inline-block"
+              className="font-display uppercase text-3xl tracking-tight hover:text-or-soft transition-colors inline-block"
             >
-              Nova<span className="italic">Banque</span>
+              NovaBanque
             </Link>
             <p className="text-sm text-charcoal-2 mt-4 max-w-xs leading-relaxed">
               Banque privée du Léman. Genève, Lausanne, Zurich, Monaco, Singapour.

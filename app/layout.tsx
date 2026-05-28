@@ -1,21 +1,31 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Anton, Inter_Tight, Fraunces } from "next/font/google";
 import LenisProvider from "@/components/lenis/LenisProvider";
 import CustomCursor from "@/components/cursor/CustomCursor";
 import BackgroundScrub from "@/components/bg-scrub/BackgroundScrub";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+// SPYLT-style chunky display for big headlines
+const anton = Anton({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400"],
+  display: "swap",
+});
+
+// Editorial serif kept as secondary for quotes / italic accents
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   display: "swap",
 });
 
-const inter = Inter({
+const interTight = Inter_Tight({
   subsets: ["latin"],
   variable: "--font-sans",
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -35,7 +45,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" className={`${cormorant.variable} ${inter.variable}`}>
+    <html lang="fr" className={`${anton.variable} ${fraunces.variable} ${interTight.variable}`}>
       <body>
         <a
           href="#main"

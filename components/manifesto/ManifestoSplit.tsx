@@ -41,11 +41,11 @@ export default function ManifestoSplit() {
 
           <motion.h2
             variants={fadeUp}
-            className="font-display text-5xl lg:text-7xl leading-[0.98] tracking-tight"
+            className="font-display uppercase text-6xl lg:text-8xl xl:text-9xl leading-[0.88] tracking-tighter"
           >
             {manifesto.title[0]} <br />
             {manifesto.title[1]} <br />
-            <span className="italic text-or-soft">{manifesto.title[2]}</span>
+            <span className="text-or-soft">{manifesto.title[2]}</span>
           </motion.h2>
 
           <motion.p

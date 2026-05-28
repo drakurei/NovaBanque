@@ -31,11 +31,11 @@ export default function Nav({ solid = false }: { solid?: boolean }) {
         <Link
           href="/"
           aria-label="NovaBanque — Retour à l'accueil"
-          className={`font-display text-2xl tracking-tight transition-colors ${
+          className={`font-display uppercase text-2xl lg:text-3xl tracking-tight transition-colors ${
             scrolled ? "text-charcoal hover:text-or-soft" : "text-ivoire hover:text-or-soft"
           }`}
         >
-          Nova<span className="italic">Banque</span>
+          NovaBanque
         </Link>
 
         <ul className="hidden lg:flex items-center gap-10">

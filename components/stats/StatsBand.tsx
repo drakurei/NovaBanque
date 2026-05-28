@@ -13,7 +13,7 @@ const kpis = [
 
 export default function StatsBand() {
   return (
-    <section className="border-y border-charcoal/10 py-16 lg:py-20">
+    <section className="border-y border-charcoal/15 py-16 lg:py-20 bg-ivoire">
       <div className="max-w-[1440px] mx-auto px-8 lg:px-12">
         <motion.div
           variants={stagger(0.1)}
@@ -27,17 +27,17 @@ export default function StatsBand() {
               key={k.label}
               variants={fadeUp}
               className={`${
-                i > 0 ? "lg:border-l border-charcoal/10 lg:pl-8" : ""
+                i > 0 ? "lg:border-l border-charcoal/15 lg:pl-8" : ""
               }`}
             >
-              <p className="font-display text-5xl lg:text-7xl leading-none tracking-tight">
+              <p className="font-display uppercase text-6xl lg:text-8xl leading-none tracking-tighter text-charcoal">
                 <Counter
                   to={k.value}
                   decimals={k.decimals}
                   suffix={k.suffix}
                 />
               </p>
-              <p className="text-[11px] tracking-[0.25em] uppercase text-charcoal-2 mt-4">
+              <p className="text-[11px] tracking-[0.25em] uppercase text-charcoal-2 mt-4 font-bold">
                 {k.label}
               </p>
             </motion.div>

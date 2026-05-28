@@ -92,8 +92,7 @@ export default function HeroCinematic() {
         className="absolute inset-0 bg-gradient-to-r from-charcoal/40 to-transparent"
       />
 
-      {/* SPYLT-inspired floating gold coins (decorative, low opacity) */}
-      <FloatingCoins count={5} className="opacity-50" />
+      {/* Floating coins removed — too kitsch for the SPYLT-energy banking direction */}
 
       <motion.div
         variants={stagger(0.15)}
@@ -103,42 +102,47 @@ export default function HeroCinematic() {
       >
         <motion.p
           variants={fadeUp}
-          className="text-[11px] tracking-[0.3em] uppercase text-ivoire/80 mb-6"
+          className="text-[11px] tracking-[0.3em] uppercase text-or-soft mb-6 font-bold"
         >
-          — Maison de patrimoine. Genève.
+          — Maison de patrimoine privée · Genève · 1987
         </motion.p>
 
-        <h1 className="font-display text-ivoire text-5xl sm:text-7xl lg:text-[110px] leading-[0.96] tracking-tight max-w-5xl overflow-hidden">
+        <h1 className="font-display uppercase text-ivoire text-7xl sm:text-9xl lg:text-[180px] xl:text-[220px] leading-[0.85] tracking-tighter max-w-6xl overflow-hidden">
           <span className="block overflow-hidden">
-            <LetterReveal text="Là où le patrimoine" delay={0.3} />
+            <LetterReveal text="Banque." delay={0.25} />
           </span>
           <span className="block overflow-hidden">
-            <LetterReveal text="rencontre " delay={0.7} />
-            <LetterReveal text="le Léman." delay={0.95} italic />
+            <LetterReveal text="Investissement." delay={0.45} />
+          </span>
+          <span className="block overflow-hidden text-or-soft">
+            <LetterReveal text="Immobilier." delay={0.7} />
           </span>
         </h1>
 
         <motion.p
           variants={fadeUp}
-          className="text-ivoire/85 text-lg lg:text-xl mt-8 max-w-xl leading-relaxed"
+          className="text-ivoire/85 text-base lg:text-lg mt-10 max-w-xl leading-relaxed font-medium"
         >
-          Banque privée, gestion d'investissement, conseil immobilier. Trois
-          métiers réunis sous un même toit à Genève depuis 1987.
+          Trois métiers, une seule maison. Réunis sous le même toit, sur les
+          rives du Léman, depuis 1987.
         </motion.p>
 
-        <motion.div variants={fadeUp} className="flex flex-wrap gap-10 mt-10">
-          <EditorialLink href="/services" light size="lg" magnetic>
-            Découvrir nos services privés
-          </EditorialLink>
-          <EditorialLink
+        <motion.div variants={fadeUp} className="flex flex-wrap gap-4 mt-10">
+          <a
+            href="/services"
+            data-cursor="hover"
+            className="inline-flex items-center gap-3 bg-or-soft text-charcoal px-8 py-4 text-sm font-extrabold uppercase tracking-[0.2em] hover:bg-ivoire transition-colors"
+          >
+            Découvrir nos métiers
+            <span aria-hidden>→</span>
+          </a>
+          <a
             href="/rendez-vous"
-            light
-            size="lg"
-            arrow={false}
-            magnetic
+            data-cursor="hover"
+            className="inline-flex items-center gap-3 border border-ivoire/40 text-ivoire px-8 py-4 text-sm font-extrabold uppercase tracking-[0.2em] hover:bg-ivoire hover:text-charcoal transition-colors"
           >
             Prendre rendez-vous
-          </EditorialLink>
+          </a>
         </motion.div>
       </motion.div>
 

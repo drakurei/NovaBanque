@@ -3,15 +3,16 @@
 @theme {
   --color-ivoire: #F5F0E8;
   --color-ivoire-2: #EBE5D8;
-  --color-charcoal: #1B1D1F;
-  --color-charcoal-2: #3A3D40;
+  --color-charcoal: #0F1012;
+  --color-charcoal-2: #2A2C30;
   --color-leman: #3C5266;
   --color-leman-deep: #1F2D3A;
-  --color-or-soft: #B59B6E;
+  --color-or-soft: #D4A24B;
   --color-stone: #A8A39A;
 
-  --font-display: "Cormorant Garamond", "Times New Roman", serif;
-  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Anton", "Impact", "Arial Black", sans-serif;
+  --font-serif: "Fraunces", "Times New Roman", serif;
+  --font-sans: "Inter Tight", "Inter", system-ui, sans-serif;
 
   --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
 }
