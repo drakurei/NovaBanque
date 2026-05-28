@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NovaBanque — Banque privée et gestion de patrimoine. Le futur, codé." />
+  <title>NovaBanque — Le futur de votre patrimoine</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- PRELOADER : géométrie sacrée + rideau noir -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <svg class="sacred-geometry" viewBox="0 0 400 400" fill="none">
+        <circle class="ring r1" cx="200" cy="200" r="190" stroke="white" stroke-width="0.5" pathLength="1" />
+        <circle class="ring r2" cx="200" cy="200" r="160" stroke="white" stroke-width="0.5" pathLength="1" />
+        <circle class="ring r3" cx="200" cy="200" r="130" stroke="white" stroke-width="0.5" pathLength="1" />
+        <circle class="ring r4" cx="200" cy="200" r="100" stroke="white" stroke-width="0.5" pathLength="1" />
+        <circle class="ring r5" cx="200" cy="200" r="70"  stroke="white" stroke-width="0.5" pathLength="1" />
+        <circle class="ring r6" cx="200" cy="200" r="40"  stroke="white" stroke-width="0.5" pathLength="1" />
+        <g class="star" transform="translate(200,200)">
+          <polygon points="0,-30 8.6,-9.2 30,-9.2 12.6,4.8 19.2,26 0,13 -19.2,26 -12.6,4.8 -30,-9.2 -8.6,-9.2" stroke="white" stroke-width="0.5" fill="none" />
+        </g>
+      </svg>
+      <div class="preloader-logo">
+        <span class="preloader-logo-text">NovaBanque</span>
+      </div>
+      <div class="preloader-progress">
+        <span id="preloader-counter">0</span>%
+      </div>
+    </div>
+    <div class="preloader-curtain"></div>
+  </div>
+
+  <!-- CURSEUR PERSONNALISÉ -->
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- HALOS LUMINEUX -->
+  <div class="bg-glow bg-glow-1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-3" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header class="site-header" data-header>
+    <nav class="container nav" aria-label="Navigation principale">
+      <a href="#hero" class="logo" data-cursor="hover">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1" />
+          <circle cx="10" cy="10" r="4" fill="currentColor" />
+        </svg>
+        <span>NovaBanque</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#services" class="nav-link" data-cursor="hover">Services</a></li>
+        <li><a href="#dashboard" class="nav-link" data-cursor="hover">App</a></li>
+        <li><a href="#securite" class="nav-link" data-cursor="hover">Sécurité</a></li>
+        <li><a href="#contact" class="nav-link" data-cursor="hover">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#client" class="btn btn-ghost" data-magnetic data-cursor="hover">Espace client</a>
+        <a href="#ouverture" class="btn btn-primary" data-magnetic data-cursor="hover">Ouvrir un compte</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <main id="main">
+    <section id="hero" class="hero">
+      <div class="container hero-grid">
+
+        <div class="hero-text">
+          <p class="eyebrow split-fade">— Banque privée · Genève · 1987</p>
+
+          <h1 class="hero-title">
+            <span class="line"><span class="line-inner split-mask">Le futur</span></span>
+            <span class="line"><span class="line-inner split-mask">de votre</span></span>
+            <span class="line"><span class="line-inner split-mask italic">patrimoine.</span></span>
+          </h1>
+
+          <p class="hero-sub split-fade">
+            Une expérience bancaire immatérielle. Gestion d'investissement,
+            conseil patrimonial et application mobile institutionnelle —
+            réunis sous le même toit à Genève.
+          </p>
+
+          <div class="hero-actions split-fade">
+            <a href="#ouverture" class="btn btn-primary btn-lg" data-magnetic data-cursor="hover">
+              Ouvrir un compte
+              <span aria-hidden="true">→</span>
+            </a>
+            <a href="#dashboard" class="btn btn-link" data-cursor="hover">Voir l'application</a>
+          </div>
+        </div>
+
+        <aside class="balance-card split-fade" aria-label="Aperçu solde">
+          <p class="balance-label">Patrimoine total</p>
+          <p class="balance-amount">
+            <span class="currency">€</span>
+            <span class="counter" data-counter="1482940">0</span>
+            <span class="decimals">,12</span>
+          </p>
+          <p class="balance-perf">↑ <span class="counter" data-counter="8" data-decimal="1">0</span>,2 % YTD</p>
+
+          <div class="balance-rows">
+            <div class="balance-row">
+              <div>
+                <p class="row-label">Compte courant</p>
+                <p class="row-meta">FR76 1027 · multi-devises</p>
+              </div>
+              <p class="row-value">€ <span class="counter" data-counter="12480">0</span></p>
+            </div>
+            <div class="balance-row">
+              <div>
+                <p class="row-label">Mandat 60/40</p>
+                <p class="row-meta">+ 8,2 % net 2025</p>
+              </div>
+              <p class="row-value">€ <span class="counter" data-counter="1320100">0</span></p>
+            </div>
+            <div class="balance-row">
+              <div>
+                <p class="row-label">Crédit lombard</p>
+                <p class="row-meta">Disponible</p>
+              </div>
+              <p class="row-value">€ <span class="counter" data-counter="150360">0</span></p>
+            </div>
+          </div>
+
+          <div class="balance-graph">
+            <svg viewBox="0 0 280 60" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="grad" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#5B47FF" stop-opacity="0.5" />
+                  <stop offset="100%" stop-color="#5B47FF" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <path class="graph-fill" d="M0,50 C30,42 60,30 90,32 C120,33 150,18 180,16 C210,14 240,28 280,4 L280,60 L0,60 Z" fill="url(#grad)" />
+              <path class="graph-line" d="M0,50 C30,42 60,30 90,32 C120,33 150,18 180,16 C210,14 240,28 280,4" stroke="#5B47FF" stroke-width="1.5" fill="none" />
+            </svg>
+          </div>
+        </aside>
+
+      </div>
+
+      <div class="scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
+          <rect x="1" y="1" width="10" height="18" rx="5" stroke="currentColor" />
+          <circle class="scroll-dot" cx="6" cy="6" r="1.5" fill="currentColor" />
+        </svg>
+      </div>
+    </section>
+  </main>
+
+  <!-- LIBS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.3/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
