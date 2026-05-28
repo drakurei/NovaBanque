@@ -35,16 +35,28 @@ export default function Nav({ solid = false }: { solid?: boolean }) {
         </Link>
 
         <Link
-          href="/notre-approche"
+          href="/tableau-de-bord"
           className="hidden lg:inline-block text-[13px] text-ink-2 hover:text-ink px-4 py-1.5 rounded-full hover:bg-paper-2 transition-colors"
         >
-          Notre approche
+          App
         </Link>
         <Link
           href="/services"
           className="hidden lg:inline-block text-[13px] text-ink-2 hover:text-ink px-4 py-1.5 rounded-full hover:bg-paper-2 transition-colors"
         >
           Services
+        </Link>
+        <Link
+          href="/securite"
+          className="hidden lg:inline-block text-[13px] text-ink-2 hover:text-ink px-4 py-1.5 rounded-full hover:bg-paper-2 transition-colors"
+        >
+          Sécurité
+        </Link>
+        <Link
+          href="/contact"
+          className="hidden lg:inline-block text-[13px] text-ink-2 hover:text-ink px-4 py-1.5 rounded-full hover:bg-paper-2 transition-colors"
+        >
+          Contact
         </Link>
         <Link
           href="/rendez-vous"
