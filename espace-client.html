@@ -86,6 +86,31 @@
       background: rgba(110,91,255,0.06);
     }
 
+    /* Eye toggle pour mot de passe */
+    .field-pass { position: relative; }
+    .field-pass input { padding-right: 48px; }
+    .eye-toggle {
+      position: absolute;
+      right: 8px;
+      bottom: 6px;
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 0;
+      color: rgba(255,255,255,0.55);
+      cursor: pointer;
+      border-radius: 8px;
+      transition: color .2s, background .2s;
+    }
+    .eye-toggle:hover { color: white; background: rgba(255,255,255,0.05); }
+    .eye-toggle svg { width: 18px; height: 18px; }
+    .eye-toggle .eye-off { display: none; }
+    .eye-toggle[data-visible="true"] .eye-on  { display: none; }
+    .eye-toggle[data-visible="true"] .eye-off { display: block; }
+
     .login-row {
       display: flex;
       justify-content: space-between;
@@ -213,12 +238,21 @@
           <form onsubmit="event.preventDefault(); alert('Authentification : démo. Backend non connecté.');">
             <div class="field">
               <label for="identifiant">Identifiant</label>
-              <input id="identifiant" name="identifiant" type="text" autocomplete="username" required placeholder="N° client à 10 chiffres" />
+              <input id="identifiant" name="identifiant" type="text" autocomplete="username" required />
             </div>
 
-            <div class="field">
+            <div class="field field-pass">
               <label for="motdepasse">Mot de passe</label>
-              <input id="motdepasse" name="motdepasse" type="password" autocomplete="current-password" required placeholder="••••••••" />
+              <input id="motdepasse" name="motdepasse" type="password" autocomplete="current-password" required />
+              <button type="button" class="eye-toggle" data-visible="false" aria-label="Afficher le mot de passe" onclick="(function(b){var i=document.getElementById('motdepasse');var on=b.getAttribute('data-visible')==='true';b.setAttribute('data-visible', String(!on));i.type=on?'password':'text';b.setAttribute('aria-label', on?'Afficher le mot de passe':'Masquer le mot de passe');})(this)">
+                <svg class="eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                </svg>
+                <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                  <line x1="1" y1="1" x2="23" y2="23"/>
+                </svg>
+              </button>
             </div>
 
             <div class="login-row">

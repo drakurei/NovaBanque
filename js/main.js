@@ -359,6 +359,129 @@
   }
 
   // ====================================================
+  // 7b. MOBILE HAMBURGER — injecte le bouton et toggle le drawer
+  // ====================================================
+  function initMobileMenu() {
+    const nav = document.querySelector('.site-header .nav');
+    const links = nav && nav.querySelector('.nav-links');
+    if (!nav || !links) return;
+
+    // Évite la double injection si le script tourne deux fois
+    if (nav.querySelector('.nav-toggle')) return;
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'nav-toggle';
+    btn.setAttribute('aria-label', 'Ouvrir le menu');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', 'primary-nav');
+    btn.innerHTML = '<span class="bar b1"></span><span class="bar b2"></span><span class="bar b3"></span>';
+
+    // ID nécessaire pour aria-controls
+    if (!links.id) links.id = 'primary-nav';
+
+    // Insère le bouton dans les actions (entre les boutons CTA pour les pousser à droite)
+    const actions = nav.querySelector('.nav-actions');
+    if (actions) actions.appendChild(btn);
+    else nav.appendChild(btn);
+
+    // Clone les CTA des actions dans le drawer (pour qu'ils restent accessibles en mobile)
+    if (actions && !links.querySelector('.nav-drawer-cta')) {
+      const cloneWrap = document.createElement('div');
+      cloneWrap.className = 'nav-drawer-cta';
+      actions.querySelectorAll('.btn').forEach((b) => {
+        const c = b.cloneNode(true);
+        c.removeAttribute('data-magnetic');
+        cloneWrap.appendChild(c);
+      });
+      if (cloneWrap.children.length) links.appendChild(cloneWrap);
+    }
+
+    const close = () => {
+      links.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Ouvrir le menu');
+    };
+    const open = () => {
+      links.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      btn.setAttribute('aria-label', 'Fermer le menu');
+    };
+
+    btn.addEventListener('click', () => {
+      const isOpen = links.classList.contains('is-open');
+      isOpen ? close() : open();
+    });
+
+    // Ferme au clic sur un lien
+    links.addEventListener('click', (e) => {
+      if (e.target.closest('a')) close();
+    });
+
+    // Ferme au clic en dehors
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target)) close();
+    });
+
+    // Ferme avec Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+
+    // Ferme si on repasse en desktop
+    const mql = window.matchMedia('(min-width: 821px)');
+    const onChange = () => { if (mql.matches) close(); };
+    if (mql.addEventListener) mql.addEventListener('change', onChange);
+    else if (mql.addListener) mql.addListener(onChange);
+  }
+
+  // ====================================================
+  // 7c. COOKIE BANNER — RGPD-friendly, mémorise le choix
+  // ====================================================
+  function initCookieBanner() {
+    const STORAGE_KEY = 'novabanque-cookie-consent';
+    try {
+      if (localStorage.getItem(STORAGE_KEY)) return; // déjà choisi
+    } catch (e) { /* storage indisponible — on affiche quand même la bannière */ }
+
+    const banner = document.createElement('div');
+    banner.className = 'cookie-banner';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-live', 'polite');
+    banner.setAttribute('aria-label', 'Consentement aux cookies');
+    banner.innerHTML = `
+      <p>
+        <strong>Cookies.</strong>
+        Nous utilisons uniquement des cookies strictement nécessaires et une mesure d'audience anonymisée hébergée en Suisse.
+        <a href="mentions-legales.html#cookies">En savoir plus →</a>
+      </p>
+      <div class="cookie-actions">
+        <button type="button" class="cookie-btn cookie-btn-reject" data-cookie="reject">Refuser</button>
+        <button type="button" class="cookie-btn cookie-btn-accept" data-cookie="accept">Accepter</button>
+      </div>
+    `;
+
+    document.body.appendChild(banner);
+
+    // Anime l'apparition après un beat
+    requestAnimationFrame(() => {
+      setTimeout(() => banner.classList.add('is-visible'), 400);
+    });
+
+    const remove = (choice) => {
+      try { localStorage.setItem(STORAGE_KEY, choice + ':' + Date.now()); } catch (e) {}
+      banner.classList.remove('is-visible');
+      setTimeout(() => banner.remove(), 500);
+    };
+
+    banner.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-cookie]');
+      if (!btn) return;
+      remove(btn.getAttribute('data-cookie'));
+    });
+  }
+
+  // ====================================================
   // 8. SMOOTH SCROLL TO ANCHORS
   // ====================================================
   function initScrollTo() {
@@ -384,7 +507,9 @@
     initLenis();
     initMagnetic();
     initHeader();
+    initMobileMenu();
     initScrollTo();
+    initCookieBanner();
 
     if (prefersReducedMotion) {
       document.body.classList.add('preloader-done', 'site-ready');
