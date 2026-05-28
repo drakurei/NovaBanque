@@ -1,2 +1,2 @@
-:HL["/NovaBanque/_next/static/chunks/0x0s_l60m8yh4.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"Nhg6hklGj0NFVvCl3jrah"}
+:HL["/NovaBanque/_next/static/chunks/0pl2ud161k4mn.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"yVOgDS-ThNF7_1Joh_ecV"}
