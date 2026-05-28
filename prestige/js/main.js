@@ -36,14 +36,15 @@
       .to('.preloader', { yPercent: -100, duration: 1.0, ease: 'expo.inOut' }, 2.8);
   }
 
-  // 2. LENIS
+  // 2. LENIS (plus réactif)
   let lenis;
   function initLenis() {
     if (prefersReducedMotion) return;
     lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.9,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical', smoothWheel: true, touchMultiplier: 1.5,
+      orientation: 'vertical', smoothWheel: true,
+      touchMultiplier: 2, wheelMultiplier: 1.1,
     });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
