@@ -61,15 +61,16 @@ body.site-ready .site-header { opacity: 1; transition: opacity .8s var(--ease) .
 /* Hamburger button — injected by JS on mobile */
 .nav-toggle {
   display: none;
+  position: relative;       /* IMPORTANT : ancre les .bar en position: absolute */
   width: 40px; height: 40px;
   background: transparent;
   border: 0;
   padding: 0;
   cursor: pointer;
   color: white;
-  position: relative;
   border-radius: 999px;
   transition: background .2s;
+  flex: 0 0 auto;
 }
 .nav-toggle:hover { background: rgba(255,255,255,0.06); }
 .nav-toggle .bar {
