@@ -30,12 +30,12 @@ export default function Nav({ solid = false }: { solid?: boolean }) {
       <nav className="max-w-[1440px] mx-auto flex items-center justify-between px-8 lg:px-12 py-6">
         <Link
           href="/"
-          aria-label="DRIFT — Retour à l'accueil"
-          className={`font-display uppercase text-2xl tracking-[0.05em] transition-colors ${
-            scrolled ? "text-noir hover:text-rust" : "text-cream hover:text-rust"
+          aria-label="NovaBanque — Retour à l'accueil"
+          className={`font-display text-2xl tracking-tight transition-colors ${
+            scrolled ? "text-charcoal hover:text-or-soft" : "text-ivoire hover:text-or-soft"
           }`}
         >
-          DRIFT
+          Nova<span className="italic">Banque</span>
         </Link>
 
         <ul className="hidden lg:flex items-center gap-10">
@@ -58,23 +58,23 @@ export default function Nav({ solid = false }: { solid?: boolean }) {
         <div className="hidden lg:flex items-center gap-6">
           <Link
             href="/espace-client"
-            className={`text-[12px] uppercase tracking-[0.15em] font-bold transition-colors ${
+            className={`text-[13px] transition-colors ${
               scrolled
-                ? "text-noir-2 hover:text-rust"
-                : "text-cream/80 hover:text-cream"
+                ? "text-charcoal-2 hover:text-charcoal"
+                : "text-ivoire/80 hover:text-ivoire"
             }`}
           >
-            Account
+            Espace client
           </Link>
           <Link
             href="/rendez-vous"
-            className={`text-[12px] uppercase tracking-[0.15em] font-bold px-5 py-2.5 transition-colors ${
+            className={`text-[13px] tracking-wide px-5 py-2.5 transition-colors ${
               scrolled
-                ? "bg-noir text-cream hover:bg-rust"
-                : "bg-rust text-cream hover:bg-cream hover:text-rust"
+                ? "bg-charcoal text-ivoire hover:bg-leman-deep"
+                : "bg-ivoire text-charcoal hover:bg-ivoire/90"
             }`}
           >
-            Get notified
+            Prendre rendez-vous
           </Link>
         </div>
 

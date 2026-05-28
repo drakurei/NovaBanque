@@ -19,22 +19,23 @@ export default function Home() {
       <Nav />
       <main id="main">
         <HeroCinematic />
-        <MarqueeBand text="DRIFT — Crafted in Lisbon — Limited drops — Tannage végétal — Goodyear welt — Horween leather" />
+        <MarqueeBand text="NovaBanque — Banque privée — Investissement — Immobilier — Genève — 1987" />
         <ManifestoSplit />
         <StatsBand />
         <InventaireHorizontal />
         <WaveDivider from="ivoire" to="charcoal" height={140} />
         <GiantTextSequence
-          phrases={["Crafted.", "Limited.", "Walk your way."]}
+          phrases={["Discrétion.", "Indépendance.", "Long terme."]}
         />
         <PropertiesHorizontal />
         <WaveDivider from="charcoal" to="ivoire" height={140} flip />
         <FeaturedVillaStyle />
         <BankerPortrait />
         <MarqueeBand
-          text="STAY ON THE LIST — NEXT DROP COMING — 300 PAIRS — NO PREORDER"
+          text="Discrétion — Indépendance — Long terme"
+          italic
           dark
-          speed={70}
+          speed={80}
         />
         <Distinctions />
         <CtaFinal />
