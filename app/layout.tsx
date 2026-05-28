@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
+import LenisProvider from "@/components/lenis/LenisProvider";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -40,7 +41,7 @@ export default function RootLayout({
         >
           Aller au contenu
         </a>
-        {children}
+        <LenisProvider>{children}</LenisProvider>
       </body>
     </html>
   );

@@ -6,15 +6,24 @@ import { images } from "@/lib/images";
 import { cities } from "@/lib/content";
 import { fadeUp, stagger, easeEditorial } from "@/lib/motion";
 import EditorialLink from "@/components/primitives/EditorialLink";
+import { useGsapParallax } from "@/lib/useGsapParallax";
 
 export default function HeroCinematic() {
+  const { sectionRef, targetRef } = useGsapParallax<HTMLElement>(140);
+
   return (
-    <section className="relative h-screen min-h-[720px] w-full overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative h-screen min-h-[720px] w-full overflow-hidden"
+    >
       <motion.div
-        initial={{ scale: 1.08 }}
-        animate={{ scale: 1 }}
+        ref={(el) => {
+          targetRef.current = el;
+        }}
+        initial={{ scale: 1.12 }}
+        animate={{ scale: 1.08 }}
         transition={{ duration: 2.5, ease: easeEditorial }}
-        className="absolute inset-0"
+        className="absolute inset-[-10%]"
       >
         <Image
           src={images.hero.src}

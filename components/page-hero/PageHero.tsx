@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import { fadeUp, stagger, easeEditorial } from "@/lib/motion";
+import { useGsapParallax } from "@/lib/useGsapParallax";
 
 export default function PageHero({
   eyebrow,
@@ -19,13 +20,21 @@ export default function PageHero({
   imageSrc: string;
   imageAlt: string;
 }) {
+  const { sectionRef, targetRef } = useGsapParallax<HTMLElement>(100);
+
   return (
-    <section className="relative h-[70vh] min-h-[480px] w-full overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative h-[70vh] min-h-[480px] w-full overflow-hidden"
+    >
       <motion.div
-        initial={{ scale: 1.06 }}
-        animate={{ scale: 1 }}
+        ref={(el) => {
+          targetRef.current = el;
+        }}
+        initial={{ scale: 1.1 }}
+        animate={{ scale: 1.06 }}
         transition={{ duration: 2, ease: easeEditorial }}
-        className="absolute inset-0"
+        className="absolute inset-[-8%]"
       >
         <Image
           src={imageSrc}
