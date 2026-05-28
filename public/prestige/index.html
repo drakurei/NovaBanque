@@ -16,7 +16,7 @@
 </head>
 <body>
 
-  <!-- PRELOADER : géométrie sacrée + rideau noir -->
+  <!-- PRELOADER -->
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="preloader-inner">
       <svg class="sacred-geometry" viewBox="0 0 400 400" fill="none">
@@ -30,23 +30,17 @@
           <polygon points="0,-30 8.6,-9.2 30,-9.2 12.6,4.8 19.2,26 0,13 -19.2,26 -12.6,4.8 -30,-9.2 -8.6,-9.2" stroke="white" stroke-width="0.5" fill="none" />
         </g>
       </svg>
-      <div class="preloader-logo">
-        <span class="preloader-logo-text">NovaBanque</span>
-      </div>
-      <div class="preloader-progress">
-        <span id="preloader-counter">0</span>%
-      </div>
+      <div class="preloader-logo"><span>NovaBanque</span></div>
+      <div class="preloader-progress"><span id="preloader-counter">0</span>%</div>
     </div>
     <div class="preloader-curtain"></div>
   </div>
 
-  <!-- CURSEUR PERSONNALISÉ -->
   <div class="cursor" aria-hidden="true">
     <div class="cursor-dot"></div>
     <div class="cursor-ring"></div>
   </div>
 
-  <!-- HALOS LUMINEUX -->
   <div class="bg-glow bg-glow-1" aria-hidden="true"></div>
   <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
   <div class="bg-glow bg-glow-3" aria-hidden="true"></div>
@@ -54,7 +48,7 @@
   <!-- HEADER -->
   <header class="site-header" data-header>
     <nav class="container nav" aria-label="Navigation principale">
-      <a href="#hero" class="logo" data-cursor="hover">
+      <a href="#hero" class="logo" data-cursor="hover" data-scroll-to="#hero">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1" />
           <circle cx="10" cy="10" r="4" fill="currentColor" />
@@ -62,44 +56,43 @@
         <span>NovaBanque</span>
       </a>
       <ul class="nav-links" role="list">
-        <li><a href="#services" class="nav-link" data-cursor="hover">Services</a></li>
-        <li><a href="#dashboard" class="nav-link" data-cursor="hover">App</a></li>
-        <li><a href="#securite" class="nav-link" data-cursor="hover">Sécurité</a></li>
-        <li><a href="#contact" class="nav-link" data-cursor="hover">Contact</a></li>
+        <li><a href="#services" class="nav-link" data-cursor="hover" data-scroll-to="#services">Services</a></li>
+        <li><a href="#dashboard" class="nav-link" data-cursor="hover" data-scroll-to="#dashboard">App</a></li>
+        <li><a href="#securite" class="nav-link" data-cursor="hover" data-scroll-to="#securite">Sécurité</a></li>
+        <li><a href="#contact" class="nav-link" data-cursor="hover" data-scroll-to="#contact">Contact</a></li>
       </ul>
       <div class="nav-actions">
         <a href="#client" class="btn btn-ghost" data-magnetic data-cursor="hover">Espace client</a>
-        <a href="#ouverture" class="btn btn-primary" data-magnetic data-cursor="hover">Ouvrir un compte</a>
+        <a href="#contact" class="btn btn-primary" data-magnetic data-cursor="hover" data-scroll-to="#contact">Ouvrir un compte</a>
       </div>
     </nav>
   </header>
 
-  <!-- HERO -->
   <main id="main">
+
+    <!-- ============================ -->
+    <!-- HERO                          -->
+    <!-- ============================ -->
     <section id="hero" class="hero">
       <div class="container hero-grid">
-
         <div class="hero-text">
           <p class="eyebrow split-fade">— Banque privée · Genève · 1987</p>
-
           <h1 class="hero-title">
             <span class="line"><span class="line-inner split-mask">Le futur</span></span>
             <span class="line"><span class="line-inner split-mask">de votre</span></span>
             <span class="line"><span class="line-inner split-mask italic">patrimoine.</span></span>
           </h1>
-
           <p class="hero-sub split-fade">
             Une expérience bancaire immatérielle. Gestion d'investissement,
             conseil patrimonial et application mobile institutionnelle —
             réunis sous le même toit à Genève.
           </p>
-
           <div class="hero-actions split-fade">
-            <a href="#ouverture" class="btn btn-primary btn-lg" data-magnetic data-cursor="hover">
+            <a href="#contact" class="btn btn-primary btn-lg" data-magnetic data-cursor="hover" data-scroll-to="#contact">
               Ouvrir un compte
               <span aria-hidden="true">→</span>
             </a>
-            <a href="#dashboard" class="btn btn-link" data-cursor="hover">Voir l'application</a>
+            <a href="#dashboard" class="btn btn-link" data-cursor="hover" data-scroll-to="#dashboard">Voir l'application</a>
           </div>
         </div>
 
@@ -111,58 +104,252 @@
             <span class="decimals">,12</span>
           </p>
           <p class="balance-perf">↑ <span class="counter" data-counter="8" data-decimal="1">0</span>,2 % YTD</p>
-
           <div class="balance-rows">
-            <div class="balance-row">
-              <div>
-                <p class="row-label">Compte courant</p>
-                <p class="row-meta">FR76 1027 · multi-devises</p>
-              </div>
-              <p class="row-value">€ <span class="counter" data-counter="12480">0</span></p>
-            </div>
-            <div class="balance-row">
-              <div>
-                <p class="row-label">Mandat 60/40</p>
-                <p class="row-meta">+ 8,2 % net 2025</p>
-              </div>
-              <p class="row-value">€ <span class="counter" data-counter="1320100">0</span></p>
-            </div>
-            <div class="balance-row">
-              <div>
-                <p class="row-label">Crédit lombard</p>
-                <p class="row-meta">Disponible</p>
-              </div>
-              <p class="row-value">€ <span class="counter" data-counter="150360">0</span></p>
-            </div>
+            <div class="balance-row"><div><p class="row-label">Compte courant</p><p class="row-meta">FR76 1027 · multi-devises</p></div><p class="row-value">€ <span class="counter" data-counter="12480">0</span></p></div>
+            <div class="balance-row"><div><p class="row-label">Mandat 60/40</p><p class="row-meta">+ 8,2 % net 2025</p></div><p class="row-value">€ <span class="counter" data-counter="1320100">0</span></p></div>
+            <div class="balance-row"><div><p class="row-label">Crédit lombard</p><p class="row-meta">Disponible</p></div><p class="row-value">€ <span class="counter" data-counter="150360">0</span></p></div>
           </div>
-
           <div class="balance-graph">
             <svg viewBox="0 0 280 60" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="grad" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#5B47FF" stop-opacity="0.5" />
-                  <stop offset="100%" stop-color="#5B47FF" stop-opacity="0" />
-                </linearGradient>
-              </defs>
+              <defs><linearGradient id="grad" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#5B47FF" stop-opacity="0.5" /><stop offset="100%" stop-color="#5B47FF" stop-opacity="0" /></linearGradient></defs>
               <path class="graph-fill" d="M0,50 C30,42 60,30 90,32 C120,33 150,18 180,16 C210,14 240,28 280,4 L280,60 L0,60 Z" fill="url(#grad)" />
               <path class="graph-line" d="M0,50 C30,42 60,30 90,32 C120,33 150,18 180,16 C210,14 240,28 280,4" stroke="#5B47FF" stroke-width="1.5" fill="none" />
             </svg>
           </div>
         </aside>
-
       </div>
+      <div class="scroll-hint" aria-hidden="true"><span>Scroll</span><svg width="12" height="20" viewBox="0 0 12 20" fill="none"><rect x="1" y="1" width="10" height="18" rx="5" stroke="currentColor" /><circle class="scroll-dot" cx="6" cy="6" r="1.5" fill="currentColor" /></svg></div>
+    </section>
 
-      <div class="scroll-hint" aria-hidden="true">
-        <span>Scroll</span>
-        <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
-          <rect x="1" y="1" width="10" height="18" rx="5" stroke="currentColor" />
-          <circle class="scroll-dot" cx="6" cy="6" r="1.5" fill="currentColor" />
-        </svg>
+    <!-- ============================ -->
+    <!-- SACRED GEOMETRY               -->
+    <!-- ============================ -->
+    <section class="sacred-section">
+      <div class="container sacred-wrap">
+        <p class="eyebrow reveal">— Notre approche</p>
+        <div class="sacred-line reveal">
+          <span class="sacred-word">Votre</span>
+        </div>
+        <div class="sacred-line reveal">
+          <span class="sacred-word">Patrimoine</span>
+          <span class="sacred-glyph"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.001-8-12.096-8-5.096 0-5.096 8 0 8 5.095 0 7.001-8 12.096-8z"/></svg></span>
+          <span class="sacred-word italic">rencontre</span>
+        </div>
+        <div class="sacred-line reveal">
+          <span class="sacred-word">le</span>
+          <span class="sacred-glyph"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88"/></svg></span>
+          <span class="sacred-word italic gold">Léman.</span>
+        </div>
+        <p class="sacred-sub reveal">Banque privée, gestion d'investissement et conseil immobilier de prestige. Une maison fondée à Genève en 1987.</p>
       </div>
     </section>
+
+    <!-- ============================ -->
+    <!-- SERVICES BENTO                -->
+    <!-- ============================ -->
+    <section id="services" class="section">
+      <div class="container">
+        <p class="eyebrow reveal">— Nos services</p>
+        <h2 class="section-title">
+          <span class="line"><span class="line-inner-stagger">Une maison.</span></span>
+          <span class="line"><span class="line-inner-stagger italic">Six métiers.</span></span>
+        </h2>
+        <div class="bento-grid">
+          <article class="bento-card reveal" data-cursor="hover">
+            <div class="bento-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><path d="M8 15h2"/></svg></div>
+            <h3>Compte Or</h3>
+            <p>Carte World Elite Mastercard métal. Multi-devises. Conciergerie 24/7.</p>
+          </article>
+          <article class="bento-card reveal" data-cursor="hover">
+            <div class="bento-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+            <h3>Mandat de gestion</h3>
+            <p>Gestion discrétionnaire ou conseillée. Actions, obligations, private equity.</p>
+          </article>
+          <article class="bento-card reveal" data-cursor="hover">
+            <div class="bento-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="21" x2="21" y2="21"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="5 6 12 3 19 6"/><line x1="4" y1="10" x2="4" y2="21"/><line x1="20" y1="10" x2="20" y2="21"/><line x1="8" y1="14" x2="8" y2="17"/><line x1="12" y1="14" x2="12" y2="17"/><line x1="16" y1="14" x2="16" y2="17"/></svg></div>
+            <h3>Crédit lombard</h3>
+            <p>Mobilisez votre portefeuille sans le vendre. Dès 250 k€.</p>
+          </article>
+          <article class="bento-card reveal" data-cursor="hover">
+            <div class="bento-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <h3>Conseil immobilier</h3>
+            <p>Sourcing off-market. Léman, Alpes, Côte d'Azur. Due diligence complète.</p>
+          </article>
+          <article class="bento-card reveal" data-cursor="hover">
+            <div class="bento-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <h3>Family Office</h3>
+            <p>Gouvernance patrimoniale. Transmission, philanthropie. >10 M€.</p>
+          </article>
+          <article class="bento-card reveal" data-cursor="hover">
+            <div class="bento-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <h3>Sécurité institutionnelle</h3>
+            <p>Agréé ACPR. FGDR 100 k€. ISO 27001. Auth forte 3 facteurs.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ -->
+    <!-- DASHBOARD                     -->
+    <!-- ============================ -->
+    <section id="dashboard" class="section section-dashboard">
+      <div class="container">
+        <p class="eyebrow reveal">— L'application</p>
+        <h2 class="section-title">
+          <span class="line"><span class="line-inner-stagger">Votre patrimoine,</span></span>
+          <span class="line"><span class="line-inner-stagger italic">en un écran.</span></span>
+        </h2>
+        <p class="section-sub reveal">L'app NovaBanque consolide vos comptes, vos investissements et vos crédits — partout, en temps réel.</p>
+
+        <div class="dashboard-grid">
+          <div class="dashboard-feature reveal">
+            <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="13" rx="2"/></svg></div>
+            <h4>Vue d'ensemble</h4>
+            <p>Solde global multi-devises, allocation patrimoine en un coup d'œil.</p>
+          </div>
+          <div class="dashboard-feature reveal">
+            <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/></svg></div>
+            <h4>Performance</h4>
+            <p>Graphiques en temps réel, comparaison vs benchmark, attribution.</p>
+          </div>
+          <div class="dashboard-feature reveal">
+            <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9"/></svg></div>
+            <h4>Virements instantanés</h4>
+            <p>SEPA, SWIFT, FX. Plafonds jusqu'à 1 M€. Validation 2FA biométrique.</p>
+          </div>
+          <div class="dashboard-mockup reveal">
+            <div class="mockup-frame">
+              <div class="mockup-statusbar"><span>09:41</span><span class="status-dot"></span></div>
+              <div class="mockup-content">
+                <div class="mockup-avatar-row">
+                  <span class="mockup-avatar"></span>
+                  <p>Bonjour, <strong>Jean</strong></p>
+                </div>
+                <p class="mockup-label">Patrimoine total</p>
+                <p class="mockup-amount">€ 1 482 940</p>
+                <p class="mockup-perf">+ 8,2 % YTD</p>
+                <svg class="mockup-chart" viewBox="0 0 240 60">
+                  <defs><linearGradient id="mg" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#5B47FF" stop-opacity="0.4"/><stop offset="100%" stop-color="#5B47FF" stop-opacity="0"/></linearGradient></defs>
+                  <path d="M0,50 C20,45 40,30 60,32 C80,33 100,20 120,18 C140,16 160,28 180,22 C200,16 220,8 240,5 L240,60 L0,60 Z" fill="url(#mg)"/>
+                  <path d="M0,50 C20,45 40,30 60,32 C80,33 100,20 120,18 C140,16 160,28 180,22 C200,16 220,8 240,5" stroke="#5B47FF" stroke-width="1.5" fill="none"/>
+                </svg>
+                <div class="mockup-actions">
+                  <button>Virer</button><button>Ajouter</button><button>Investir</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-feature reveal">
+            <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg></div>
+            <h4>Reporting fiscal</h4>
+            <p>IFU, formulaires 2042, déclaration des comptes étrangers générés auto.</p>
+          </div>
+          <div class="dashboard-feature reveal">
+            <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+            <h4>Alertes intelligentes</h4>
+            <p>Mouvements suspects, opportunités, échéances fiscales : on vous prévient.</p>
+          </div>
+          <div class="dashboard-feature reveal">
+            <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <h4>Coffre numérique</h4>
+            <p>Stockage chiffré de vos documents patrimoniaux. Partage notaire sécurisé.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ -->
+    <!-- SECURITY                      -->
+    <!-- ============================ -->
+    <section id="securite" class="section">
+      <div class="container">
+        <p class="eyebrow reveal">— Sécurité institutionnelle</p>
+        <h2 class="section-title">
+          <span class="line"><span class="line-inner-stagger">Votre patrimoine,</span></span>
+          <span class="line"><span class="line-inner-stagger italic gold">blindé.</span></span>
+        </h2>
+        <div class="security-grid">
+          <article class="security-card reveal"><div class="security-icon">FINMA</div><h4>Agrément FINMA</h4><p>Supervisée par l'Autorité Fédérale Suisse. Audits annuels.</p></article>
+          <article class="security-card reveal"><div class="security-icon">100K</div><h4>FGDR 100 k€</h4><p>Vos dépôts protégés par le Fonds de Garantie des Dépôts.</p></article>
+          <article class="security-card reveal"><div class="security-icon">TLS</div><h4>Chiffrement TLS 1.3</h4><p>Communications chiffrées, rotation auto des clés.</p></article>
+          <article class="security-card reveal"><div class="security-icon">3FA</div><h4>Authentification 3 facteurs</h4><p>Mot de passe + biométrie + TOTP. Aucun SMS.</p></article>
+          <article class="security-card reveal"><div class="security-icon">ISO</div><h4>ISO 27001</h4><p>Data centers Zurich et Genève. Hébergement souverain.</p></article>
+          <article class="security-card reveal"><div class="security-icon">HSM</div><h4>Clés HSM FIPS 140-2</h4><p>Hardware Security Module Level 4. Inaccessible aux humains.</p></article>
+          <article class="security-card reveal"><div class="security-icon">ML</div><h4>Détection ML temps réel</h4><p>100% des transactions surveillées. 99% fraudes bloquées.</p></article>
+          <article class="security-card reveal"><div class="security-icon">24/7</div><h4>Cellule de crise</h4><p>Réaction en moins de 10 minutes. Notification proactive.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ -->
+    <!-- CONTACT                       -->
+    <!-- ============================ -->
+    <section id="contact" class="section section-contact">
+      <div class="container contact-grid">
+        <div class="contact-left">
+          <p class="eyebrow reveal">— Nous parler</p>
+          <h2 class="section-title">
+            <span class="line"><span class="line-inner-stagger">Une conversation,</span></span>
+            <span class="line"><span class="line-inner-stagger italic">sans engagement.</span></span>
+          </h2>
+          <p class="section-sub reveal">Confidentielle. Sans argumentaire commercial. Une heure pour comprendre votre situation.</p>
+          <div class="contact-offices reveal">
+            <div class="office">
+              <p class="office-city">Genève · Siège</p>
+              <p>Quai du Mont-Blanc 12</p>
+              <p>+41 22 555 00 00</p>
+            </div>
+            <div class="office">
+              <p class="office-city">Paris</p>
+              <p>8 Avenue Hoche</p>
+              <p>+33 1 89 27 00 00</p>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form reveal" onsubmit="event.preventDefault(); this.classList.add('submitted');">
+          <div class="form-row">
+            <input type="text" placeholder="Prénom" required />
+            <input type="text" placeholder="Nom" required />
+          </div>
+          <input type="email" placeholder="Email" required />
+          <input type="tel" placeholder="Téléphone" />
+          <textarea placeholder="Votre message" rows="4"></textarea>
+          <button type="submit" class="btn btn-primary btn-lg" data-magnetic data-cursor="hover">
+            Envoyer le message
+            <span aria-hidden="true">→</span>
+          </button>
+          <p class="form-success">Merci. Un banker vous contactera sous 24 h.</p>
+        </form>
+      </div>
+    </section>
+
   </main>
 
-  <!-- LIBS CDN -->
+  <!-- ============================ -->
+  <!-- FOOTER MASSIF                 -->
+  <!-- ============================ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <p class="eyebrow">Nous contacter</p>
+        <a href="mailto:private@novabanque.ch" class="footer-email" data-cursor="hover">private@novabanque.ch</a>
+        <div class="footer-social">
+          <a href="#" data-cursor="hover">Instagram</a>
+          <a href="#" data-cursor="hover">LinkedIn</a>
+          <a href="#" data-cursor="hover">X</a>
+          <a href="#" data-cursor="hover">YouTube</a>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div><p class="col-title">Services</p><ul><li><a href="#services">Compte Or</a></li><li><a href="#services">Mandat</a></li><li><a href="#services">Crédit lombard</a></li><li><a href="#services">Family Office</a></li></ul></div>
+        <div><p class="col-title">Maison</p><ul><li><a href="#">Notre approche</a></li><li><a href="#">Conseillers</a></li><li><a href="#">Presse</a></li><li><a href="#">Carrières</a></li></ul></div>
+        <div><p class="col-title">Légal</p><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li><li><a href="#">Conformité</a></li></ul></div>
+      </div>
+    </div>
+    <div class="footer-wordmark">NovaBanque</div>
+    <p class="footer-mention">© 2026 NovaBanque SA · Genève · Surveillé par FINMA · Membre CDB 20</p>
+  </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.3/dist/lenis.min.js"></script>
