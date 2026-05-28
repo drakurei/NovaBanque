@@ -1,199 +1,201 @@
 export const navLinks = [
-  { href: "/notre-approche", label: "Notre approche" },
-  { href: "/services", label: "Métiers" },
-  { href: "/votre-banker", label: "Vos conseillers" },
-  { href: "/reconnaissance", label: "Reconnaissance" },
+  { href: "/notre-approche", label: "Manifesto" },
+  { href: "/services", label: "Drops" },
+  { href: "/votre-banker", label: "Studio" },
+  { href: "/reconnaissance", label: "Press" },
 ] as const;
 
-export const cities = ["Genève", "Lausanne", "Zurich", "Monaco", "Singapour"];
+export const cities = ["Lisbon", "Paris", "Tokyo", "Seoul", "Los Angeles"];
 
 export const manifesto = {
-  eyebrow: "— Notre approche",
-  title: ["Une maison,", "trois métiers,", "un patrimoine."],
-  body: `Fondée à Genève en 1987, NovaBanque est une maison de patrimoine privée qui réunit sous un même toit la banque, la gestion d'investissement et le conseil en immobilier de prestige. Une approche complète, héritée de la tradition suisse — pensée pour une clientèle francophone qui ne veut plus jongler entre trois interlocuteurs.`,
+  eyebrow: "— Manifesto",
+  title: ["Crafted.", "Not", "mass-produced."],
+  body: `DRIFT est né à Lisbonne en 2021. Pas une marque. Un atelier. Chaque drop est limité à 300 paires. Cuir tanné au chêne en Italie, semelles Vibram, montage cousu Goodyear. Pas de saison, pas de pré-commande, pas de remise. Quand c'est fini, c'est fini.`,
   linkLabel: "Notre histoire",
 };
 
 export const inventaire = [
   {
-    label: "01 — Banque privée",
-    title: "Compte courant, carte métal, conciergerie.",
+    label: "01 — Performance",
+    title: "Sneakers de course, repensées.",
     description:
-      "Compte Or multi-devises, carte World Elite Mastercard, banker dédié.",
+      "Coupe basse, mesh respirant, semelle Vibram traction. 285g.",
     href: "#",
   },
   {
-    label: "02 — Mandat de gestion",
-    title: "L'expertise institutionnelle, à votre service.",
+    label: "02 — Lifestyle",
+    title: "Le quotidien, élevé.",
     description:
-      "Gestion discrétionnaire ou conseillée. Actions, obligations, private equity.",
+      "Cuir pleine fleur, doublure cuir, semelle gomme. Patine garantie.",
     href: "#",
   },
   {
-    label: "03 — Crédit lombard",
-    title: "Mobilisez votre portefeuille sans le vendre.",
+    label: "03 — Workwear",
+    title: "Vêtements pensés pour durer.",
     description:
-      "Lignes de crédit garanties par vos actifs, taux préférentiel, dès 250 k€.",
+      "Denim japonais 14oz, surchemises en moleskine, t-shirts coton bio 240g.",
     href: "#",
   },
   {
-    label: "04 — Conseil immobilier",
-    title: "Acquérir, gérer, transmettre votre patrimoine immobilier.",
+    label: "04 — Accessoires",
+    title: "Le détail qui change tout.",
     description:
-      "Sourcing off-market, due diligence, négociation, conciergerie. Léman, Alpes, Côte d'Azur.",
+      "Casquettes 6-panel, chaussettes ribbed, ceintures cuir Horween.",
     href: "#",
   },
   {
-    label: "05 — Family Office",
-    title: "La gouvernance patrimoniale, de génération en génération.",
+    label: "05 — Limited",
+    title: "Collaborations one-shot.",
     description:
-      "Structuration, succession, philanthropie. Pour les patrimoines >10 M€.",
+      "3 drops par an. 100 pièces chacun. Sourcing artisan, archives, vintage.",
     href: "#",
   },
 ];
 
 export const properties = [
   {
-    label: "— Cologny, Genève",
-    title: "Villa contemporaine sur le Léman.",
-    description: "1 200 m² · 6 chambres · accès direct au lac",
-    priceLabel: "Sur estimation",
+    label: "— Drop 01 · Lisbon",
+    title: "DRIFT 01 — Smoke",
+    description: "Sneaker low · cuir gris fumé · 300 paires",
+    priceLabel: "240 €",
   },
   {
-    label: "— Crans-Montana, Valais",
-    title: "Chalet d'altitude, vue sur les Alpes.",
-    description: "450 m² · 5 chambres · ski-in/ski-out",
-    priceLabel: "CHF 12 M",
+    label: "— Drop 02 · Tokyo",
+    title: "DRIFT 02 — Sand",
+    description: "Sneaker mid · suède beige · 250 paires",
+    priceLabel: "280 €",
   },
   {
-    label: "— Lutry, Vaud",
-    title: "Maison de maître en pierre, vignobles.",
-    description: "680 m² · 7 chambres · 2 ha de vignes Lavaux",
-    priceLabel: "Sur estimation",
+    label: "— Drop 03 · Paris",
+    title: "DRIFT 03 — Noir",
+    description: "Sneaker low · cuir noir mat · 300 paires",
+    priceLabel: "260 €",
   },
   {
-    label: "— Coppet, Vaud",
-    title: "Demeure XVIIIᵉ, restaurée.",
-    description: "920 m² · 9 chambres · parc classé",
-    priceLabel: "CHF 18 M",
+    label: "— Drop 04 · Seoul",
+    title: "DRIFT 04 — Rust",
+    description: "Sneaker high · cuir patiné rouille · 200 paires",
+    priceLabel: "320 €",
   },
   {
-    label: "— Genève, vieille ville",
-    title: "Appartement de réception, Saint-Pierre.",
-    description: "320 m² · 4 chambres · 3 terrasses sur les toits",
-    priceLabel: "CHF 9,5 M",
+    label: "— Drop 05 · LA",
+    title: "DRIFT 05 — Bone",
+    description: "Sneaker low · cuir ivoire · 350 paires",
+    priceLabel: "240 €",
   },
 ];
 
 export const locations = [
-  { name: "Vaud", count: "32 propriétés" },
-  { name: "Genève", count: "47 propriétés" },
-  { name: "Lutry", count: "8 propriétés" },
-  { name: "Cologny", count: "14 propriétés" },
-  { name: "Coppet", count: "6 propriétés" },
-  { name: "Valais", count: "19 propriétés" },
+  { name: "Lisbon", count: "Atelier principal" },
+  { name: "Paris", count: "Showroom Marais" },
+  { name: "Tokyo", count: "Pop-up Daikanyama" },
+  { name: "Seoul", count: "Concept store" },
+  { name: "Los Angeles", count: "Showroom Arts District" },
+  { name: "Berlin", count: "Pop-up Mitte" },
 ];
 
 export const featured = {
-  eyebrow: "— Services en avant",
-  title: ["Trois piliers", "à découvrir"],
+  eyebrow: "— En avant",
+  title: ["Trois pièces", "à porter"],
   cards: [
     {
-      tag: "Mandat",
-      title: "Mandat équilibré 60/40",
-      meta: "Performance +8,2% net · 2025",
+      tag: "Sneaker",
+      title: "DRIFT 03 — Noir",
+      meta: "260 € · 300 paires",
     },
     {
-      tag: "Crédit",
-      title: "Crédit lombard premium",
-      meta: "Taux dès SARON +0,9%",
+      tag: "Workwear",
+      title: "Chore jacket — Indigo",
+      meta: "320 € · denim 14oz",
     },
     {
-      tag: "Conciergerie",
-      title: "Concierge patrimonial",
-      meta: "Disponible 24h/24, partout",
+      tag: "Accessory",
+      title: "Casquette 6-panel",
+      meta: "85 € · twill non lavé",
     },
   ],
 };
 
 export const bankerQuote = {
-  eyebrow: "— Votre conseillère patrimoniale",
+  eyebrow: "— Studio",
   quote:
-    "Le temps que vous m'accordez vaut plus que vos avoirs. Et c'est mutuel.",
-  attribution: "Claire Moreau",
-  role: "Conseillère Patrimoniale Senior · Genève",
+    "On fait des objets qui s'améliorent avec le temps. Pas qui finissent au placard après deux saisons.",
+  attribution: "Léo Martins",
+  role: "Fondateur · Lisbon",
 };
 
 export const distinctions = [
   {
-    name: "Les Échos",
-    wordmarkClass: "font-display font-bold text-2xl tracking-tight",
-    quote: "« Une nouvelle référence sur la place de Genève. »",
+    name: "Highsnobiety",
+    wordmarkClass: "font-display text-2xl tracking-tight",
+    quote: "« One of the most exciting small studios coming out of Lisbon. »",
   },
   {
-    name: "BILAN",
+    name: "HYPEBEAST",
     wordmarkClass: "font-sans font-extrabold text-2xl tracking-[0.15em]",
-    quote: "« L'élégance discrète d'une vraie maison de patrimoine. »",
+    quote: "« Restraint that actually means something. »",
   },
   {
-    name: "Le Figaro Patrimoine",
-    wordmarkClass: "font-display italic text-xl tracking-tight",
-    quote: "« La banque privée que la nouvelle fortune attendait. »",
+    name: "GQ",
+    wordmarkClass: "font-display text-3xl tracking-tight",
+    quote: "« The sneakers your wardrobe was missing. »",
   },
   {
-    name: "Forbes",
-    wordmarkClass: "font-display font-bold text-2xl tracking-tight",
-    quote: "« Swiss banking, reinvented for the next generation. »",
+    name: "Complex",
+    wordmarkClass: "font-sans font-bold text-2xl tracking-tight",
+    quote: "« Quality you can feel in your hand. »",
   },
   {
-    name: "FT Wealth",
-    wordmarkClass: "font-display font-semibold text-xl tracking-tight",
-    quote: "« A house that feels older than it is — in the best way. »",
+    name: "Dazed",
+    wordmarkClass: "font-display italic text-2xl tracking-tight",
+    quote: "« Slow fashion, done right. »",
   },
 ];
 
 export const ctaFinal = {
-  title: ["Prenez un", "rendez-vous privé."],
-  body: "Une conversation confidentielle, sans engagement. À Genève, à Paris, ou en visio.",
-  linkLabel: "Réserver — c'est confidentiel",
+  title: ["Subscribe", "to next drop."],
+  body: "300 paires. Pas de pré-commande. Quand le prochain drop sort, tu reçois un email 24h avant le grand public.",
+  linkLabel: "Get the early access",
 };
 
 export const footerColumns = [
   {
-    title: "Services",
+    title: "Shop",
     links: [
-      { label: "Compte Or", href: "/services" },
-      { label: "Mandat de gestion", href: "/services" },
-      { label: "Crédit lombard", href: "/services" },
-      { label: "Family Office", href: "/services" },
+      { label: "Sneakers", href: "/services" },
+      { label: "Workwear", href: "/services" },
+      { label: "Accessoires", href: "/services" },
+      { label: "Archives", href: "/services" },
     ],
   },
   {
-    title: "Maison",
+    title: "Studio",
     links: [
-      { label: "Notre approche", href: "/notre-approche" },
-      { label: "Nos bankers", href: "/votre-banker" },
-      { label: "Reconnaissance", href: "/reconnaissance" },
-      { label: "Espace client", href: "/espace-client" },
+      { label: "Manifesto", href: "/notre-approche" },
+      { label: "Atelier Lisbon", href: "/votre-banker" },
+      { label: "Press", href: "/reconnaissance" },
+      { label: "Careers", href: "#" },
     ],
   },
   {
-    title: "Légal",
+    title: "Help",
     links: [
-      { label: "Mentions légales", href: "#" },
-      { label: "Confidentialité", href: "#" },
-      { label: "Conduite des affaires", href: "#" },
+      { label: "Size guide", href: "#" },
+      { label: "Shipping", href: "#" },
+      { label: "Returns", href: "#" },
+      { label: "Care", href: "#" },
     ],
   },
   {
     title: "Contact",
     links: [
-      { label: "+41 22 555 00 00", href: "tel:+41225550000" },
-      { label: "private@novabanque.ch", href: "mailto:private@novabanque.ch" },
-      { label: "Quai du Mont-Blanc 12, Genève", href: "#" },
+      { label: "hello@drift.studio", href: "mailto:hello@drift.studio" },
+      { label: "Rua da Boavista 12, Lisbon", href: "#" },
+      { label: "Instagram @drift.studio", href: "#" },
+      { label: "Newsletter", href: "/rendez-vous" },
     ],
   },
 ];
 
 export const footerMention =
-  "Maison fondée en 1987 — Genève. Membre de la Convention de diligence des banques suisses (CDB 20). Soumise à la surveillance de la FINMA.";
+  "DRIFT Studio — Lisbon, depuis 2021. Tannage végétal certifié. Cuir Horween, montage Goodyear, fabrication artisanale.";

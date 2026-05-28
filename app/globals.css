@@ -1,44 +1,54 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ivoire: #F5F0E8;
-  --color-ivoire-2: #EBE5D8;
-  --color-charcoal: #1B1D1F;
-  --color-charcoal-2: #3A3D40;
-  --color-leman: #3C5266;
-  --color-leman-deep: #1F2D3A;
-  --color-or-soft: #B59B6E;
-  --color-stone: #A8A39A;
+  /* DRIFT — streetwear / sneakers palette */
+  --color-cream: #F2EFE8;
+  --color-cream-2: #E8E3D5;
+  --color-noir: #0A0A0A;
+  --color-noir-2: #1C1C1C;
+  --color-rust: #D4541C;
+  --color-rust-deep: #8E3210;
+  --color-gris: #707070;
+  --color-gris-soft: #B8B5AC;
 
-  --font-display: "Cormorant Garamond", "Times New Roman", serif;
-  --font-sans: "Inter", system-ui, sans-serif;
+  /* Legacy tokens kept for backwards-compat with sections not yet rebranded */
+  --color-ivoire: #F2EFE8;
+  --color-ivoire-2: #E8E3D5;
+  --color-charcoal: #0A0A0A;
+  --color-charcoal-2: #1C1C1C;
+  --color-leman: #D4541C;
+  --color-leman-deep: #8E3210;
+  --color-or-soft: #D4541C;
+  --color-stone: #B8B5AC;
+
+  --font-display: "Anton", "Impact", sans-serif;
+  --font-sans: "Inter Tight", "Inter", system-ui, sans-serif;
 
   --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @layer base {
   html {
-    background: var(--color-ivoire);
-    color: var(--color-charcoal);
+    background: var(--color-cream);
+    color: var(--color-noir);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    font-feature-settings: "ss01", "cv11";
   }
 
   body {
-    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.11 0 0 0 0 0.11 0 0 0 0 0.12 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.04 0 0 0 0 0.04 0 0 0 0 0.04 0 0 0 0.025 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
     background-attachment: fixed;
     min-height: 100vh;
   }
 
   ::selection {
-    background: var(--color-charcoal);
-    color: var(--color-ivoire);
+    background: var(--color-rust);
+    color: var(--color-cream);
   }
 
   :focus-visible {
-    outline: 1px solid var(--color-charcoal);
-    outline-offset: 4px;
+    outline: 2px solid var(--color-rust);
+    outline-offset: 3px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -51,14 +61,19 @@
 
 @layer utilities {
   .hairline {
-    border: 1px solid rgba(27, 29, 31, 0.12);
+    border: 1px solid rgba(10, 10, 10, 0.15);
   }
   .hairline-b {
-    border-bottom: 1px solid rgba(27, 29, 31, 0.12);
+    border-bottom: 1px solid rgba(10, 10, 10, 0.15);
   }
   .text-italic-or {
-    font-style: italic;
-    color: var(--color-or-soft);
+    color: var(--color-rust);
+  }
+  .font-chunky {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    font-weight: 400;
   }
 }
 

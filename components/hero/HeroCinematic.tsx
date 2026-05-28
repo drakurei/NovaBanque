@@ -11,10 +11,10 @@ import LetterReveal from "@/components/primitives/LetterReveal";
 import FloatingCoins from "@/components/floating/FloatingCoins";
 import { useGsapParallax } from "@/lib/useGsapParallax";
 
-const VIDEO_HD =
-  "https://videos.pexels.com/video-files/17242172/17242172-hd_1920_1080_24fps.mp4";
-const VIDEO_SD =
-  "https://videos.pexels.com/video-files/17242172/17242172-hd_1280_720_24fps.mp4";
+// Disabled video for now — using static hero image so the sneaker lifestyle photo reads cleanly.
+// To re-enable a streetwear video later, point these to a relevant Pexels clip.
+const VIDEO_HD = "";
+const VIDEO_SD = "";
 
 export default function HeroCinematic() {
   const { sectionRef, targetRef } = useGsapParallax<HTMLElement>(140);
@@ -22,6 +22,7 @@ export default function HeroCinematic() {
   const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
+    if (!VIDEO_HD) return;
     const v = videoRef.current;
     if (!v) return;
     const prefersReducedMotion = window.matchMedia(
@@ -31,10 +32,7 @@ export default function HeroCinematic() {
 
     const onCanPlay = () => setVideoReady(true);
     v.addEventListener("canplay", onCanPlay);
-    // iOS Safari sometimes needs an explicit play() after mount
-    v.play().catch(() => {
-      // Autoplay blocked — keep the poster image visible
-    });
+    v.play().catch(() => {});
     return () => v.removeEventListener("canplay", onCanPlay);
   }, []);
 
@@ -52,35 +50,32 @@ export default function HeroCinematic() {
         transition={{ duration: 2.5, ease: easeEditorial }}
         className="absolute inset-[-10%]"
       >
-        {/* Poster image — always rendered, fades out when video is ready */}
+        {/* Hero lifestyle image — sneakers urban shot */}
         <Image
           src={images.hero.src}
           alt={images.hero.alt}
           fill
           priority
           sizes="100vw"
-          placeholder="blur"
-          blurDataURL={images.hero.blurDataURL}
-          className={`object-cover transition-opacity duration-1000 ${
-            videoReady ? "opacity-0" : "opacity-100"
-          }`}
+          className="object-cover"
         />
-        {/* Video background — Jet d'Eau Genève aerial */}
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          aria-hidden
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-            videoReady ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <source media="(min-width: 1024px)" src={VIDEO_HD} type="video/mp4" />
-          <source src={VIDEO_SD} type="video/mp4" />
-        </video>
+        {VIDEO_HD && (
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            aria-hidden
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              videoReady ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <source media="(min-width: 1024px)" src={VIDEO_HD} type="video/mp4" />
+            <source src={VIDEO_SD} type="video/mp4" />
+          </video>
+        )}
       </motion.div>
 
       <div
@@ -103,42 +98,45 @@ export default function HeroCinematic() {
       >
         <motion.p
           variants={fadeUp}
-          className="text-[11px] tracking-[0.3em] uppercase text-ivoire/80 mb-6"
+          className="text-[11px] tracking-[0.3em] uppercase text-cream/80 mb-6"
         >
-          — Maison de patrimoine. Genève.
+          — DRIFT studio · Lisbon · est. 2021
         </motion.p>
 
-        <h1 className="font-display text-ivoire text-5xl sm:text-7xl lg:text-[110px] leading-[0.96] tracking-tight max-w-5xl overflow-hidden">
+        <h1 className="font-display uppercase text-cream text-7xl sm:text-9xl lg:text-[180px] xl:text-[220px] leading-[0.85] tracking-tighter max-w-6xl overflow-hidden">
           <span className="block overflow-hidden">
-            <LetterReveal text="Là où le patrimoine" delay={0.3} />
+            <LetterReveal text="WALK" delay={0.3} />
           </span>
-          <span className="block overflow-hidden">
-            <LetterReveal text="rencontre " delay={0.7} />
-            <LetterReveal text="le Léman." delay={0.95} italic />
+          <span className="block overflow-hidden text-rust">
+            <LetterReveal text="YOUR WAY." delay={0.55} />
           </span>
         </h1>
 
         <motion.p
           variants={fadeUp}
-          className="text-ivoire/85 text-lg lg:text-xl mt-8 max-w-xl leading-relaxed"
+          className="text-cream/85 text-lg lg:text-xl mt-8 max-w-xl leading-relaxed font-medium"
         >
-          Banque privée, gestion d'investissement, conseil immobilier. Trois
-          métiers réunis sous un même toit à Genève depuis 1987.
+          Sneakers et workwear crafted at the Atelier Boavista, Lisbon.
+          Drops limités à 300 paires. Tannage végétal, cuir Horween, montage
+          Goodyear. Pas de pré-commande.
         </motion.p>
 
-        <motion.div variants={fadeUp} className="flex flex-wrap gap-10 mt-10">
-          <EditorialLink href="/services" light size="lg" magnetic>
-            Découvrir nos services privés
-          </EditorialLink>
-          <EditorialLink
-            href="/rendez-vous"
-            light
-            size="lg"
-            arrow={false}
-            magnetic
+        <motion.div variants={fadeUp} className="flex flex-wrap gap-4 mt-10">
+          <a
+            href="/services"
+            data-cursor="hover"
+            className="inline-flex items-center gap-3 bg-rust text-cream px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] hover:bg-cream hover:text-rust transition-colors"
           >
-            Prendre rendez-vous
-          </EditorialLink>
+            Shop the drop
+            <span aria-hidden>→</span>
+          </a>
+          <a
+            href="/rendez-vous"
+            data-cursor="hover"
+            className="inline-flex items-center gap-3 border border-cream text-cream px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] hover:bg-cream hover:text-noir transition-colors"
+          >
+            Next drop notify
+          </a>
         </motion.div>
       </motion.div>
 
@@ -148,8 +146,8 @@ export default function HeroCinematic() {
         transition={{ duration: 1, ease: easeEditorial, delay: 1 }}
         className="absolute bottom-8 inset-x-0"
       >
-        <div className="max-w-[1440px] mx-auto px-8 lg:px-12 flex items-center gap-6 text-ivoire/70 text-[11px] tracking-[0.25em] uppercase">
-          <span className="w-12 h-px bg-ivoire/40" />
+        <div className="max-w-[1440px] mx-auto px-8 lg:px-12 flex items-center gap-6 text-cream/70 text-[11px] tracking-[0.25em] uppercase font-bold">
+          <span className="w-12 h-px bg-cream/40" />
           <ul className="flex gap-6 flex-wrap">
             {cities.map((c) => (
               <li key={c}>{c}</li>

@@ -1,32 +1,32 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Anton, Inter_Tight } from "next/font/google";
 import LenisProvider from "@/components/lenis/LenisProvider";
 import CustomCursor from "@/components/cursor/CustomCursor";
 import BackgroundScrub from "@/components/bg-scrub/BackgroundScrub";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const anton = Anton({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  weight: ["400"],
   display: "swap",
 });
 
-const inter = Inter({
+const interTight = Inter_Tight({
   subsets: ["latin"],
   variable: "--font-sans",
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://drakurei.github.io/NovaBanque"),
-  title: "NovaBanque — Banque privée du Léman",
+  title: "DRIFT — Crafted streetwear",
   description:
-    "Là où le patrimoine rencontre le Léman. Banque privée francophone. Genève, Lausanne, Zurich, Monaco, Singapour.",
+    "DRIFT. Streetwear et sneakers de caractère. Drops limités, fabriqués à Lisbonne. Walk your way.",
   openGraph: {
-    title: "NovaBanque — Banque privée du Léman",
-    description: "Là où le patrimoine rencontre le Léman.",
+    title: "DRIFT — Crafted streetwear",
+    description: "Walk your way. Drops limités, Lisbon-made.",
     images: ["/og.jpg"],
   },
 };
@@ -35,7 +35,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" className={`${cormorant.variable} ${inter.variable}`}>
+    <html lang="fr" className={`${anton.variable} ${interTight.variable}`}>
       <body>
         <a
           href="#main"
