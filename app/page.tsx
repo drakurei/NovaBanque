@@ -4,6 +4,7 @@ import MarqueeBand from "@/components/marquee/MarqueeBand";
 import ManifestoSplit from "@/components/manifesto/ManifestoSplit";
 import StatsBand from "@/components/stats/StatsBand";
 import InventaireHorizontal from "@/components/inventaire/InventaireHorizontal";
+import PropertiesHorizontal from "@/components/properties/PropertiesHorizontal";
 import FeaturedVillaStyle from "@/components/featured/FeaturedVillaStyle";
 import BankerPortrait from "@/components/banker/BankerPortrait";
 import Distinctions from "@/components/distinctions/Distinctions";
@@ -16,10 +17,11 @@ export default function Home() {
       <Nav />
       <main id="main">
         <HeroCinematic />
-        <MarqueeBand text="NovaBanque — Banque privée du Léman — Genève — 1987" />
+        <MarqueeBand text="NovaBanque — Banque privée — Investissement — Immobilier — Genève — 1987" />
         <ManifestoSplit />
         <StatsBand />
         <InventaireHorizontal />
+        <PropertiesHorizontal />
         <FeaturedVillaStyle />
         <BankerPortrait />
         <MarqueeBand

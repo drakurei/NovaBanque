@@ -23,8 +23,12 @@ export const images = {
       alt: "Stylo plume sur document",
     },
     {
+      src: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1000&q=85&auto=format&fit=crop",
+      alt: "Villa contemporaine Léman, conseil immobilier",
+    },
+    {
       src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&q=85&auto=format&fit=crop",
-      alt: "Lac alpin au crépuscule",
+      alt: "Lac alpin au crépuscule, transmission patrimoniale",
     },
   ],
   featured: {
@@ -33,6 +37,28 @@ export const images = {
   },
   banker: {
     src: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=2400&q=85&auto=format&fit=crop",
-    alt: "Claire Moreau, banker privée senior, dans son bureau à Genève",
+    alt: "Claire Moreau, conseillère patrimoniale senior, à Genève",
   },
+  properties: [
+    {
+      src: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1800&q=85&auto=format&fit=crop",
+      alt: "Villa contemporaine avec piscine, vue Léman",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1800&q=85&auto=format&fit=crop",
+      alt: "Chalet alpin au crépuscule, Valais",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1800&q=85&auto=format&fit=crop",
+      alt: "Villa moderne en pierre et verre, rive sud du Léman",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1800&q=85&auto=format&fit=crop",
+      alt: "Maison contemporaine blanche avec piscine, Cologny",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800&q=85&auto=format&fit=crop",
+      alt: "Intérieur design ouvert sur les Alpes",
+    },
+  ],
 };

@@ -1,7 +1,7 @@
 export const navLinks = [
   { href: "/notre-approche", label: "Notre approche" },
-  { href: "/services", label: "Services" },
-  { href: "/votre-banker", label: "Votre banker" },
+  { href: "/services", label: "Métiers" },
+  { href: "/votre-banker", label: "Vos conseillers" },
   { href: "/reconnaissance", label: "Reconnaissance" },
 ] as const;
 
@@ -9,24 +9,24 @@ export const cities = ["Genève", "Lausanne", "Zurich", "Monaco", "Singapour"];
 
 export const manifesto = {
   eyebrow: "— Notre approche",
-  title: ["Une banque privée,", "repensée pour le", "XXIᵉ siècle."],
-  body: `Fondée à Genève en 1987, NovaBanque allie la tradition de la banque privée suisse à l'exigence de la finance contemporaine. Nous accompagnons une clientèle internationale exigeante dans la gestion, la transmission et l'amplification de son patrimoine — avec une discrétion absolue et un conseil sur mesure.`,
+  title: ["Une maison,", "trois métiers,", "un patrimoine."],
+  body: `Fondée à Genève en 1987, NovaBanque est une maison de patrimoine privée qui réunit sous un même toit la banque, la gestion d'investissement et le conseil en immobilier de prestige. Une approche complète, héritée de la tradition suisse — pensée pour une clientèle francophone qui ne veut plus jongler entre trois interlocuteurs.`,
   linkLabel: "Notre histoire",
 };
 
 export const inventaire = [
   {
-    label: "01 — Compte Or",
-    title: "Le compte courant des patrimoines exigeants.",
+    label: "01 — Banque privée",
+    title: "Compte courant, carte métal, conciergerie.",
     description:
-      "Carte World Elite Mastercard en métal, multi-devises, conciergerie 24/7.",
+      "Compte Or multi-devises, carte World Elite Mastercard, banker dédié.",
     href: "#",
   },
   {
     label: "02 — Mandat de gestion",
     title: "L'expertise institutionnelle, à votre service.",
     description:
-      "Gestion discrétionnaire ou conseillée. Allocation actions, obligations, private equity.",
+      "Gestion discrétionnaire ou conseillée. Actions, obligations, private equity.",
     href: "#",
   },
   {
@@ -37,12 +37,61 @@ export const inventaire = [
     href: "#",
   },
   {
-    label: "04 — Family Office",
-    title: "La gouvernance patrimoniale de la prochaine génération.",
+    label: "04 — Conseil immobilier",
+    title: "Acquérir, gérer, transmettre votre patrimoine immobilier.",
+    description:
+      "Sourcing off-market, due diligence, négociation, conciergerie. Léman, Alpes, Côte d'Azur.",
+    href: "#",
+  },
+  {
+    label: "05 — Family Office",
+    title: "La gouvernance patrimoniale, de génération en génération.",
     description:
       "Structuration, succession, philanthropie. Pour les patrimoines >10 M€.",
     href: "#",
   },
+];
+
+export const properties = [
+  {
+    label: "— Cologny, Genève",
+    title: "Villa contemporaine sur le Léman.",
+    description: "1 200 m² · 6 chambres · accès direct au lac",
+    priceLabel: "Sur estimation",
+  },
+  {
+    label: "— Crans-Montana, Valais",
+    title: "Chalet d'altitude, vue sur les Alpes.",
+    description: "450 m² · 5 chambres · ski-in/ski-out",
+    priceLabel: "CHF 12 M",
+  },
+  {
+    label: "— Lutry, Vaud",
+    title: "Maison de maître en pierre, vignobles.",
+    description: "680 m² · 7 chambres · 2 ha de vignes Lavaux",
+    priceLabel: "Sur estimation",
+  },
+  {
+    label: "— Coppet, Vaud",
+    title: "Demeure XVIIIᵉ, restaurée.",
+    description: "920 m² · 9 chambres · parc classé",
+    priceLabel: "CHF 18 M",
+  },
+  {
+    label: "— Genève, vieille ville",
+    title: "Appartement de réception, Saint-Pierre.",
+    description: "320 m² · 4 chambres · 3 terrasses sur les toits",
+    priceLabel: "CHF 9,5 M",
+  },
+];
+
+export const locations = [
+  { name: "Vaud", count: "32 propriétés" },
+  { name: "Genève", count: "47 propriétés" },
+  { name: "Lutry", count: "8 propriétés" },
+  { name: "Cologny", count: "14 propriétés" },
+  { name: "Coppet", count: "6 propriétés" },
+  { name: "Valais", count: "19 propriétés" },
 ];
 
 export const featured = {
@@ -68,11 +117,11 @@ export const featured = {
 };
 
 export const bankerQuote = {
-  eyebrow: "— Votre banker privé",
+  eyebrow: "— Votre conseillère patrimoniale",
   quote:
     "Le temps que vous m'accordez vaut plus que vos avoirs. Et c'est mutuel.",
   attribution: "Claire Moreau",
-  role: "Banker Privée Senior · Genève",
+  role: "Conseillère Patrimoniale Senior · Genève",
 };
 
 export const distinctions = [

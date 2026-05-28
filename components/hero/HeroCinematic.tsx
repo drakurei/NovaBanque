@@ -56,7 +56,7 @@ export default function HeroCinematic() {
           variants={fadeUp}
           className="text-[11px] tracking-[0.3em] uppercase text-ivoire/80 mb-6"
         >
-          — Banque privée. Genève.
+          — Maison de patrimoine. Genève.
         </motion.p>
 
         <motion.h1
@@ -71,8 +71,8 @@ export default function HeroCinematic() {
           variants={fadeUp}
           className="text-ivoire/85 text-lg lg:text-xl mt-8 max-w-xl leading-relaxed"
         >
-          Une maison fondée à Genève en 1987. Gestion privée, conseil patrimonial et
-          conciergerie pour une clientèle internationale exigeante.
+          Banque privée, gestion d'investissement, conseil immobilier. Trois
+          métiers réunis sous un même toit à Genève depuis 1987.
         </motion.p>
 
         <motion.div variants={fadeUp} className="flex flex-wrap gap-10 mt-10">
