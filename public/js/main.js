@@ -385,17 +385,30 @@
     if (actions) actions.appendChild(btn);
     else nav.appendChild(btn);
 
-    // Clone les CTA des actions dans le drawer (pour qu'ils restent accessibles en mobile)
-    if (actions && !links.querySelector('.nav-drawer-cta')) {
-      const cloneWrap = document.createElement('div');
-      cloneWrap.className = 'nav-drawer-cta';
-      actions.querySelectorAll('.btn').forEach((b) => {
-        const c = b.cloneNode(true);
-        c.removeAttribute('data-magnetic');
-        cloneWrap.appendChild(c);
-      });
-      if (cloneWrap.children.length) links.appendChild(cloneWrap);
-    }
+    // Clone les CTA dans le drawer uniquement en mobile. Re-évalue sur resize
+    // pour éviter le bug "CTA dupliqués en desktop" si la fenêtre est passée
+    // par une largeur mobile puis re-agrandie.
+    const MOBILE_MQ = window.matchMedia('(max-width: 820px)');
+    const syncDrawerClones = () => {
+      const existing = links.querySelector('.nav-drawer-cta');
+      if (MOBILE_MQ.matches) {
+        if (!existing && actions) {
+          const cloneWrap = document.createElement('div');
+          cloneWrap.className = 'nav-drawer-cta';
+          actions.querySelectorAll('.btn').forEach((b) => {
+            const c = b.cloneNode(true);
+            c.removeAttribute('data-magnetic');
+            cloneWrap.appendChild(c);
+          });
+          if (cloneWrap.children.length) links.appendChild(cloneWrap);
+        }
+      } else {
+        if (existing) existing.remove();
+      }
+    };
+    syncDrawerClones();
+    if (MOBILE_MQ.addEventListener) MOBILE_MQ.addEventListener('change', syncDrawerClones);
+    else if (MOBILE_MQ.addListener) MOBILE_MQ.addListener(syncDrawerClones);
 
     const close = () => {
       links.classList.remove('is-open');
