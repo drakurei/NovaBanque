@@ -36,6 +36,15 @@ jobs:
       - name: Add .nojekyll to disable Jekyll
         run: touch ./out/.nojekyll
 
+      - name: Override Next.js 404 with our custom branded page
+        run: |
+          if [ -f ./public/404.html ]; then
+            cp ./public/404.html ./out/404.html
+            echo "Custom 404.html copied"
+          fi
+          # Remove Next.js generated /404/ directory route — we only want /404.html
+          rm -rf ./out/404 || true
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:

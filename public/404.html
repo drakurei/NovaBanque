@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaBanque — Page introuvable</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      background: #050507;
+      color: white;
+      font-family: 'Inter', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .halo {
+      position: fixed;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      filter: blur(140px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .halo-a { background: #4F46FF; opacity: 0.18; top: -200px; left: -200px; }
+    .halo-b { background: #7C5BFF; opacity: 0.14; bottom: -200px; right: -200px; }
+
+    .wrap { position: relative; z-index: 2; max-width: 720px; }
+
+    .small {
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 28px;
+    }
+
+    .code {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.06em;
+      line-height: 0.9;
+      font-size: clamp(120px, 22vw, 280px);
+      background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.6) 50%, rgba(91,71,255,0.5) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      font-size: clamp(28px, 4vw, 48px);
+      margin-bottom: 12px;
+    }
+    h1 .italic {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: #6E5BFF;
+    }
+
+    p.lead {
+      color: rgba(255,255,255,0.6);
+      font-size: clamp(14px, 1.4vw, 17px);
+      line-height: 1.55;
+      max-width: 480px;
+      margin: 0 auto 36px;
+    }
+
+    .actions {
+      display: inline-flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background .25s, border-color .25s, color .25s;
+    }
+    .btn-primary {
+      background: #4F46FF;
+      border: 1px solid #6E5BFF;
+      color: white;
+    }
+    .btn-primary:hover { background: #6E5BFF; }
+    .btn-ghost {
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.85);
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.4); color: white; }
+
+    .logo {
+      position: fixed;
+      top: 32px; left: 50%;
+      transform: translateX(-50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      z-index: 3;
+    }
+    .logo svg { width: 18px; height: 18px; }
+
+    .urls {
+      margin-top: 28px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+    }
+    .urls code {
+      font-family: 'Courier New', monospace;
+      color: #B5A8FF;
+      background: rgba(91,71,255,0.10);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="halo halo-a"></div>
+  <div class="halo halo-b"></div>
+
+  <a href="index.html" class="logo">
+    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1"/><circle cx="10" cy="10" r="4" fill="currentColor"/></svg>
+    <span>NovaBanque</span>
+  </a>
+
+  <div class="wrap">
+    <p class="small">— Erreur 404</p>
+    <div class="code">404</div>
+    <h1>Page <span class="italic">introuvable.</span></h1>
+    <p class="lead">L'adresse que vous avez saisie n'existe pas ou a été déplacée. Notre coffre numérique est solide — mais cette page n'y est pas.</p>
+
+    <div class="actions">
+      <a href="index.html" class="btn btn-primary">← Retour à l'accueil</a>
+      <a href="contact.html" class="btn btn-ghost">Contacter un banker</a>
+    </div>
+
+    <p class="urls">
+      Adresse correcte : <code>drakurei.github.io/NovaBanque/</code><br />
+      <span style="opacity:0.7;">(attention à la casse — sensible aux majuscules)</span>
+    </p>
+  </div>
+
+  <script>
+    // Tentative d'auto-correction : si on est sur /novabanque/* (minuscule),
+    // on redirige vers la version correcte avec majuscules.
+    (function () {
+      try {
+        var path = window.location.pathname;
+        var hostOK = /github\.io$/i.test(window.location.hostname);
+        if (hostOK && /^\/novabanque(\/|$)/i.test(path) && path.indexOf('/NovaBanque') === -1) {
+          var fixed = path.replace(/^\/novabanque/i, '/NovaBanque');
+          window.location.replace(window.location.origin + fixed + window.location.search + window.location.hash);
+        }
+      } catch (e) { /* no-op */ }
+    })();
+  </script>
+</body>
+</html>
