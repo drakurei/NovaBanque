@@ -324,6 +324,71 @@
       will-change: transform;
     }
 
+    /* ============ CTA RENDEZ-VOUS — buffer entre gallery et footer ============ */
+    .cta-rdv {
+      position: relative;
+      padding: 140px 24px 180px;
+      text-align: center;
+      z-index: 2;
+    }
+    .cta-rdv .small {
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 24px;
+    }
+    .cta-rdv h2 {
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      font-size: clamp(44px, 7vw, 110px);
+      color: white;
+      max-width: 14ch;
+      margin: 0 auto;
+    }
+    .cta-rdv h2 .italic {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: #6E5BFF;
+    }
+    .cta-rdv p {
+      margin: 28px auto 40px;
+      max-width: 540px;
+      color: rgba(255,255,255,0.6);
+      font-size: clamp(15px, 1.4vw, 18px);
+      line-height: 1.55;
+    }
+    .cta-rdv .cta-actions {
+      display: inline-flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .cta-rdv .btn-primary {
+      padding: 18px 32px;
+      border-radius: 999px;
+      background: #4F46FF;
+      border: 1px solid #6E5BFF;
+      color: white;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 0.01em;
+      transition: background .25s;
+    }
+    .cta-rdv .btn-primary:hover { background: #6E5BFF; }
+    .cta-rdv .btn-ghost {
+      padding: 18px 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+      font-size: 14px;
+      transition: border-color .25s, color .25s;
+    }
+    .cta-rdv .btn-ghost:hover { border-color: rgba(255,255,255,0.4); color: white; }
+
     /* Mobile fallback : pas de horizontal scroll, vertical stack */
     @media (max-width: 968px) {
       .h-gallery-pin { height: auto; padding: 80px 0; }
@@ -400,10 +465,11 @@
         <li><a href="dashboard.html" class="nav-link">App</a></li>
         <li><a href="security.html" class="nav-link">Sécurité</a></li>
         <li><a href="features.html" class="nav-link">Features</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="#client" class="btn btn-ghost" data-magnetic>Espace client</a>
-        <a href="prestige.html" class="btn btn-primary" data-magnetic>Ouvrir un compte</a>
+        <a href="#" class="btn btn-ghost" data-magnetic>Espace client</a>
+        <a href="contact.html" class="btn btn-primary" data-magnetic>Ouvrir un compte</a>
       </div>
     </nav>
   </header>
@@ -542,6 +608,17 @@
       </div>
     </section>
 
+    <!-- ======================== CTA RENDEZ-VOUS ======================== -->
+    <section class="cta-rdv">
+      <p class="small" data-anim="fade">— Premier contact</p>
+      <h2 data-anim="fade">Un banker.<br><span class="italic">Une rencontre.</span></h2>
+      <p data-anim="fade">Sous 24 h ouvrées, un banker senior reprend contact pour un premier échange confidentiel. Genève, Paris ou visio.</p>
+      <div class="cta-actions" data-anim="fade">
+        <a href="contact.html" class="btn-primary" data-magnetic>Demander un rendez-vous →</a>
+        <a href="prestige.html" class="btn-ghost" data-magnetic>Voir l'offre Prestige</a>
+      </div>
+    </section>
+
   </main>
 
   <!-- ======================== FOOTER ======================== -->
@@ -555,7 +632,7 @@
         </div>
       </div>
       <div class="footer-cols">
-        <div><p class="col-title">Pages</p><ul><li><a href="prestige.html">Prestige</a></li><li><a href="dashboard.html">App</a></li><li><a href="security.html">Sécurité</a></li><li><a href="features.html">Features</a></li></ul></div>
+        <div><p class="col-title">Pages</p><ul><li><a href="prestige.html">Prestige</a></li><li><a href="dashboard.html">App</a></li><li><a href="security.html">Sécurité</a></li><li><a href="features.html">Features</a></li><li><a href="contact.html">Contact</a></li></ul></div>
         <div><p class="col-title">Maison</p><ul><li><a href="#">À propos</a></li><li><a href="#">Presse</a></li><li><a href="#">Carrières</a></li></ul></div>
         <div><p class="col-title">Légal</p><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li></ul></div>
       </div>

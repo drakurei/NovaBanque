@@ -242,7 +242,7 @@
       }
     });
 
-    // Progress bar synchronisée + fade out des cards en fin de scroll horizontal
+    // Progress bar + counter synchronisés
     ScrollTrigger.create({
       trigger: pin,
       start: 'top top',
@@ -255,12 +255,6 @@
           const idx = Math.min(cards.length, Math.floor(p * cards.length) + 1);
           num.textContent = String(idx).padStart(2, '0');
         }
-        // Soft fade out de la track sur les derniers 8% pour éviter le clash avec le footer
-        const fadeStart = 0.92;
-        const trackOpacity = p > fadeStart
-          ? Math.max(0, 1 - (p - fadeStart) / (1 - fadeStart))
-          : 1;
-        track.style.opacity = String(trackOpacity);
       }
     });
 
@@ -281,11 +275,13 @@
       const descEl  = card.querySelector('.h-card-desc');
       const linkEl  = card.querySelector('.h-card-link');
 
-      if (titleEl) {
-        gsap.fromTo(titleEl,
-          { xPercent: 30 },
+      // Parallax doux (amplitude réduite pour éviter le clip du texte hors card)
+      const mkParallax = (el, amp) => {
+        if (!el) return;
+        gsap.fromTo(el,
+          { xPercent: amp },
           {
-            xPercent: -30,
+            xPercent: -amp,
             ease: 'none',
             scrollTrigger: {
               trigger: card,
@@ -296,55 +292,11 @@
             }
           }
         );
-      }
-      if (numEl) {
-        gsap.fromTo(numEl,
-          { xPercent: 15 },
-          {
-            xPercent: -15,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: card,
-              containerAnimation: tween,
-              start: 'left right',
-              end: 'right left',
-              scrub: true,
-            }
-          }
-        );
-      }
-      if (descEl) {
-        gsap.fromTo(descEl,
-          { xPercent: 20 },
-          {
-            xPercent: -20,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: card,
-              containerAnimation: tween,
-              start: 'left right',
-              end: 'right left',
-              scrub: true,
-            }
-          }
-        );
-      }
-      if (linkEl) {
-        gsap.fromTo(linkEl,
-          { xPercent: 10 },
-          {
-            xPercent: -10,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: card,
-              containerAnimation: tween,
-              start: 'left right',
-              end: 'right left',
-              scrub: true,
-            }
-          }
-        );
-      }
+      };
+      mkParallax(titleEl, 8);
+      mkParallax(numEl, 5);
+      mkParallax(descEl, 6);
+      mkParallax(linkEl, 4);
     });
 
     // Active la première carte au démarrage
