@@ -1,6 +1,6 @@
 /* =====================================================
-   NovaBanque — Prestige · vanilla JS
-   Preloader · Lenis · Cinétique · Counter · Magnetic
+   NovaBanque — Prestige vanilla full
+   Preloader · Lenis · Cinétique · Counter · Magnetic · Reveals
    ===================================================== */
 (() => {
   'use strict';
@@ -8,19 +8,19 @@
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
-  // ============================================ 1. PRELOADER
+  // 1. PRELOADER
   function runPreloader() {
     const preloader = document.getElementById('preloader');
     const counter = document.getElementById('preloader-counter');
     const progress = { val: 0 };
     gsap.to(progress, { val: 100, duration: 2.4, ease: 'power2.out', onUpdate: () => { counter.textContent = Math.floor(progress.val); } });
-
     const tl = gsap.timeline({
       defaults: { ease: 'power3.out' },
       onComplete: () => {
         document.body.classList.add('preloader-done', 'site-ready');
         gsap.set(preloader, { display: 'none' });
         revealHero();
+        initRevealOnScroll();
       }
     });
     tl.to('.ring', { opacity: 1, duration: 0.4, stagger: 0.08 }, 0)
@@ -36,7 +36,7 @@
       .to('.preloader', { yPercent: -100, duration: 1.0, ease: 'expo.inOut' }, 2.8);
   }
 
-  // ============================================ 2. LENIS
+  // 2. LENIS
   let lenis;
   function initLenis() {
     if (prefersReducedMotion) return;
@@ -51,10 +51,10 @@
     gsap.ticker.lagSmoothing(0);
   }
 
-  // ============================================ 3. REVEAL HERO
+  // 3. REVEAL HERO
   function revealHero() {
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-    tl.to('.line-inner', { y: 0, duration: 1.0, stagger: 0.12 }, 0)
+    tl.to('.hero .line-inner', { y: 0, duration: 1.0, stagger: 0.12 }, 0)
       .fromTo('.split-fade', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.08 }, 0.3)
       .fromTo('.balance-card', { opacity: 0, y: 40, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 1.2 }, 0.5)
       .to('.graph-line', { strokeDashoffset: 0, duration: 1.8, ease: 'power3.inOut' }, 0.9)
@@ -62,7 +62,7 @@
     startCounters();
   }
 
-  // ============================================ 4. COUNTERS
+  // 4. COUNTERS
   function startCounters() {
     document.querySelectorAll('.counter').forEach((el) => {
       const target = parseFloat(el.dataset.counter);
@@ -79,7 +79,34 @@
     });
   }
 
-  // ============================================ 5. CURSEUR
+  // 5. REVEAL ON SCROLL (sections, cards, etc.)
+  function initRevealOnScroll() {
+    // Generic .reveal class
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => {
+          gsap.to(el, { opacity: 1, y: 0, duration: 0.9, ease: 'expo.out', delay: (i % 4) * 0.05 });
+        }
+      });
+    });
+
+    // Section titles line-inner-stagger
+    document.querySelectorAll('.section-title').forEach((title) => {
+      const inners = title.querySelectorAll('.line-inner-stagger');
+      gsap.set(inners, { y: '110%' });
+      ScrollTrigger.create({
+        trigger: title,
+        start: 'top 80%',
+        once: true,
+        onEnter: () => gsap.to(inners, { y: '0%', duration: 1.0, stagger: 0.12, ease: 'expo.out' })
+      });
+    });
+  }
+
+  // 6. CURSOR
   function initCursor() {
     if (isTouch || prefersReducedMotion) return;
     const cursor = document.querySelector('.cursor');
@@ -99,7 +126,7 @@
     tick();
   }
 
-  // ============================================ 6. MAGNETIC
+  // 7. MAGNETIC
   function initMagnetic() {
     if (isTouch || prefersReducedMotion) return;
     document.querySelectorAll('[data-magnetic]').forEach((el) => {
@@ -120,7 +147,7 @@
     });
   }
 
-  // ============================================ 7. BG GLOWS
+  // 8. BG GLOWS
   function initGlows() {
     if (isTouch || prefersReducedMotion) return;
     const g1 = document.querySelector('.bg-glow-1');
@@ -144,7 +171,7 @@
     tick();
   }
 
-  // ============================================ 8. HEADER
+  // 9. HEADER
   function initHeader() {
     const header = document.querySelector('[data-header]');
     if (!header) return;
@@ -153,17 +180,32 @@
     update();
   }
 
-  // ============================================ BOOT
+  // 10. SMOOTH SCROLL TO ANCHORS (Lenis)
+  function initScrollTo() {
+    document.querySelectorAll('[data-scroll-to]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        const target = el.dataset.scrollTo;
+        const node = document.querySelector(target);
+        if (!node) return;
+        e.preventDefault();
+        if (lenis) lenis.scrollTo(node, { duration: 1.4, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        else node.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  }
+
+  // BOOT
   document.addEventListener('DOMContentLoaded', () => {
-    initCursor(); initMagnetic(); initGlows(); initHeader(); initLenis();
+    initCursor(); initMagnetic(); initGlows(); initHeader(); initLenis(); initScrollTo();
     if (prefersReducedMotion) {
       document.body.classList.add('preloader-done', 'site-ready');
       const preloader = document.getElementById('preloader');
       if (preloader) preloader.style.display = 'none';
       revealHero();
+      initRevealOnScroll();
     } else {
       runPreloader();
     }
-    console.log('%cNovaBanque · Prestige loaded', 'color:#4F46FF; font-weight:600; padding:4px 10px; border:1px solid #4F46FF; border-radius:4px;');
+    console.log('%cNovaBanque · Prestige full loaded', 'color:#4F46FF; font-weight:600; padding:4px 10px; border:1px solid #4F46FF; border-radius:4px;');
   });
 })();
