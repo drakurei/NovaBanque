@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaBanque — Features</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .features-hero { padding: 180px 0 80px; text-align: center; }
+    .features-hero .section-title { font-size: clamp(48px, 8vw, 120px); margin-bottom: 24px; }
+    .features-hero .section-sub { margin: 0 auto 0; }
+    .feat-bento { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: minmax(160px, auto); gap: 16px; margin-top: 60px; }
+    @media (max-width: 968px) { .feat-bento { grid-template-columns: repeat(2, 1fr); } }
+    .feat-cell { position: relative; padding: 32px; border-radius: 24px; background: linear-gradient(180deg, rgba(22,25,36,0.6), rgba(14,16,24,0.6)); backdrop-filter: blur(20px); border: 1px solid var(--border); overflow: hidden; transition: border-color .35s var(--ease), transform .35s var(--ease); }
+    .feat-cell:hover { border-color: rgba(91, 71, 255, 0.4); transform: translateY(-4px); }
+    .feat-cell h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+    .feat-cell p { font-size: 13px; color: var(--ink-2); line-height: 1.55; margin-top: 8px; }
+    .feat-cell .feat-tag { display: inline-block; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blue-glow); margin-bottom: 14px; }
+    .feat-cell .feat-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(91,71,255,0.1); display: grid; place-items: center; color: var(--blue-glow); margin-bottom: 18px; }
+    .span-1 { grid-column: span 1; } .span-2 { grid-column: span 2; } .span-3 { grid-column: span 3; }
+    .row-2 { grid-row: span 2; }
+    @media (max-width: 968px) { .span-1, .span-2, .span-3 { grid-column: span 2; } }
+    .feat-big { padding: 48px; }
+    .feat-big h3 { font-size: clamp(28px, 3vw, 44px); letter-spacing: -0.03em; }
+    .feat-big .feat-visual { margin-top: 24px; padding: 20px; background: rgba(255,255,255,0.02); border-radius: 16px; border: 1px solid var(--border); font-family: 'Courier New', monospace; font-size: 12px; color: var(--ink-2); }
+  </style>
+</head>
+<body>
+
+  <div class="bg-glow bg-glow-1" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-3" aria-hidden="true"></div>
+
+  <header class="site-header" data-header style="opacity:1;">
+    <nav class="container nav">
+      <a href="index.html" class="logo">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1"/><circle cx="10" cy="10" r="4" fill="currentColor"/></svg>
+        <span>NovaBanque</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="features.html" class="nav-link" style="color:var(--ink);">Features</a></li>
+        <li><a href="index.html#dashboard" class="nav-link">App</a></li>
+        <li><a href="security.html" class="nav-link">Sécurité</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#" class="btn btn-ghost" data-magnetic>Espace client</a>
+        <a href="index.html#contact" class="btn btn-primary" data-magnetic>Ouvrir un compte</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="features-hero container">
+      <p class="eyebrow">— Vitrine technologique</p>
+      <h1 class="section-title">
+        <span class="line"><span class="line-inner-stagger">L'ingénierie</span></span>
+        <span class="line"><span class="line-inner-stagger italic">d'une banque privée.</span></span>
+      </h1>
+      <p class="section-sub">Vingt fonctionnalités issues de trente-neuf ans d'expérience patrimoniale, repensées pour l'ère numérique.</p>
+    </section>
+
+    <section class="container" style="padding-bottom: 120px;">
+      <div class="feat-bento">
+        <article class="feat-cell span-3 row-2 feat-big reveal">
+          <span class="feat-tag">Solde temps réel</span>
+          <h3>Toute votre fortune, en un écran.</h3>
+          <p>Consolidation automatique de tous vos comptes, mandats, crédits et actifs alternatifs. Mis à jour à chaque battement de cœur du marché.</p>
+          <div class="feat-visual">
+            Patrimoine total ······· € 1 482 940,12<br>
+            ↑ + 8,2 % YTD (net de frais)<br>
+            ─────────────────────────<br>
+            Comptes bancaires ······ € 162 840<br>
+            Mandat de gestion ····· € 1 320 100<br>
+            Actifs alternatifs ······· € 0
+          </div>
+        </article>
+        <article class="feat-cell span-3 reveal">
+          <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg></div>
+          <span class="feat-tag">Multi-devises</span>
+          <h3>EUR · USD · CHF · GBP</h3>
+          <p>Conversion au taux interbancaire. Pas de markup caché. Virements SWIFT illimités.</p>
+        </article>
+        <article class="feat-cell span-2 reveal">
+          <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/></svg></div>
+          <span class="feat-tag">Performance</span>
+          <h3>Benchmark live</h3>
+          <p>Comparaison vs MSCI World en temps réel.</p>
+        </article>
+        <article class="feat-cell span-1 reveal">
+          <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <span class="feat-tag">24/7</span>
+          <h3>Conseiller</h3>
+          <p>Réponse < 30 min.</p>
+        </article>
+        <article class="feat-cell span-2 reveal">
+          <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+          <span class="feat-tag">Immobilier</span>
+          <h3>Sourcing off-market</h3>
+          <p>Léman · Alpes · Côte d'Azur. Due diligence comprise.</p>
+        </article>
+        <article class="feat-cell span-2 reveal">
+          <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <span class="feat-tag">Sécurité</span>
+          <h3>FINMA + ISO 27001</h3>
+          <p>Auth forte 3 facteurs. Données souveraines en Suisse.</p>
+        </article>
+        <article class="feat-cell span-2 reveal">
+          <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9"/></svg></div>
+          <span class="feat-tag">Virements</span>
+          <h3>Instantanés jusqu'à 1 M€</h3>
+          <p>SEPA, SWIFT, FX. Validation biométrique.</p>
+        </article>
+        <article class="feat-cell span-3 reveal">
+          <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg></div>
+          <span class="feat-tag">Fiscalité</span>
+          <h3>Reporting fiscal généré automatiquement</h3>
+          <p>IFU, formulaire 2042, déclaration des comptes à l'étranger : pré-rempli et envoyé en un clic.</p>
+        </article>
+        <article class="feat-cell span-3 reveal">
+          <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/></svg></div>
+          <span class="feat-tag">Coffre numérique</span>
+          <h3>Stockage chiffré de vos documents patrimoniaux</h3>
+          <p>Partage sécurisé avec votre notaire, avocat ou conseiller fiscal.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-contact" style="padding: 120px 0;">
+      <div class="container" style="text-align:center;">
+        <h2 class="section-title" style="margin: 0 auto 24px;">
+          <span class="line"><span class="line-inner-stagger">Prêt à ouvrir</span></span>
+          <span class="line"><span class="line-inner-stagger italic">votre compte ?</span></span>
+        </h2>
+        <p class="section-sub" style="margin: 0 auto 40px;">8 minutes en ligne. Sans paperasse. Sans engagement.</p>
+        <a href="index.html#contact" class="btn btn-primary btn-lg" data-magnetic>
+          Démarrer maintenant
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <p class="eyebrow">Nous contacter</p>
+        <a href="mailto:private@novabanque.ch" class="footer-email">private@novabanque.ch</a>
+        <div class="footer-social">
+          <a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">X</a><a href="#">YouTube</a>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div><p class="col-title">Services</p><ul><li><a href="index.html#services">Compte Or</a></li><li><a href="index.html#services">Mandat</a></li><li><a href="index.html#services">Crédit</a></li><li><a href="index.html#services">Family Office</a></li></ul></div>
+        <div><p class="col-title">Maison</p><ul><li><a href="features.html">Features</a></li><li><a href="security.html">Sécurité</a></li><li><a href="#">Presse</a></li></ul></div>
+        <div><p class="col-title">Légal</p><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li></ul></div>
+      </div>
+    </div>
+    <div class="footer-wordmark">NovaBanque</div>
+    <p class="footer-mention">© 2026 NovaBanque SA · Genève · Surveillé par FINMA · Membre CDB 20</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.3/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

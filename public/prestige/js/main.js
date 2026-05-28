@@ -1,6 +1,6 @@
 /* =====================================================
-   NovaBanque — Prestige vanilla full
-   Preloader · Lenis · Cinétique · Counter · Magnetic · Reveals
+   NovaBanque — Prestige · main.js
+   Curseur natif + Lenis + GSAP ScrollTrigger pinning + parallax
    ===================================================== */
 (() => {
   'use strict';
@@ -8,19 +8,22 @@
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
-  // 1. PRELOADER
+  // ============================================
+  // 1. PRELOADER — géométrie sacrée + rideau
+  // ============================================
   function runPreloader() {
     const preloader = document.getElementById('preloader');
+    if (!preloader) { onPreloaderDone(); return; }
     const counter = document.getElementById('preloader-counter');
     const progress = { val: 0 };
-    gsap.to(progress, { val: 100, duration: 2.4, ease: 'power2.out', onUpdate: () => { counter.textContent = Math.floor(progress.val); } });
+    if (counter) gsap.to(progress, { val: 100, duration: 2.4, ease: 'power2.out', onUpdate: () => { counter.textContent = Math.floor(progress.val); } });
+
     const tl = gsap.timeline({
       defaults: { ease: 'power3.out' },
       onComplete: () => {
         document.body.classList.add('preloader-done', 'site-ready');
         gsap.set(preloader, { display: 'none' });
-        revealHero();
-        initRevealOnScroll();
+        onPreloaderDone();
       }
     });
     tl.to('.ring', { opacity: 1, duration: 0.4, stagger: 0.08 }, 0)
@@ -36,7 +39,14 @@
       .to('.preloader', { yPercent: -100, duration: 1.0, ease: 'expo.inOut' }, 2.8);
   }
 
-  // 2. LENIS (plus réactif)
+  function onPreloaderDone() {
+    revealHero();
+    initScrollAnimations();
+  }
+
+  // ============================================
+  // 2. LENIS — smooth scroll synchronisé GSAP
+  // ============================================
   let lenis;
   function initLenis() {
     if (prefersReducedMotion) return;
@@ -52,7 +62,9 @@
     gsap.ticker.lagSmoothing(0);
   }
 
+  // ============================================
   // 3. REVEAL HERO
+  // ============================================
   function revealHero() {
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
     tl.to('.hero .line-inner', { y: 0, duration: 1.0, stagger: 0.12 }, 0)
@@ -63,7 +75,9 @@
     startCounters();
   }
 
+  // ============================================
   // 4. COUNTERS
+  // ============================================
   function startCounters() {
     document.querySelectorAll('.counter').forEach((el) => {
       const target = parseFloat(el.dataset.counter);
@@ -80,21 +94,23 @@
     });
   }
 
-  // 5. REVEAL ON SCROLL (sections, cards, etc.)
-  function initRevealOnScroll() {
-    // Generic .reveal class
+  // ============================================
+  // 5. SCROLL ANIMATIONS — pinning, parallax, reveals, card assembly
+  // ============================================
+  function initScrollAnimations() {
+    if (prefersReducedMotion) return;
+
+    // --- A. Generic reveal on scroll ---
     document.querySelectorAll('.reveal').forEach((el, i) => {
       ScrollTrigger.create({
         trigger: el,
         start: 'top 85%',
         once: true,
-        onEnter: () => {
-          gsap.to(el, { opacity: 1, y: 0, duration: 0.9, ease: 'expo.out', delay: (i % 4) * 0.05 });
-        }
+        onEnter: () => gsap.to(el, { opacity: 1, y: 0, duration: 0.9, ease: 'expo.out', delay: (i % 4) * 0.05 })
       });
     });
 
-    // Section titles line-inner-stagger
+    // --- B. Section titles : letter-by-letter mask reveal ---
     document.querySelectorAll('.section-title').forEach((title) => {
       const inners = title.querySelectorAll('.line-inner-stagger');
       gsap.set(inners, { y: '110%' });
@@ -105,33 +121,84 @@
         onEnter: () => gsap.to(inners, { y: '0%', duration: 1.0, stagger: 0.12, ease: 'expo.out' })
       });
     });
-  }
 
-  // 6. CURSOR
-  function initCursor() {
-    if (isTouch || prefersReducedMotion) return;
-    const cursor = document.querySelector('.cursor');
-    if (!cursor) return;
-    document.documentElement.classList.add('cursor-active');
-    const mouse = { x: innerWidth / 2, y: innerHeight / 2 };
-    const pos = { ...mouse };
-    addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
-    document.addEventListener('mouseover', (e) => { if (e.target.closest('a, button, [data-cursor="hover"]')) cursor.classList.add('is-hover'); });
-    document.addEventListener('mouseout', (e) => { if (e.target.closest('a, button, [data-cursor="hover"]')) cursor.classList.remove('is-hover'); });
-    function tick() {
-      pos.x += (mouse.x - pos.x) * 0.18;
-      pos.y += (mouse.y - pos.y) * 0.18;
-      cursor.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0)`;
-      requestAnimationFrame(tick);
+    // --- C. Parallax sur les éléments [data-parallax] ---
+    document.querySelectorAll('[data-parallax]').forEach((el) => {
+      const speed = parseFloat(el.dataset.parallax) || 0.3;
+      gsap.to(el, {
+        yPercent: -speed * 100,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1,
+        }
+      });
+    });
+
+    // --- D. Section pinning : [data-pin] reste fixe pendant la durée définie ---
+    document.querySelectorAll('[data-pin]').forEach((section) => {
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top top',
+        end: section.dataset.pinEnd || '+=100%',
+        pin: true,
+        pinSpacing: true,
+      });
+    });
+
+    // --- E. CARTE BANCAIRE qui s'assemble au scroll ---
+    const cardSection = document.querySelector('[data-card-assembly]');
+    if (cardSection) {
+      const parts = cardSection.querySelectorAll('.card-part');
+      gsap.set(parts, (i) => ({
+        x: (i % 2 === 0 ? -1 : 1) * 200,
+        y: ((i % 3) - 1) * 120,
+        rotation: (i % 2 === 0 ? -1 : 1) * 25,
+        opacity: 0,
+      }));
+      gsap.to(parts, {
+        x: 0, y: 0, rotation: 0, opacity: 1,
+        ease: 'power3.out',
+        stagger: 0.08,
+        scrollTrigger: {
+          trigger: cardSection,
+          start: 'top 60%',
+          end: 'bottom 40%',
+          scrub: 1,
+        }
+      });
     }
-    tick();
+
+    // --- F. STACKED SECTIONS : sections qui s'empilent ---
+    document.querySelectorAll('[data-stack]').forEach((section) => {
+      gsap.to(section, {
+        scale: 0.92,
+        opacity: 0.5,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: '+=100%',
+          scrub: true,
+          pin: true,
+          pinSpacing: false,
+        }
+      });
+    });
+
+    // Recalcul après tout chargé
+    requestAnimationFrame(() => ScrollTrigger.refresh());
   }
 
-  // 7. MAGNETIC
+  // ============================================
+  // 6. MAGNETIC BUTTONS (curseur natif gardé)
+  // ============================================
   function initMagnetic() {
     if (isTouch || prefersReducedMotion) return;
     document.querySelectorAll('[data-magnetic]').forEach((el) => {
-      const pos = { x: 0, y: 0 }; const target = { x: 0, y: 0 }; const strength = 0.4;
+      const pos = { x: 0, y: 0 }; const target = { x: 0, y: 0 }; const strength = 0.35;
       el.addEventListener('mousemove', (e) => {
         const r = el.getBoundingClientRect();
         target.x = (e.clientX - (r.left + r.width / 2)) * strength;
@@ -148,7 +215,9 @@
     });
   }
 
-  // 8. BG GLOWS
+  // ============================================
+  // 7. BACKGROUND GLOWS suivent souris
+  // ============================================
   function initGlows() {
     if (isTouch || prefersReducedMotion) return;
     const g1 = document.querySelector('.bg-glow-1');
@@ -172,7 +241,9 @@
     tick();
   }
 
-  // 9. HEADER
+  // ============================================
+  // 8. HEADER scroll detection
+  // ============================================
   function initHeader() {
     const header = document.querySelector('[data-header]');
     if (!header) return;
@@ -181,7 +252,9 @@
     update();
   }
 
-  // 10. SMOOTH SCROLL TO ANCHORS (Lenis)
+  // ============================================
+  // 9. SMOOTH SCROLL TO ANCHORS (Lenis ou natif)
+  // ============================================
   function initScrollTo() {
     document.querySelectorAll('[data-scroll-to]').forEach((el) => {
       el.addEventListener('click', (e) => {
@@ -189,24 +262,31 @@
         const node = document.querySelector(target);
         if (!node) return;
         e.preventDefault();
-        if (lenis) lenis.scrollTo(node, { duration: 1.4, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        if (lenis) lenis.scrollTo(node, { duration: 1.2 });
         else node.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
   }
 
+  // ============================================
   // BOOT
+  // ============================================
   document.addEventListener('DOMContentLoaded', () => {
-    initCursor(); initMagnetic(); initGlows(); initHeader(); initLenis(); initScrollTo();
+    initMagnetic();
+    initGlows();
+    initHeader();
+    initLenis();
+    initScrollTo();
+
     if (prefersReducedMotion) {
       document.body.classList.add('preloader-done', 'site-ready');
       const preloader = document.getElementById('preloader');
       if (preloader) preloader.style.display = 'none';
-      revealHero();
-      initRevealOnScroll();
+      onPreloaderDone();
     } else {
       runPreloader();
     }
-    console.log('%cNovaBanque · Prestige full loaded', 'color:#4F46FF; font-weight:600; padding:4px 10px; border:1px solid #4F46FF; border-radius:4px;');
+
+    console.log('%cNovaBanque · Prestige loaded', 'color:#4F46FF; font-weight:600; padding:4px 10px; border:1px solid #4F46FF; border-radius:4px;');
   });
 })();
