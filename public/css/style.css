@@ -48,12 +48,148 @@ a, button, [data-magnetic] { cursor: pointer; }
 .site-header { position: fixed; top: 16px; left: 0; right: 0; z-index: 100; transition: top .35s var(--ease); opacity: 0; }
 body.site-ready .site-header { opacity: 1; transition: opacity .8s var(--ease) .3s, top .35s var(--ease); }
 .site-header[data-scrolled="true"] { top: 8px; }
-.nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 10px 16px 10px 20px; background: rgba(14, 16, 24, 0.55); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border: 1px solid var(--border); border-radius: 999px; max-width: 1100px; margin: 0 auto; }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 10px 16px 10px 20px; background: rgba(14, 16, 24, 0.55); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border: 1px solid var(--border); border-radius: 999px; max-width: 1100px; margin: 0 auto; position: relative; }
 .logo { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: var(--ink); }
-.nav-links { display: flex; gap: 24px; font-size: 13px; }
+.nav-links { display: flex; gap: 24px; font-size: 13px; list-style: none; padding: 0; margin: 0; }
 .nav-link { color: var(--ink-2); transition: color .2s; }
 .nav-link:hover { color: var(--ink); }
-.nav-actions { display: flex; gap: 8px; }
+.nav-actions { display: flex; gap: 8px; align-items: center; }
+
+/* Hamburger button — injected by JS on mobile */
+.nav-toggle {
+  display: none;
+  width: 40px; height: 40px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: white;
+  position: relative;
+  border-radius: 999px;
+  transition: background .2s;
+}
+.nav-toggle:hover { background: rgba(255,255,255,0.06); }
+.nav-toggle .bar {
+  position: absolute;
+  left: 11px; right: 11px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform .3s var(--ease), opacity .25s, top .3s var(--ease), bottom .3s var(--ease);
+}
+.nav-toggle .bar.b1 { top: 14px; }
+.nav-toggle .bar.b2 { top: 50%; transform: translateY(-50%); }
+.nav-toggle .bar.b3 { bottom: 14px; }
+.nav-toggle[aria-expanded="true"] .bar.b1 { top: 50%; transform: translateY(-50%) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .bar.b2 { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .bar.b3 { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+
+/* Mobile nav drawer */
+@media (max-width: 820px) {
+  .nav { padding: 10px 12px 10px 18px; }
+  .nav-toggle { display: inline-flex; }
+  .nav-links {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0; right: 0;
+    flex-direction: column;
+    gap: 4px;
+    padding: 18px;
+    background: rgba(10, 12, 20, 0.95);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    font-size: 15px;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity .25s, transform .3s var(--ease);
+    z-index: 1;
+  }
+  .nav-links.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .nav-link {
+    display: block;
+    padding: 12px 16px;
+    border-radius: 14px;
+    color: rgba(255,255,255,0.85);
+    transition: background .2s, color .2s;
+  }
+  .nav-link:hover,
+  .nav-link:focus { background: rgba(255,255,255,0.06); color: white; }
+  /* Sur mobile on cache les CTA du header : ils sont clonés dans le drawer */
+  .nav-actions > .btn { display: none; }
+  /* Boutons clonés dans le drawer */
+  .nav-links .nav-drawer-cta {
+    margin-top: 8px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .nav-links .nav-drawer-cta .btn {
+    display: inline-flex;
+    justify-content: center;
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+}
+
+/* ===== COOKIE BANNER — injected by JS ===== */
+.cookie-banner {
+  position: fixed;
+  left: 16px; right: 16px;
+  bottom: 16px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 18px 22px;
+  border-radius: 20px;
+  background: rgba(14, 16, 24, 0.88);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 20px 60px -10px rgba(0,0,0,0.5);
+  color: rgba(255,255,255,0.85);
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 980px;
+  margin: 0 auto;
+  transform: translateY(40px);
+  opacity: 0;
+  transition: transform .5s var(--ease), opacity .4s var(--ease);
+}
+.cookie-banner.is-visible { transform: translateY(0); opacity: 1; }
+.cookie-banner p { flex: 1 1 360px; margin: 0; min-width: 0; }
+.cookie-banner strong { color: white; font-weight: 600; }
+.cookie-banner a { color: #B5A8FF; text-decoration: underline; text-decoration-color: rgba(181,168,255,0.35); }
+.cookie-banner a:hover { text-decoration-color: #B5A8FF; }
+.cookie-actions { display: inline-flex; gap: 10px; flex-wrap: wrap; }
+.cookie-btn {
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background .25s, border-color .25s, color .25s;
+  font-family: inherit;
+}
+.cookie-btn-accept { background: #4F46FF; border-color: #6E5BFF; color: white; }
+.cookie-btn-accept:hover { background: #6E5BFF; }
+.cookie-btn-reject { background: transparent; border-color: rgba(255,255,255,0.18); color: rgba(255,255,255,0.85); }
+.cookie-btn-reject:hover { border-color: rgba(255,255,255,0.4); color: white; }
+@media (max-width: 600px) {
+  .cookie-banner { padding: 16px; gap: 12px; bottom: 10px; left: 10px; right: 10px; }
+  .cookie-btn { padding: 9px 14px; font-size: 12px; flex: 1 1 auto; text-align: center; }
+}
 
 /* BUTTONS */
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; font-size: 13px; font-weight: 500; letter-spacing: 0.01em; transition: background .25s, color .25s; white-space: nowrap; will-change: transform; }
