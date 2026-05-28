@@ -324,63 +324,13 @@
   }
 
   // ====================================================
-  // 6. MAGNETIC BUTTONS — léger, borné, idle-friendly
+  // 6. MAGNETIC BUTTONS — DÉSACTIVÉ
+  // Les boutons ne doivent plus bouger au survol. On clear tout transform
+  // inline qui aurait pu rester avant de partir.
   // ====================================================
   function initMagnetic() {
-    if (isTouch || prefersReducedMotion) return;
-
-    const STRENGTH = 0.18;      // facteur de force (était 0.35)
-    const MAX_OFFSET = 14;      // amplitude max en px
-    const LERP = 0.18;          // vitesse de suivi
-    const IDLE_EPS = 0.05;      // seuil sous lequel on stoppe le RAF
-
     document.querySelectorAll('[data-magnetic]').forEach((el) => {
-      const pos = { x: 0, y: 0 };
-      const target = { x: 0, y: 0 };
-      let rafId = null;
-      let hovering = false;
-
-      const clamp = (v) => Math.max(-MAX_OFFSET, Math.min(MAX_OFFSET, v));
-
-      const tick = () => {
-        pos.x += (target.x - pos.x) * LERP;
-        pos.y += (target.y - pos.y) * LERP;
-        el.style.transform = `translate3d(${pos.x.toFixed(2)}px, ${pos.y.toFixed(2)}px, 0)`;
-
-        // Continue tant qu'on bouge ou qu'on hover ; sinon on stoppe
-        const moving = Math.abs(target.x - pos.x) > IDLE_EPS
-                    || Math.abs(target.y - pos.y) > IDLE_EPS;
-        if (hovering || moving) {
-          rafId = requestAnimationFrame(tick);
-        } else {
-          el.style.transform = '';   // reset propre quand idle
-          rafId = null;
-        }
-      };
-
-      const ensureTicking = () => {
-        if (rafId == null) rafId = requestAnimationFrame(tick);
-      };
-
-      el.addEventListener('mouseenter', () => {
-        hovering = true;
-        ensureTicking();
-      });
-
-      el.addEventListener('mousemove', (e) => {
-        const r = el.getBoundingClientRect();
-        const cx = r.left + r.width / 2;
-        const cy = r.top + r.height / 2;
-        target.x = clamp((e.clientX - cx) * STRENGTH);
-        target.y = clamp((e.clientY - cy) * STRENGTH);
-      });
-
-      el.addEventListener('mouseleave', () => {
-        hovering = false;
-        target.x = 0;
-        target.y = 0;
-        ensureTicking();
-      });
+      el.style.transform = '';
     });
   }
 
