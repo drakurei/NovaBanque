@@ -1,7 +1,7 @@
 /* =====================================================
-   NovaBanque — Prestige · main.js
-   Preloader sacred geometry + Lenis + Text Mask + Pinning + Magnetic
-   Curseur natif gardé (pas de cursor custom)
+   NovaBanque — main.js
+   Preloader sacred geometry · Lenis · Text mask · Pinning
+   · Magnetic buttons · GSAP halos drift · curseur natif
    ===================================================== */
 
 (() => {
@@ -13,12 +13,13 @@
   const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
   // ====================================================
-  // 1. LENIS — Smooth Scrolling synchronisé GSAP
+  // 1. LENIS — Smooth Scrolling synchronisé avec GSAP
   // ====================================================
   let lenis;
 
   function initLenis() {
     if (prefersReducedMotion) return;
+
     lenis = new Lenis({
       duration: 1.0,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -39,7 +40,7 @@
   }
 
   // ====================================================
-  // 2. PRELOADER — sacred geometry + curtain raise
+  // 2. PRELOADER — géométrie sacrée + rideau
   // ====================================================
   function runPreloader() {
     const preloader = document.getElementById('preloader');
@@ -66,42 +67,31 @@
       }
     });
 
-    // Étape A : rings apparaissent en fade-in + stroke draw stagger
     tl.to('.ring', { opacity: 1, duration: 0.4, stagger: 0.08 }, 0)
       .to('.ring', { strokeDashoffset: 0, duration: 1.4, stagger: 0.12, ease: 'power2.inOut' }, 0.1)
-
-      // Étape B : rotation des rings (effet entrelaçage)
-      .to('.r1', { rotation: 90, duration: 1.6, transformOrigin: 'center' }, 0.3)
+      .to('.r1', { rotation: 90,  duration: 1.6, transformOrigin: 'center' }, 0.3)
       .to('.r2', { rotation: -60, duration: 1.6, transformOrigin: 'center' }, 0.4)
-      .to('.r3', { rotation: 45, duration: 1.6, transformOrigin: 'center' }, 0.5)
-
-      // Étape C : étoile centrale apparaît + rotation
+      .to('.r3', { rotation: 45,  duration: 1.6, transformOrigin: 'center' }, 0.5)
       .to('.star', { opacity: 1, scale: 1, rotation: 360, duration: 1.2, transformOrigin: 'center' }, 0.8)
-
-      // Étape D : logo "NovaBanque" fade-in
       .to('.preloader-logo', { opacity: 1, y: 0, duration: 0.8 }, 1.6)
-
-      // Étape E : tout converge vers le centre et disparaît
       .to('.ring', { scale: 0, opacity: 0, duration: 0.6, transformOrigin: 'center', stagger: 0.03 }, 2.2)
       .to('.star', { scale: 1.4, opacity: 0, duration: 0.6, transformOrigin: 'center' }, 2.2)
       .to('.preloader-logo', { opacity: 0, scale: 0.95, duration: 0.4 }, 2.6)
-
-      // Étape F : rideau noir se lève (translateY -100%)
       .to('.preloader', { yPercent: -100, duration: 1.0, ease: 'expo.inOut' }, 2.8);
   }
 
   function onPreloaderDone() {
     revealHero();
     initScrollAnimations();
+    initGsapHalos();
   }
 
   // ====================================================
-  // 3. HERO — Reveal lettre par lettre du wordmark
+  // 3. HERO — Reveal lettre par lettre
   // ====================================================
   function revealHero() {
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
 
-    // Chaque .char span s'élève depuis 110%
     tl.to('.hero-wordmark .char span', {
       y: '0%',
       duration: 1.0,
@@ -109,24 +99,22 @@
       ease: 'expo.out',
     }, 0);
 
-    // Eyebrow + tagline fade up
     tl.fromTo('[data-anim="fade"]',
       { opacity: 0, y: 20 },
       { opacity: 1, y: 0, duration: 0.9, stagger: 0.08 },
       0.4
     );
 
-    // Scroll cue
     tl.to('.hero-scroll-cue', { opacity: 1, duration: 0.6 }, 1.4);
   }
 
   // ====================================================
-  // 4. SCROLL ANIMATIONS — Text mask + Pinning piliers
+  // 4. SCROLL ANIMATIONS — Text mask + Pinning
   // ====================================================
   function initScrollAnimations() {
     if (prefersReducedMotion) return;
 
-    // --- A. TEXT MASK : titres .huge-mask et .line-inner ---
+    // A. Text mask reveal pour .huge-mask
     document.querySelectorAll('.huge-mask').forEach((heading) => {
       const inners = heading.querySelectorAll('.line-inner');
       gsap.set(inners, { y: '110%' });
@@ -145,14 +133,12 @@
       });
     });
 
-    // --- B. PILIERS PINNED : 4 piliers qui s'enchaînent sur 400vh ---
+    // B. Piliers pinned — cross-fade au scroll
     const pillarsSection = document.querySelector('.pillars-pinned');
     if (pillarsSection) {
       const pillars = pillarsSection.querySelectorAll('.pillar');
       const count = pillars.length;
 
-      // Pour chaque pillar (sauf le premier), on l'anime de fade-in / fade-out
-      // pendant que la section est pinnée
       gsap.set(pillars, { opacity: 0, y: 60 });
       gsap.set(pillars[0], { opacity: 1, y: 0 });
 
@@ -165,7 +151,6 @@
         }
       });
 
-      // Cross-fade entre chaque pillar
       for (let i = 0; i < count - 1; i++) {
         const t = i / (count - 1);
         tl.to(pillars[i], { opacity: 0, y: -60, duration: 0.5, ease: 'power2.in' }, t)
@@ -177,7 +162,7 @@
       }
     }
 
-    // --- C. Teaser cards — apparition au scroll ---
+    // C. Teaser cards reveal
     document.querySelectorAll('.teaser-card').forEach((card, i) => {
       gsap.fromTo(card,
         { opacity: 0, y: 40 },
@@ -192,7 +177,7 @@
       );
     });
 
-    // --- D. Footer wordmark : fade-up massif ---
+    // D. Footer wordmark reveal
     const fw = document.querySelector('.footer-wordmark');
     if (fw) {
       gsap.fromTo(fw,
@@ -207,14 +192,31 @@
       );
     }
 
-    // Refresh ScrollTrigger après que tout soit calé
     requestAnimationFrame(() => ScrollTrigger.refresh());
   }
 
   // ====================================================
-  // 5. MAGNETIC BUTTONS (curseur natif gardé)
-  //    Math : calcul distance curseur ↔ centre élément
-  //    Lerp : interpolation fluide vers la position cible
+  // 5. HALOS — drift diagonal animé par GSAP
+  // ====================================================
+  function initGsapHalos() {
+    if (prefersReducedMotion) return;
+
+    const ha = document.querySelector('.halo-a');
+    if (ha) {
+      gsap.to(ha, { x: 140, y: 80,  duration: 11, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    }
+    const hb = document.querySelector('.halo-b');
+    if (hb) {
+      gsap.to(hb, { x: -120, y: -90, duration: 14, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    }
+    const hc = document.querySelector('.halo-c');
+    if (hc) {
+      gsap.to(hc, { x: 80, y: -60,  duration: 18, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    }
+  }
+
+  // ====================================================
+  // 6. MAGNETIC BUTTONS — curseur natif gardé
   // ====================================================
   function initMagnetic() {
     if (isTouch || prefersReducedMotion) return;
@@ -223,7 +225,6 @@
       const pos = { x: 0, y: 0 };
       const target = { x: 0, y: 0 };
       const strength = 0.35;
-      let rafId = null;
 
       el.addEventListener('mousemove', (e) => {
         const r = el.getBoundingClientRect();
@@ -241,16 +242,15 @@
       function tick() {
         pos.x += (target.x - pos.x) * 0.18;
         pos.y += (target.y - pos.y) * 0.18;
-        // translate3d → force GPU
         el.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0)`;
-        rafId = requestAnimationFrame(tick);
+        requestAnimationFrame(tick);
       }
       tick();
     });
   }
 
   // ====================================================
-  // 6. HEADER scroll detection
+  // 7. HEADER scroll detection
   // ====================================================
   function initHeader() {
     const header = document.querySelector('[data-header]');
@@ -261,7 +261,7 @@
   }
 
   // ====================================================
-  // 7. SMOOTH SCROLL TO ANCHORS via Lenis
+  // 8. SMOOTH SCROLL TO ANCHORS
   // ====================================================
   function initScrollTo() {
     document.querySelectorAll('[data-scroll-to]').forEach((el) => {
@@ -292,7 +292,6 @@
       document.body.classList.add('preloader-done', 'site-ready');
       const preloader = document.getElementById('preloader');
       if (preloader) preloader.style.display = 'none';
-      // Force visibilité immédiate
       gsap.set('.hero-wordmark .char span', { y: '0%' });
       gsap.set('[data-anim="fade"]', { opacity: 1, y: 0 });
       gsap.set('.huge-mask .line-inner', { y: '0%' });

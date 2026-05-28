@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaBanque — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body { background: #050507; }
+    .halo { position: fixed; border-radius: 50%; filter: blur(140px); pointer-events: none; z-index: 0; }
+    .halo-a { width: 700px; height: 700px; background: #4F46FF; opacity: 0.16; top: -200px; left: -200px; }
+    .dash-hero { padding: 180px 24px 60px; text-align: center; position: relative; z-index: 2; }
+    .dash-hero .small { font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
+    .dash-hero h1 { font-weight: 700; letter-spacing: -0.04em; line-height: 0.9; font-size: clamp(54px, 9vw, 140px); color: white; }
+    .dash-hero h1 .italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; color: #6E5BFF; }
+    .bento { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: minmax(140px, auto); gap: 12px; max-width: 1300px; margin: 60px auto 100px; padding: 0 24px; }
+    @media (max-width: 968px) { .bento { grid-template-columns: repeat(2, 1fr); } }
+    .b-cell { position: relative; padding: 28px; border-radius: 20px; background: linear-gradient(180deg, rgba(22,25,36,0.6), rgba(8,8,16,0.6)); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); overflow: hidden; transition: border-color .35s, transform .35s; }
+    .b-cell:hover { border-color: rgba(91,71,255,0.4); transform: translateY(-3px); }
+    .b-cell h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; margin-top: 12px; }
+    .b-cell p { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 6px; line-height: 1.5; }
+    .b-cell .tag { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: #6E5BFF; }
+    .s-3 { grid-column: span 3; } .s-2 { grid-column: span 2; } .s-4 { grid-column: span 4; }
+    .r-2 { grid-row: span 2; }
+    @media (max-width: 968px) { .s-3, .s-2, .s-4 { grid-column: span 2; } }
+    .b-big h3 { font-size: clamp(28px, 3vw, 44px); letter-spacing: -0.03em; }
+    .b-big .amount { font-family: 'Inter'; font-weight: 700; font-size: clamp(36px, 4vw, 56px); letter-spacing: -0.03em; margin-top: 6px; font-variant-numeric: tabular-nums; color: white; }
+    .b-big .perf { color: #5BD78F; font-size: 13px; margin-top: 4px; }
+    .b-big .chart { margin-top: 16px; height: 60px; }
+    .b-big .chart svg { width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+
+  <div class="halo halo-a"></div>
+
+  <header class="site-header" data-header style="opacity:1;">
+    <nav class="container nav">
+      <a href="index.html" class="logo">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1"/><circle cx="10" cy="10" r="4" fill="currentColor"/></svg>
+        <span>NovaBanque</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="prestige.html" class="nav-link">Prestige</a></li>
+        <li><a href="dashboard.html" class="nav-link" style="color:white;">App</a></li>
+        <li><a href="security.html" class="nav-link">Sécurité</a></li>
+        <li><a href="features.html" class="nav-link">Features</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#" class="btn btn-ghost" data-magnetic>Espace client</a>
+        <a href="prestige.html" class="btn btn-primary" data-magnetic>Ouvrir un compte</a>
+      </div>
+    </nav>
+  </header>
+
+  <main style="position:relative;z-index:1;">
+
+    <section class="dash-hero">
+      <p class="small">— L'application NovaBanque</p>
+      <h1>Votre patrimoine,<br><span class="italic">en un écran.</span></h1>
+    </section>
+
+    <section class="bento">
+      <article class="b-cell s-3 r-2 b-big">
+        <span class="tag">Patrimoine total</span>
+        <p class="amount">€ 1 482 940</p>
+        <p class="perf">+ 8,2 % YTD (net de frais)</p>
+        <div class="chart">
+          <svg viewBox="0 0 280 60" preserveAspectRatio="none">
+            <defs><linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#5B47FF" stop-opacity="0.4"/><stop offset="100%" stop-color="#5B47FF" stop-opacity="0"/></linearGradient></defs>
+            <path d="M0,50 C30,42 60,30 90,32 C120,33 150,18 180,16 C210,14 240,28 280,4 L280,60 L0,60 Z" fill="url(#g1)"/>
+            <path d="M0,50 C30,42 60,30 90,32 C120,33 150,18 180,16 C210,14 240,28 280,4" stroke="#5B47FF" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+      </article>
+      <article class="b-cell s-3"><span class="tag">Compte courant</span><h3>€ 12 480</h3><p>FR76 1027 ··· · multi-devises</p></article>
+      <article class="b-cell s-2"><span class="tag">Mandat 60/40</span><h3>€ 1 320 100</h3><p>+ 8,2 % net 2025</p></article>
+      <article class="b-cell s-1"><span class="tag">Crédit lombard</span><h3>€ 150 360</h3><p>Disponible</p></article>
+      <article class="b-cell s-3"><span class="tag">Virement</span><h3>SEPA · SWIFT · FX</h3><p>Plafond 1 M€ par opération. Validation biométrique.</p></article>
+      <article class="b-cell s-3"><span class="tag">Conseiller</span><h3>Claire Moreau</h3><p>En ligne · répond &lt; 30 min · Genève</p></article>
+      <article class="b-cell s-2"><span class="tag">Devises</span><h3>EUR · USD · CHF · GBP</h3><p>Taux interbancaire, zéro markup.</p></article>
+      <article class="b-cell s-4"><span class="tag">Fiscalité</span><h3>Reporting IFU automatique</h3><p>Formulaires 2042, déclaration comptes à l'étranger : pré-remplis et exportés.</p></article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <p class="eyebrow">Nous contacter</p>
+        <a href="mailto:private@novabanque.ch" class="footer-email">private@novabanque.ch</a>
+        <div class="footer-social"><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">X</a></div>
+      </div>
+      <div class="footer-cols">
+        <div><p class="col-title">Pages</p><ul><li><a href="prestige.html">Prestige</a></li><li><a href="dashboard.html">App</a></li><li><a href="security.html">Sécurité</a></li></ul></div>
+        <div><p class="col-title">Maison</p><ul><li><a href="#">À propos</a></li><li><a href="#">Presse</a></li></ul></div>
+        <div><p class="col-title">Légal</p><ul><li><a href="#">Mentions légales</a></li></ul></div>
+      </div>
+    </div>
+    <div class="footer-wordmark">NovaBanque</div>
+    <p class="footer-mention">© 2026 NovaBanque SA · Genève · Surveillé par FINMA</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.3/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
