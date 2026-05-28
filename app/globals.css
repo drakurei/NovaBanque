@@ -1,45 +1,62 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ivoire: #F5F0E8;
-  --color-ivoire-2: #EBE5D8;
-  --color-charcoal: #0F1012;
-  --color-charcoal-2: #2A2C30;
-  --color-leman: #3C5266;
-  --color-leman-deep: #1F2D3A;
-  --color-or-soft: #D4A24B;
-  --color-stone: #A8A39A;
+  /* Fine-tech / Neo-banque premium palette */
+  --color-paper: #FAFAF8;
+  --color-paper-2: #F2F0EA;
+  --color-paper-3: #E8E5DD;
+  --color-ink: #0B0C0F;
+  --color-ink-2: #2A2C32;
+  --color-ink-3: #5A5C62;
+  --color-navy: #1E3A5F;
+  --color-navy-deep: #0F1E33;
+  --color-gold: #C9A961;
+  --color-gold-soft: #E0CE9E;
 
-  --font-display: "Anton", "Impact", "Arial Black", sans-serif;
-  --font-serif: "Fraunces", "Times New Roman", serif;
-  --font-sans: "Inter Tight", "Inter", system-ui, sans-serif;
+  /* Legacy tokens kept so existing components still compile until migrated */
+  --color-ivoire: #FAFAF8;
+  --color-ivoire-2: #F2F0EA;
+  --color-charcoal: #0B0C0F;
+  --color-charcoal-2: #2A2C32;
+  --color-leman: #1E3A5F;
+  --color-leman-deep: #0F1E33;
+  --color-or-soft: #C9A961;
+  --color-stone: #B8B5AC;
+  --color-cream: #FAFAF8;
+  --color-noir: #0B0C0F;
+  --color-rust: #1E3A5F;
+
+  --font-display: var(--font-geist), "Inter", system-ui, sans-serif;
+  --font-sans: var(--font-inter-tight), "Inter", system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), "Times New Roman", serif;
 
   --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @layer base {
   html {
-    background: var(--color-ivoire);
-    color: var(--color-charcoal);
+    background: var(--color-paper);
+    color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
   }
 
   body {
-    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.11 0 0 0 0 0.11 0 0 0 0 0.12 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.04 0 0 0 0 0.04 0 0 0 0 0.06 0 0 0 0.02 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
     background-attachment: fixed;
     min-height: 100vh;
   }
 
   ::selection {
-    background: var(--color-charcoal);
-    color: var(--color-ivoire);
+    background: var(--color-navy);
+    color: var(--color-paper);
   }
 
   :focus-visible {
-    outline: 1px solid var(--color-charcoal);
-    outline-offset: 4px;
+    outline: 2px solid var(--color-navy);
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -52,18 +69,25 @@
 
 @layer utilities {
   .hairline {
-    border: 1px solid rgba(27, 29, 31, 0.12);
+    border: 1px solid rgba(11, 12, 15, 0.08);
   }
   .hairline-b {
-    border-bottom: 1px solid rgba(27, 29, 31, 0.12);
+    border-bottom: 1px solid rgba(11, 12, 15, 0.08);
   }
   .text-italic-or {
     font-style: italic;
-    color: var(--color-or-soft);
+    font-family: var(--font-serif);
+    color: var(--color-gold);
+  }
+  /* Inline italic serif for sacred-geometry style text accents */
+  .italic-serif {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
   }
 }
 
-/* Custom cursor : hide native cursor on devices where the custom one runs */
+/* Custom cursor — hide native cursor only on hover-capable devices */
 @media (hover: hover) and (pointer: fine) {
   html.custom-cursor-active,
   html.custom-cursor-active * {
@@ -81,12 +105,36 @@
   transform-origin: center;
 }
 @media (prefers-reduced-motion: reduce) {
-  .animate-spin-slow {
-    animation: none;
-  }
+  .animate-spin-slow { animation: none; }
 }
 
-/* Drifting float for floating elements */
+/* Sacred geometry intro — concentric circles pulse + rotate */
+@keyframes sacred-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes sacred-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+.animate-sacred-rotate {
+  animation: sacred-rotate 40s linear infinite;
+  transform-origin: center;
+}
+.animate-sacred-rotate-reverse {
+  animation: sacred-rotate 60s linear infinite reverse;
+  transform-origin: center;
+}
+.animate-sacred-pulse {
+  animation: sacred-pulse 4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-sacred-rotate,
+  .animate-sacred-rotate-reverse,
+  .animate-sacred-pulse { animation: none; }
+}
+
+/* Drifting float */
 @keyframes float-y {
   0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
   50% { transform: translateY(-22px) rotate(calc(var(--rot, 0deg) + 5deg)); }
@@ -95,7 +143,5 @@
   animation: float-y var(--float-duration, 8s) ease-in-out infinite;
 }
 @media (prefers-reduced-motion: reduce) {
-  .animate-float {
-    animation: none;
-  }
+  .animate-float { animation: none; }
 }
