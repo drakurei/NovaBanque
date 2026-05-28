@@ -177,66 +177,162 @@
       line-height: 1.5;
     }
 
-    /* PAGES TEASER */
-    .pages-teaser {
-      position: relative;
-      padding: 160px 24px 120px;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
+    /* ============ HORIZONTAL GALLERY ============ */
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
     }
-    .teaser-wrap { max-width: 1300px; margin: 0 auto; width: 100%; }
-    .teaser-title {
+    .h-gallery {
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+    }
+    .h-gallery-pin {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .h-gallery-title {
       text-align: center;
       font-weight: 700;
       letter-spacing: -0.04em;
       line-height: 0.95;
       font-size: clamp(40px, 6vw, 88px);
       color: white;
-      margin-bottom: 60px;
+      margin: 0 0 50px;
+      padding: 0 24px;
     }
-    .teaser-title .italic { font-family: "Fraunces", serif; font-style: italic; font-weight: 400; color: #6E5BFF; }
-    .teaser-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+    .h-gallery-title .italic { font-family: "Fraunces", serif; font-style: italic; font-weight: 400; color: #6E5BFF; }
+
+    .h-gallery-track {
+      display: flex;
+      gap: 24px;
+      padding: 0 12vw;
+      will-change: transform;
     }
-    @media (max-width: 968px) { .teaser-grid { grid-template-columns: 1fr; } }
-    .teaser-card {
+    .h-card {
       position: relative;
-      padding: 40px 32px;
-      border-radius: 24px;
+      flex: 0 0 480px;
+      max-width: 80vw;
+      padding: 48px 40px;
+      border-radius: 28px;
       background: linear-gradient(180deg, rgba(22, 25, 36, 0.6) 0%, rgba(8, 8, 16, 0.6) 100%);
-      backdrop-filter: blur(20px) saturate(160%);
-      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      min-height: 360px;
+      min-height: 460px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform .5s var(--ease), border-color .5s var(--ease);
       overflow: hidden;
-      opacity: 0;
-      transform: translateY(40px);
+      text-decoration: none;
+      transition: border-color .5s var(--ease);
     }
-    .teaser-card::before {
-      content: ""; position: absolute; inset: -2px; border-radius: 24px;
-      background: radial-gradient(circle at 50% 0%, rgba(91, 71, 255, 0.35), transparent 60%);
-      opacity: 0; transition: opacity .6s var(--ease); pointer-events: none;
+    /* Glow border qui s'active au scroll horizontal */
+    .h-card::before {
+      content: ""; position: absolute; inset: -2px; border-radius: 28px;
+      background: conic-gradient(from var(--angle, 0deg), transparent, rgba(91, 71, 255, 0.4), transparent 60%);
+      opacity: 0; transition: opacity .5s var(--ease);
+      pointer-events: none;
+      z-index: 0;
     }
-    .teaser-card:hover { transform: translateY(-6px); border-color: rgba(91, 71, 255, 0.35); }
-    .teaser-card:hover::before { opacity: 1; }
-    .teaser-num { font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #6E5BFF; }
-    .teaser-name {
-      font-weight: 700; letter-spacing: -0.03em; line-height: 1;
-      font-size: clamp(28px, 3vw, 44px); color: white; margin-top: 18px;
+    .h-card.is-active::before { opacity: 1; animation: glow-spin 8s linear infinite; }
+    @keyframes glow-spin { to { --angle: 360deg; } }
+    .h-card::after {
+      content: ""; position: absolute; inset: 1px; border-radius: 27px;
+      background: linear-gradient(180deg, rgba(22, 25, 36, 0.9) 0%, rgba(8, 8, 16, 0.95) 100%);
+      pointer-events: none;
+      z-index: 0;
     }
-    .teaser-name .italic { font-family: "Fraunces", serif; font-style: italic; font-weight: 400; color: #6E5BFF; }
-    .teaser-desc { font-size: 13px; color: rgba(255, 255, 255, 0.6); line-height: 1.55; margin-top: 14px; flex: 1; }
-    .teaser-link { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: white; margin-top: 24px; transition: color .25s; }
-    .teaser-link:hover { color: #6E5BFF; }
-    .teaser-link span { transition: transform .35s var(--ease); }
-    .teaser-card:hover .teaser-link span { transform: translateX(4px); }
+    .h-card > * { position: relative; z-index: 1; }
+    .h-card:hover { border-color: rgba(91, 71, 255, 0.4); }
+
+    .h-card-num {
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #6E5BFF;
+      will-change: transform;
+    }
+    .h-card-title {
+      font-family: "Inter", system-ui, sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      font-size: clamp(36px, 4.5vw, 68px);
+      color: white;
+      margin-top: 24px;
+      will-change: transform;
+    }
+    .h-card-title .italic { font-family: "Fraunces", serif; font-style: italic; font-weight: 400; color: #6E5BFF; }
+    .h-card-desc {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.6;
+      margin-top: 24px;
+      flex: 1;
+      will-change: transform;
+    }
+    .h-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: white;
+      margin-top: 32px;
+      transition: color .25s;
+      will-change: transform;
+    }
+    .h-card-link:hover { color: #6E5BFF; }
+    .h-card-link .arrow { transition: transform .35s var(--ease); }
+    .h-card:hover .h-card-link .arrow { transform: translateX(6px); }
+
+    /* Progress indicator en bas */
+    .h-progress {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 40px;
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .h-progress-bar {
+      width: 120px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .h-progress-fill {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #6E5BFF;
+      transform: scaleX(0);
+      transform-origin: left;
+      will-change: transform;
+    }
+
+    /* Mobile fallback : pas de horizontal scroll, vertical stack */
+    @media (max-width: 968px) {
+      .h-gallery-pin { height: auto; padding: 80px 0; }
+      .h-gallery-track { flex-direction: column; padding: 0 24px; gap: 16px; }
+      .h-card { flex: 0 0 auto; min-height: 360px; }
+      .h-progress { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .h-gallery-pin { height: auto; padding: 80px 0; }
+      .h-gallery-track { flex-direction: column; padding: 0 24px; gap: 16px; }
+      .h-card { flex: 0 0 auto; min-height: 360px; }
+      .h-progress { display: none; }
+      .h-card.is-active::before { animation: none; }
+    }
 
     /* HALOS animés via GSAP — drift diagonal */
     .halo {
@@ -388,39 +484,55 @@
       </div>
     </section>
 
-    <!-- ======================== PAGES TEASER ======================== -->
-    <section class="pages-teaser">
-      <div class="teaser-wrap">
-        <h2 class="teaser-title">Explorer <span class="italic">la maison.</span></h2>
-        <div class="teaser-grid">
+    <!-- ======================== HORIZONTAL GALLERY ======================== -->
+    <section class="h-gallery" id="h-gallery">
+      <div class="h-gallery-pin">
+        <h2 class="h-gallery-title">Explorer <span class="italic">la maison.</span></h2>
 
-          <a href="prestige.html" class="teaser-card" data-magnetic>
+        <div class="h-gallery-track">
+
+          <a href="prestige.html" class="h-card" data-magnetic>
             <div>
-              <p class="teaser-num">01 — Offre Prestige</p>
-              <h3 class="teaser-name">Le club <span class="italic">privé.</span></h3>
-              <p class="teaser-desc">L'expérience NovaBanque réservée aux patrimoines supérieurs à 2 M€. Conciergerie globale, accès deals private equity, banker senior dédié.</p>
+              <p class="h-card-num">01 — Offre Prestige</p>
+              <h3 class="h-card-title">Le club <span class="italic">privé.</span></h3>
             </div>
-            <span class="teaser-link">Découvrir l'offre <span aria-hidden>→</span></span>
+            <p class="h-card-desc">L'expérience NovaBanque réservée aux patrimoines supérieurs à 2 M€. Conciergerie globale, accès deals private equity, banker senior dédié.</p>
+            <span class="h-card-link">Découvrir l'offre <span class="arrow" aria-hidden>→</span></span>
           </a>
 
-          <a href="dashboard.html" class="teaser-card" data-magnetic>
+          <a href="dashboard.html" class="h-card" data-magnetic>
             <div>
-              <p class="teaser-num">02 — Application</p>
-              <h3 class="teaser-name">L'app <span class="italic">consolidée.</span></h3>
-              <p class="teaser-desc">Vue temps réel sur l'ensemble de votre patrimoine. Bento grid asymétrique. Reporting fiscal automatique. iOS, Android, Web.</p>
+              <p class="h-card-num">02 — Application</p>
+              <h3 class="h-card-title">L'app <span class="italic">consolidée.</span></h3>
             </div>
-            <span class="teaser-link">Voir l'interface <span aria-hidden>→</span></span>
+            <p class="h-card-desc">Vue temps réel sur l'ensemble de votre patrimoine. Bento grid asymétrique. Reporting fiscal automatique. iOS, Android, Web.</p>
+            <span class="h-card-link">Voir l'interface <span class="arrow" aria-hidden>→</span></span>
           </a>
 
-          <a href="security.html" class="teaser-card" data-magnetic>
+          <a href="security.html" class="h-card" data-magnetic>
             <div>
-              <p class="teaser-num">03 — Sécurité</p>
-              <h3 class="teaser-name">L'arsenal <span class="italic">souverain.</span></h3>
-              <p class="teaser-desc">Agrément FINMA. ISO 27001. Chiffrement TLS 1.3. Authentification 3 facteurs. SOC 24/7. Hébergement souverain suisse.</p>
+              <p class="h-card-num">03 — Sécurité</p>
+              <h3 class="h-card-title">L'arsenal <span class="italic">souverain.</span></h3>
             </div>
-            <span class="teaser-link">Notre arsenal <span aria-hidden>→</span></span>
+            <p class="h-card-desc">Agrément FINMA. ISO 27001. Chiffrement TLS 1.3. Authentification 3 facteurs. SOC 24/7. Hébergement souverain suisse.</p>
+            <span class="h-card-link">Notre arsenal <span class="arrow" aria-hidden>→</span></span>
           </a>
 
+          <a href="features.html" class="h-card" data-magnetic>
+            <div>
+              <p class="h-card-num">04 — Features</p>
+              <h3 class="h-card-title">L'arsenal <span class="italic">technologique.</span></h3>
+            </div>
+            <p class="h-card-desc">Bento technologique. Open banking PSD2, IA conseiller patrimoine, signature électronique qualifiée eIDAS, multi-devises temps réel.</p>
+            <span class="h-card-link">Voir les features <span class="arrow" aria-hidden>→</span></span>
+          </a>
+
+        </div>
+
+        <div class="h-progress" aria-hidden="true">
+          <span>Scroll</span>
+          <div class="h-progress-bar"><div class="h-progress-fill"></div></div>
+          <span><span id="h-progress-num">01</span> / 04</span>
         </div>
       </div>
     </section>

@@ -83,6 +83,7 @@
   function onPreloaderDone() {
     revealHero();
     initScrollAnimations();
+    initHorizontalGallery();
     initGsapHalos();
   }
 
@@ -193,6 +194,144 @@
     }
 
     requestAnimationFrame(() => ScrollTrigger.refresh());
+  }
+
+  // ====================================================
+  // 4b. HORIZONTAL GALLERY — pin + translateX au scroll
+  // ====================================================
+  function initHorizontalGallery() {
+    if (prefersReducedMotion) return;
+
+    const section = document.querySelector('.h-gallery');
+    const pin = document.querySelector('.h-gallery-pin');
+    const track = document.querySelector('.h-gallery-track');
+    const cards = gsap.utils.toArray('.h-card');
+    const fill = document.querySelector('.h-progress-fill');
+    const num = document.getElementById('h-progress-num');
+
+    if (!section || !track || !cards.length) return;
+
+    // Mobile : pas de scroll horizontal
+    if (window.matchMedia('(max-width: 968px)').matches) return;
+
+    // Distance à parcourir = largeur du track - largeur de la fenêtre + padding
+    const getDistance = () => track.scrollWidth - window.innerWidth;
+
+    // Animation principale : on translate le track
+    const tween = gsap.to(track, {
+      x: () => -getDistance(),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: pin,
+        start: 'top top',
+        end: () => `+=${getDistance()}`,
+        pin: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        anticipatePin: 1,
+      }
+    });
+
+    // Progress bar synchronisée avec le scroll horizontal
+    ScrollTrigger.create({
+      trigger: pin,
+      start: 'top top',
+      end: () => `+=${getDistance()}`,
+      scrub: true,
+      onUpdate: (self) => {
+        if (fill) fill.style.transform = `scaleX(${self.progress})`;
+        if (num) {
+          const idx = Math.min(cards.length, Math.floor(self.progress * cards.length) + 1);
+          num.textContent = String(idx).padStart(2, '0');
+        }
+      }
+    });
+
+    // Glow border + parallax sur chaque carte au passage
+    cards.forEach((card, i) => {
+      // Active la carte quand elle est centrée dans le viewport horizontal
+      ScrollTrigger.create({
+        trigger: card,
+        containerAnimation: tween,
+        start: 'left 75%',
+        end: 'right 25%',
+        onToggle: (self) => card.classList.toggle('is-active', self.isActive),
+      });
+
+      // Parallax interne : le titre, le num et la desc bougent à vitesses différentes
+      const titleEl = card.querySelector('.h-card-title');
+      const numEl   = card.querySelector('.h-card-num');
+      const descEl  = card.querySelector('.h-card-desc');
+      const linkEl  = card.querySelector('.h-card-link');
+
+      if (titleEl) {
+        gsap.fromTo(titleEl,
+          { xPercent: 30 },
+          {
+            xPercent: -30,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: card,
+              containerAnimation: tween,
+              start: 'left right',
+              end: 'right left',
+              scrub: true,
+            }
+          }
+        );
+      }
+      if (numEl) {
+        gsap.fromTo(numEl,
+          { xPercent: 15 },
+          {
+            xPercent: -15,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: card,
+              containerAnimation: tween,
+              start: 'left right',
+              end: 'right left',
+              scrub: true,
+            }
+          }
+        );
+      }
+      if (descEl) {
+        gsap.fromTo(descEl,
+          { xPercent: 20 },
+          {
+            xPercent: -20,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: card,
+              containerAnimation: tween,
+              start: 'left right',
+              end: 'right left',
+              scrub: true,
+            }
+          }
+        );
+      }
+      if (linkEl) {
+        gsap.fromTo(linkEl,
+          { xPercent: 10 },
+          {
+            xPercent: -10,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: card,
+              containerAnimation: tween,
+              start: 'left right',
+              end: 'right left',
+              scrub: true,
+            }
+          }
+        );
+      }
+    });
+
+    // Active la première carte au démarrage
+    if (cards[0]) cards[0].classList.add('is-active');
   }
 
   // ====================================================
