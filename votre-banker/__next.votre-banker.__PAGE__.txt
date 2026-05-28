@@ -1,9 +1,9 @@
 1:"$Sreact.fragment"
-2:I[47257,["/NovaBanque/_next/static/chunks/06g0naxlgtaqj.js","/NovaBanque/_next/static/chunks/04xui0pxt.et1.js","/NovaBanque/_next/static/chunks/0d3shmwh5_nmn.js"],"ClientPageRoot"]
-3:I[33869,["/NovaBanque/_next/static/chunks/06g0naxlgtaqj.js","/NovaBanque/_next/static/chunks/04xui0pxt.et1.js","/NovaBanque/_next/static/chunks/0d3shmwh5_nmn.js","/NovaBanque/_next/static/chunks/0e9d6q.hi.ya_.js","/NovaBanque/_next/static/chunks/15gp9i4.r3v6h.js"],"default"]
-6:I[97367,["/NovaBanque/_next/static/chunks/06g0naxlgtaqj.js","/NovaBanque/_next/static/chunks/04xui0pxt.et1.js","/NovaBanque/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+2:I[47257,["/NovaBanque/_next/static/chunks/07uepzd9lkjlj.js","/NovaBanque/_next/static/chunks/04xui0pxt.et1.js","/NovaBanque/_next/static/chunks/0d3shmwh5_nmn.js"],"ClientPageRoot"]
+3:I[33869,["/NovaBanque/_next/static/chunks/07uepzd9lkjlj.js","/NovaBanque/_next/static/chunks/04xui0pxt.et1.js","/NovaBanque/_next/static/chunks/0d3shmwh5_nmn.js","/NovaBanque/_next/static/chunks/0e9d6q.hi.ya_.js","/NovaBanque/_next/static/chunks/0wdb5.gwerqaj.js"],"default"]
+6:I[97367,["/NovaBanque/_next/static/chunks/07uepzd9lkjlj.js","/NovaBanque/_next/static/chunks/04xui0pxt.et1.js","/NovaBanque/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
 7:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/NovaBanque/_next/static/chunks/0e9d6q.hi.ya_.js","async":true}],["$","script","script-1",{"src":"/NovaBanque/_next/static/chunks/15gp9i4.r3v6h.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"qcdTg2lrP4n-fIF7z-IrN"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/NovaBanque/_next/static/chunks/0e9d6q.hi.ya_.js","async":true}],["$","script","script-1",{"src":"/NovaBanque/_next/static/chunks/0wdb5.gwerqaj.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"MUGhWq2LCevdxr3TdO3XC"}
 4:{}
 5:"$0:rsc:props:children:0:props:serverProvidedParams:params"
 8:null
