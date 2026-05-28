@@ -134,32 +134,42 @@
       });
     });
 
-    // B. Piliers pinned — cross-fade au scroll
+    // B. Piliers pinned — cross-fade strict (1 visible à la fois)
     const pillarsSection = document.querySelector('.pillars-pinned');
     if (pillarsSection) {
-      const pillars = pillarsSection.querySelectorAll('.pillar');
+      const pillars = gsap.utils.toArray('.pillars-pinned .pillar');
       const count = pillars.length;
 
-      gsap.set(pillars, { opacity: 0, y: 60 });
+      // État initial : tous invisibles sauf le premier
+      gsap.set(pillars, { opacity: 0, y: 40 });
       gsap.set(pillars[0], { opacity: 1, y: 0 });
 
+      // Timeline scrubbed sur toute la hauteur du pin (400vh = 4 slots de 100vh)
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: pillarsSection,
           start: 'top top',
           end: 'bottom bottom',
-          scrub: 1,
+          scrub: 0.6,
         }
       });
 
+      // Slots disjoints : chaque transition occupe une fenêtre courte au début de chaque slot
+      // Slot k (k=1..count-1) commence à progress k/count
+      // Transition i→i+1 : fade out i pendant [k - 0.08, k], fade in i+1 pendant [k, k + 0.08]
       for (let i = 0; i < count - 1; i++) {
-        const t = i / (count - 1);
-        tl.to(pillars[i], { opacity: 0, y: -60, duration: 0.5, ease: 'power2.in' }, t)
-          .fromTo(pillars[i + 1],
-            { opacity: 0, y: 60 },
-            { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
-            t + 0.1
-          );
+        const k = (i + 1) / count;          // boundary entre slot i et slot i+1
+        const w = 0.5 / count;              // demi-largeur de la zone de transition
+        tl.to(pillars[i], {
+          opacity: 0, y: -40,
+          duration: w,
+          ease: 'power2.in',
+        }, k - w)
+        .fromTo(pillars[i + 1],
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: w, ease: 'power2.out' },
+          k
+        );
       }
     }
 
@@ -232,18 +242,25 @@
       }
     });
 
-    // Progress bar synchronisée avec le scroll horizontal
+    // Progress bar synchronisée + fade out des cards en fin de scroll horizontal
     ScrollTrigger.create({
       trigger: pin,
       start: 'top top',
       end: () => `+=${getDistance()}`,
       scrub: true,
       onUpdate: (self) => {
-        if (fill) fill.style.transform = `scaleX(${self.progress})`;
+        const p = self.progress;
+        if (fill) fill.style.transform = `scaleX(${p})`;
         if (num) {
-          const idx = Math.min(cards.length, Math.floor(self.progress * cards.length) + 1);
+          const idx = Math.min(cards.length, Math.floor(p * cards.length) + 1);
           num.textContent = String(idx).padStart(2, '0');
         }
+        // Soft fade out de la track sur les derniers 8% pour éviter le clash avec le footer
+        const fadeStart = 0.92;
+        const trackOpacity = p > fadeStart
+          ? Math.max(0, 1 - (p - fadeStart) / (1 - fadeStart))
+          : 1;
+        track.style.opacity = String(trackOpacity);
       }
     });
 
