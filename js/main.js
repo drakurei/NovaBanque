@@ -364,7 +364,11 @@
   function initMobileMenu() {
     const nav = document.querySelector('.site-header .nav');
     const links = nav && nav.querySelector('.nav-links');
-    if (!nav || !links) return;
+    if (!nav || !links) {
+      console.warn('[NovaBanque] initMobileMenu: nav ou .nav-links introuvable', { nav, links });
+      return;
+    }
+    console.log('[NovaBanque] initMobileMenu: nav-links contient', links.children.length, 'enfants au boot');
 
     // Évite la double injection si le script tourne deux fois
     if (nav.querySelector('.nav-toggle')) return;
@@ -423,6 +427,7 @@
 
     btn.addEventListener('click', () => {
       const isOpen = links.classList.contains('is-open');
+      console.log('[NovaBanque] hamburger click → was open?', isOpen, '· enfants drawer:', links.children.length);
       isOpen ? close() : open();
     });
 
