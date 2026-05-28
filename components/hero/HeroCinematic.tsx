@@ -3,6 +3,8 @@
 import { motion } from "motion/react";
 import { Sparkles } from "lucide-react";
 import { stagger, fadeUp, easeEditorial } from "@/lib/motion";
+import TextShuffle from "@/components/primitives/TextShuffle";
+import ChromaticTitle from "@/components/primitives/ChromaticTitle";
 
 export default function HeroCinematic() {
   return (
@@ -42,20 +44,29 @@ export default function HeroCinematic() {
           className="text-[11px] tracking-[0.35em] uppercase text-ink-2 mb-5 flex items-center justify-center gap-3"
         >
           <Sparkles size={14} className="text-navy" />
-          La banque privée nouvelle génération
+          <TextShuffle
+            text="La banque privée nouvelle génération"
+            duration={1.4}
+            delay={0.5}
+          />
           <Sparkles size={14} className="text-navy" />
         </motion.p>
 
         {/* Wordmark — fits comfortably above mockup in viewport */}
-        <motion.h1
+        <motion.div
           initial={{ opacity: 0, scale: 1.1, filter: "blur(16px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 1.8, ease: easeEditorial, delay: 0.2 }}
           className="font-display text-ink leading-[0.9] tracking-tighter font-bold"
-          style={{ fontSize: "clamp(42px, 6.5vw, 96px)" }}
+          style={{
+            fontSize: "clamp(42px, 6.5vw, 96px)",
+            transform: "translate3d(0,0,0)",
+          }}
         >
-          NovaBanque
-        </motion.h1>
+          <ChromaticTitle as="h1" baseOffset={0.5} maxOffset={8}>
+            NovaBanque
+          </ChromaticTitle>
+        </motion.div>
 
         <motion.p
           variants={fadeUp}

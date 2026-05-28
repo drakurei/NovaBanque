@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { Infinity as InfinityIcon, Compass, Triangle, Aperture, Hexagon } from "lucide-react";
 import { fadeUp, stagger, viewportOnce } from "@/lib/motion";
+import TextShuffle from "@/components/primitives/TextShuffle";
 
 /**
  * Sacred-geometry style text — words intercalated with glowing geometric icons.
@@ -22,7 +23,7 @@ export default function SacredGeometry() {
           variants={fadeUp}
           className="text-[11px] tracking-[0.35em] uppercase text-ink-2 text-center mb-16"
         >
-          — Notre approche
+          <TextShuffle text="— Notre approche" duration={1} trigger="inview" />
         </motion.p>
 
         {/* Cross / scattered layout like the video */}
