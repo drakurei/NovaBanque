@@ -212,6 +212,11 @@
       padding: 0 12vw;
       will-change: transform;
     }
+    /* Spacer fantôme en fin de track pour buffer visuel avant pin-out */
+    .h-gallery-track::after {
+      content: "";
+      flex: 0 0 8vw;
+    }
     .h-card {
       position: relative;
       flex: 0 0 480px;
