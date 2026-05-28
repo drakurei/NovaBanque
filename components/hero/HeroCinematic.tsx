@@ -1,165 +1,156 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import Image from "next/image";
-import { images } from "@/lib/images";
-import { cities } from "@/lib/content";
-import { fadeUp, stagger, easeEditorial } from "@/lib/motion";
-import EditorialLink from "@/components/primitives/EditorialLink";
-import LetterReveal from "@/components/primitives/LetterReveal";
-import FloatingCoins from "@/components/floating/FloatingCoins";
-import { useGsapParallax } from "@/lib/useGsapParallax";
-
-const VIDEO_HD =
-  "https://videos.pexels.com/video-files/17242172/17242172-hd_1920_1080_24fps.mp4";
-const VIDEO_SD =
-  "https://videos.pexels.com/video-files/17242172/17242172-hd_1280_720_24fps.mp4";
+import { Sparkles } from "lucide-react";
+import { stagger, fadeUp, easeEditorial } from "@/lib/motion";
 
 export default function HeroCinematic() {
-  const { sectionRef, targetRef } = useGsapParallax<HTMLElement>(140);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [videoReady, setVideoReady] = useState(false);
-
-  useEffect(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReducedMotion) return;
-
-    const onCanPlay = () => setVideoReady(true);
-    v.addEventListener("canplay", onCanPlay);
-    // iOS Safari sometimes needs an explicit play() after mount
-    v.play().catch(() => {
-      // Autoplay blocked — keep the poster image visible
-    });
-    return () => v.removeEventListener("canplay", onCanPlay);
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative h-screen min-h-[720px] w-full overflow-hidden"
-    >
-      <motion.div
-        ref={(el) => {
-          targetRef.current = el;
+    <section className="relative h-screen min-h-[780px] w-full overflow-hidden flex items-center justify-center">
+      {/* Radial glow background */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 700px 600px at 50% 55%, rgba(91, 71, 255, 0.35), transparent 70%)",
         }}
-        initial={{ scale: 1.12 }}
-        animate={{ scale: 1.08 }}
-        transition={{ duration: 2.5, ease: easeEditorial }}
-        className="absolute inset-[-10%]"
+      />
+
+      {/* Concentric sacred geometry rings behind the wordmark */}
+      <div
+        aria-hidden
+        className="absolute inset-0 flex items-center justify-center pointer-events-none"
       >
-        {/* Poster image — always rendered, fades out when video is ready */}
-        <Image
-          src={images.hero.src}
-          alt={images.hero.alt}
-          fill
-          priority
-          sizes="100vw"
-          placeholder="blur"
-          blurDataURL={images.hero.blurDataURL}
-          className={`object-cover transition-opacity duration-1000 ${
-            videoReady ? "opacity-0" : "opacity-100"
-          }`}
-        />
-        {/* Video background — Jet d'Eau Genève aerial */}
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          aria-hidden
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-            videoReady ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <source media="(min-width: 1024px)" src={VIDEO_HD} type="video/mp4" />
-          <source src={VIDEO_SD} type="video/mp4" />
-        </video>
-      </motion.div>
-
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-gradient-to-b from-charcoal/30 via-transparent to-charcoal/70"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-gradient-to-r from-charcoal/40 to-transparent"
-      />
-
-      {/* Floating coins removed — too kitsch for the SPYLT-energy banking direction */}
+        <div className="relative w-[700px] h-[700px] lg:w-[900px] lg:h-[900px] opacity-50">
+          <div className="absolute inset-0 rounded-full border border-navy/30 animate-sacred-rotate" />
+          <div className="absolute inset-[8%] rounded-full border border-navy/25 animate-sacred-rotate-reverse" />
+          <div className="absolute inset-[18%] rounded-full border border-navy/20 animate-sacred-rotate" />
+          <div className="absolute inset-[28%] rounded-full border border-navy/15 animate-sacred-rotate-reverse" />
+          <div className="absolute inset-[40%] rounded-full border border-navy/10 animate-sacred-rotate" />
+        </div>
+      </div>
 
       <motion.div
-        variants={stagger(0.15)}
+        variants={stagger(0.08)}
         initial="hidden"
         animate="visible"
-        className="relative h-full max-w-[1440px] mx-auto px-8 lg:px-12 flex flex-col justify-end pb-24 lg:pb-32"
+        className="relative z-10 w-full max-w-[1440px] mx-auto px-6 lg:px-12 text-center"
       >
         <motion.p
           variants={fadeUp}
-          className="text-[11px] tracking-[0.3em] uppercase text-or-soft mb-6 font-bold"
+          className="text-[11px] tracking-[0.35em] uppercase text-ink-2 mb-6 flex items-center justify-center gap-3"
         >
-          — Maison de patrimoine privée · Genève · 1987
+          <Sparkles size={14} className="text-navy" />
+          The fine-tech private banking app
+          <Sparkles size={14} className="text-navy" />
         </motion.p>
 
-        <h1 className="font-display uppercase text-ivoire text-7xl sm:text-9xl lg:text-[180px] xl:text-[220px] leading-[0.85] tracking-tighter max-w-6xl overflow-hidden">
-          <span className="block overflow-hidden">
-            <LetterReveal text="Banque." delay={0.25} />
-          </span>
-          <span className="block overflow-hidden">
-            <LetterReveal text="Investissement." delay={0.45} />
-          </span>
-          <span className="block overflow-hidden text-or-soft">
-            <LetterReveal text="Immobilier." delay={0.7} />
-          </span>
-        </h1>
+        {/* Massive wordmark that assembles letter by letter */}
+        <motion.h1
+          initial={{ opacity: 0, scale: 1.15, filter: "blur(20px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 1.8, ease: easeEditorial, delay: 0.2 }}
+          className="font-display text-ink leading-[0.85] tracking-tighter font-bold"
+          style={{ fontSize: "clamp(72px, 14vw, 220px)" }}
+        >
+          NovaBanque
+        </motion.h1>
 
         <motion.p
           variants={fadeUp}
-          className="text-ivoire/85 text-base lg:text-lg mt-10 max-w-xl leading-relaxed font-medium"
+          className="text-ink-2 text-base lg:text-lg mt-8 max-w-md mx-auto leading-relaxed"
         >
-          Trois métiers, une seule maison. Réunis sous le même toit, sur les
-          rives du Léman, depuis 1987.
+          Banque privée, gestion d&apos;investissement et conseil immobilier.
+          Trois métiers, une seule maison à Genève — depuis 1987.
         </motion.p>
 
-        <motion.div variants={fadeUp} className="flex flex-wrap gap-4 mt-10">
+        {/* Phone mockup with violet glow */}
+        <motion.div
+          initial={{ opacity: 0, y: 60, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1.4, ease: easeEditorial, delay: 0.8 }}
+          className="relative mt-14 mx-auto"
+          style={{ width: 280, maxWidth: "80vw" }}
+        >
+          <div className="absolute -inset-12 bg-navy/30 rounded-full blur-3xl animate-glow-pulse" />
+          <div
+            className="relative aspect-[9/19] rounded-[40px] glow-violet overflow-hidden border border-white/10"
+            style={{
+              background:
+                "linear-gradient(180deg, #12121A 0%, #1A1A28 50%, #0F0F1A 100%)",
+            }}
+          >
+            {/* Status bar */}
+            <div className="flex justify-between items-center px-6 pt-4 text-[10px] text-ink-2">
+              <span>09:41</span>
+              <span className="flex items-center gap-1">
+                <span className="w-3 h-3 rounded-full bg-navy/40" />
+              </span>
+            </div>
+            {/* App content */}
+            <div className="px-6 mt-4">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-ink-3">
+                Solde total
+              </p>
+              <p className="font-display text-2xl mt-1">€ 482 940,12</p>
+              <div className="mt-6 space-y-3">
+                <div className="hairline rounded-2xl p-3 flex items-center justify-between text-xs">
+                  <div>
+                    <p className="text-ink-2">Compte courant</p>
+                    <p className="text-ink-3 text-[10px]">FR76 1027 ···</p>
+                  </div>
+                  <span className="text-ink font-medium">12 480 €</span>
+                </div>
+                <div className="hairline rounded-2xl p-3 flex items-center justify-between text-xs">
+                  <div>
+                    <p className="text-ink-2">Mandat 60/40</p>
+                    <p className="text-ink-3 text-[10px]">+8,2% net 2025</p>
+                  </div>
+                  <span className="text-ink font-medium">320 100 €</span>
+                </div>
+                <div className="hairline rounded-2xl p-3 flex items-center justify-between text-xs">
+                  <div>
+                    <p className="text-ink-2">Crédit lombard</p>
+                    <p className="text-ink-3 text-[10px]">Disponible</p>
+                  </div>
+                  <span className="text-ink font-medium">150 360 €</span>
+                </div>
+              </div>
+              {/* Center glow circle */}
+              <div className="mt-6 flex items-center justify-center">
+                <div className="relative">
+                  <div className="absolute inset-0 rounded-full bg-navy/40 blur-xl animate-glow-pulse" />
+                  <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-navy to-navy-deep flex items-center justify-center text-white font-display text-xl">
+                    ⌬
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* CTA below mockup */}
+        <motion.div
+          variants={fadeUp}
+          className="mt-12 flex items-center justify-center gap-4"
+        >
           <a
             href="/services"
             data-cursor="hover"
-            className="inline-flex items-center gap-3 bg-or-soft text-charcoal px-8 py-4 text-sm font-extrabold uppercase tracking-[0.2em] hover:bg-ivoire transition-colors"
+            className="inline-flex items-center gap-2 bg-navy hover:bg-navy-deep text-white px-6 py-3 rounded-full text-sm font-medium transition-colors"
           >
-            Découvrir nos métiers
+            Découvrir l&apos;app
             <span aria-hidden>→</span>
           </a>
           <a
             href="/rendez-vous"
             data-cursor="hover"
-            className="inline-flex items-center gap-3 border border-ivoire/40 text-ivoire px-8 py-4 text-sm font-extrabold uppercase tracking-[0.2em] hover:bg-ivoire hover:text-charcoal transition-colors"
+            className="inline-flex items-center gap-2 hairline hover:bg-paper-2 text-ink px-6 py-3 rounded-full text-sm font-medium transition-colors"
           >
-            Prendre rendez-vous
+            Disponible printemps 2026
           </a>
         </motion.div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, ease: easeEditorial, delay: 1 }}
-        className="absolute bottom-8 inset-x-0"
-      >
-        <div className="max-w-[1440px] mx-auto px-8 lg:px-12 flex items-center gap-6 text-ivoire/70 text-[11px] tracking-[0.25em] uppercase">
-          <span className="w-12 h-px bg-ivoire/40" />
-          <ul className="flex gap-6 flex-wrap">
-            {cities.map((c) => (
-              <li key={c}>{c}</li>
-            ))}
-          </ul>
-        </div>
       </motion.div>
     </section>
   );

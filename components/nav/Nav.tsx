@@ -21,62 +21,37 @@ export default function Nav({ solid = false }: { solid?: boolean }) {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-ivoire/95 backdrop-blur-sm hairline-b"
-          : "bg-transparent"
-      }`}
+      className="fixed top-4 inset-x-0 z-50 transition-all duration-500"
     >
-      <nav className="max-w-[1440px] mx-auto flex items-center justify-between px-8 lg:px-12 py-6">
+      <nav className="max-w-fit mx-auto flex items-center gap-2 px-2 py-2 rounded-full hairline backdrop-blur-xl"
+        style={{ background: "rgba(8, 8, 16, 0.7)" }}
+      >
         <Link
           href="/"
           aria-label="NovaBanque — Retour à l'accueil"
-          className={`font-display uppercase text-2xl lg:text-3xl tracking-tight transition-colors ${
-            scrolled ? "text-charcoal hover:text-or-soft" : "text-ivoire hover:text-or-soft"
-          }`}
+          className="font-display text-base tracking-tight font-bold px-4 py-1.5 text-ink hover:text-navy transition-colors"
         >
           NovaBanque
         </Link>
 
-        <ul className="hidden lg:flex items-center gap-10">
-          {navLinks.map((l) => (
-            <li key={l.href}>
-              <Link
-                href={l.href}
-                className={`text-[13px] tracking-wide transition-colors ${
-                  scrolled
-                    ? "text-charcoal-2 hover:text-charcoal"
-                    : "text-ivoire/80 hover:text-ivoire"
-                }`}
-              >
-                {l.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className="hidden lg:flex items-center gap-6">
-          <Link
-            href="/espace-client"
-            className={`text-[13px] transition-colors ${
-              scrolled
-                ? "text-charcoal-2 hover:text-charcoal"
-                : "text-ivoire/80 hover:text-ivoire"
-            }`}
-          >
-            Espace client
-          </Link>
-          <Link
-            href="/rendez-vous"
-            className={`text-[13px] tracking-wide px-5 py-2.5 transition-colors ${
-              scrolled
-                ? "bg-charcoal text-ivoire hover:bg-leman-deep"
-                : "bg-ivoire text-charcoal hover:bg-ivoire/90"
-            }`}
-          >
-            Prendre rendez-vous
-          </Link>
-        </div>
+        <Link
+          href="/notre-approche"
+          className="hidden lg:inline-block text-[13px] text-ink-2 hover:text-ink px-4 py-1.5 rounded-full hover:bg-paper-2 transition-colors"
+        >
+          Read it Wisely
+        </Link>
+        <Link
+          href="/services"
+          className="hidden lg:inline-block text-[13px] text-ink-2 hover:text-ink px-4 py-1.5 rounded-full hover:bg-paper-2 transition-colors"
+        >
+          Master
+        </Link>
+        <Link
+          href="/rendez-vous"
+          className="hidden lg:inline-block text-[13px] text-white bg-navy hover:bg-navy-deep px-4 py-1.5 rounded-full transition-colors"
+        >
+          Get notified
+        </Link>
 
         <button
           className="lg:hidden flex flex-col gap-1.5 w-8 h-8 items-center justify-center"
