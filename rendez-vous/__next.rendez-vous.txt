@@ -2,4 +2,4 @@
 2:I[39756,["/NovaBanque/_next/static/chunks/07uepzd9lkjlj.js","/NovaBanque/_next/static/chunks/04xui0pxt.et1.js","/NovaBanque/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
 3:I[37457,["/NovaBanque/_next/static/chunks/07uepzd9lkjlj.js","/NovaBanque/_next/static/chunks/04xui0pxt.et1.js","/NovaBanque/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
 4:[]
-0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"-Jlm-GDkbttY_z6o37uM6"}
+0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"3fA7InkmFFwKn6OWNER7j"}

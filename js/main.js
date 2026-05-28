@@ -81,6 +81,11 @@
   }
 
   function onPreloaderDone() {
+    // Garantit que les styles dépendant de .site-ready (header, etc.) s'appliquent
+    // même sur les sub-pages qui n'ont pas de #preloader.
+    if (!document.body.classList.contains('site-ready')) {
+      document.body.classList.add('preloader-done', 'site-ready');
+    }
     revealHero();
     initScrollAnimations();
     initHorizontalGallery();
