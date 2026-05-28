@@ -4,6 +4,7 @@ import MarqueeBand from "@/components/marquee/MarqueeBand";
 import ManifestoSplit from "@/components/manifesto/ManifestoSplit";
 import StatsBand from "@/components/stats/StatsBand";
 import InventaireHorizontal from "@/components/inventaire/InventaireHorizontal";
+import GiantTextSequence from "@/components/giant-text/GiantTextSequence";
 import PropertiesHorizontal from "@/components/properties/PropertiesHorizontal";
 import FeaturedVillaStyle from "@/components/featured/FeaturedVillaStyle";
 import BankerPortrait from "@/components/banker/BankerPortrait";
@@ -21,6 +22,9 @@ export default function Home() {
         <ManifestoSplit />
         <StatsBand />
         <InventaireHorizontal />
+        <GiantTextSequence
+          phrases={["Discrétion.", "Indépendance.", "Long terme."]}
+        />
         <PropertiesHorizontal />
         <FeaturedVillaStyle />
         <BankerPortrait />
