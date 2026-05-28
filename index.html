@@ -129,8 +129,8 @@
     .huge-mask .line-inner { display: inline-block; transform: translateY(110%); will-change: transform; }
     .huge-mask .italic { font-family: "Fraunces", Georgia, serif; font-style: italic; font-weight: 400; color: #6E5BFF; }
 
-    /* PILIERS PINNED */
-    .pillars-pinned { position: relative; height: 400vh; }
+    /* PILIERS PINNED — 250vh = 4 piliers × ~62vh chacun = scroll fluide sans lasser */
+    .pillars-pinned { position: relative; height: 250vh; }
     .pillars-track {
       position: sticky;
       top: 0;
@@ -214,10 +214,10 @@
       padding: 0 12vw;
       will-change: transform;
     }
-    /* Spacer fantôme en fin de track pour buffer visuel avant pin-out */
+    /* Spacer fantôme en fin de track (réduit pour ne pas allonger inutilement le pin) */
     .h-gallery-track::after {
       content: "";
-      flex: 0 0 8vw;
+      flex: 0 0 2vw;
     }
     .h-card {
       position: relative;
