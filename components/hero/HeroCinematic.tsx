@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { images } from "@/lib/images";
@@ -9,8 +10,32 @@ import EditorialLink from "@/components/primitives/EditorialLink";
 import LetterReveal from "@/components/primitives/LetterReveal";
 import { useGsapParallax } from "@/lib/useGsapParallax";
 
+const VIDEO_HD =
+  "https://videos.pexels.com/video-files/17242172/17242172-hd_1920_1080_24fps.mp4";
+const VIDEO_SD =
+  "https://videos.pexels.com/video-files/17242172/17242172-hd_1280_720_24fps.mp4";
+
 export default function HeroCinematic() {
   const { sectionRef, targetRef } = useGsapParallax<HTMLElement>(140);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [videoReady, setVideoReady] = useState(false);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReducedMotion) return;
+
+    const onCanPlay = () => setVideoReady(true);
+    v.addEventListener("canplay", onCanPlay);
+    // iOS Safari sometimes needs an explicit play() after mount
+    v.play().catch(() => {
+      // Autoplay blocked — keep the poster image visible
+    });
+    return () => v.removeEventListener("canplay", onCanPlay);
+  }, []);
 
   return (
     <section
@@ -26,6 +51,7 @@ export default function HeroCinematic() {
         transition={{ duration: 2.5, ease: easeEditorial }}
         className="absolute inset-[-10%]"
       >
+        {/* Poster image — always rendered, fades out when video is ready */}
         <Image
           src={images.hero.src}
           alt={images.hero.alt}
@@ -34,8 +60,26 @@ export default function HeroCinematic() {
           sizes="100vw"
           placeholder="blur"
           blurDataURL={images.hero.blurDataURL}
-          className="object-cover"
+          className={`object-cover transition-opacity duration-1000 ${
+            videoReady ? "opacity-0" : "opacity-100"
+          }`}
         />
+        {/* Video background — Jet d'Eau Genève aerial */}
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            videoReady ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <source media="(min-width: 1024px)" src={VIDEO_HD} type="video/mp4" />
+          <source src={VIDEO_SD} type="video/mp4" />
+        </video>
       </motion.div>
 
       <div
