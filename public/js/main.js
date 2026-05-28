@@ -25,12 +25,12 @@
     if (prefersReducedMotion) return;
 
     lenis = new Lenis({
-      duration: 1.0,
+      duration: 0.8,                                            // était 1.0 — plus réactif
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       smoothWheel: true,
-      touchMultiplier: 2,
-      wheelMultiplier: 1.05,
+      touchMultiplier: 2.2,                                     // un peu plus de réponse au touch
+      wheelMultiplier: 1.25,                                    // était 1.05 — un wheel envoie plus loin
     });
 
     function raf(time) {
@@ -249,7 +249,7 @@
         start: 'top top',
         end: () => `+=${getDistance()}`,
         pin: true,
-        scrub: 1,
+        scrub: 0.4,                  // était 1 — la track suit beaucoup plus vite le scroll
         invalidateOnRefresh: true,
         anticipatePin: 1,
       }
