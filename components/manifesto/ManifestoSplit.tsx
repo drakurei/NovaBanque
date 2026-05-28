@@ -6,18 +6,23 @@ import { manifesto } from "@/lib/content";
 import { images } from "@/lib/images";
 import ImageReveal from "@/components/primitives/ImageReveal";
 import EditorialLink from "@/components/primitives/EditorialLink";
+import PlayVideoButton from "@/components/play-video/PlayVideoButton";
 
 export default function ManifestoSplit() {
   return (
     <section id="approche" className="py-32 lg:py-48">
       <div className="max-w-[1440px] mx-auto px-8 lg:px-12 grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-        <div className="lg:col-span-6">
+        <div className="lg:col-span-6 relative">
           <ImageReveal
             src={images.manifesto.src}
             alt={images.manifesto.alt}
             sizes="(max-width: 1024px) 100vw, 50vw"
             aspect="aspect-[4/5]"
           />
+          {/* Floating circular play button — SPYLT-inspired, opens institutional film */}
+          <div className="absolute bottom-6 right-6 lg:bottom-10 lg:right-10">
+            <PlayVideoButton size={180} />
+          </div>
         </div>
 
         <motion.div

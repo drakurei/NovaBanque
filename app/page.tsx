@@ -11,6 +11,7 @@ import BankerPortrait from "@/components/banker/BankerPortrait";
 import Distinctions from "@/components/distinctions/Distinctions";
 import CtaFinal from "@/components/cta/CtaFinal";
 import Footer from "@/components/footer/Footer";
+import WaveDivider from "@/components/dividers/WaveDivider";
 
 export default function Home() {
   return (
@@ -22,10 +23,12 @@ export default function Home() {
         <ManifestoSplit />
         <StatsBand />
         <InventaireHorizontal />
+        <WaveDivider from="ivoire" to="charcoal" height={140} />
         <GiantTextSequence
           phrases={["Discrétion.", "Indépendance.", "Long terme."]}
         />
         <PropertiesHorizontal />
+        <WaveDivider from="charcoal" to="ivoire" height={140} flip />
         <FeaturedVillaStyle />
         <BankerPortrait />
         <MarqueeBand

@@ -8,6 +8,7 @@ import { cities } from "@/lib/content";
 import { fadeUp, stagger, easeEditorial } from "@/lib/motion";
 import EditorialLink from "@/components/primitives/EditorialLink";
 import LetterReveal from "@/components/primitives/LetterReveal";
+import FloatingCoins from "@/components/floating/FloatingCoins";
 import { useGsapParallax } from "@/lib/useGsapParallax";
 
 const VIDEO_HD =
@@ -90,6 +91,9 @@ export default function HeroCinematic() {
         aria-hidden
         className="absolute inset-0 bg-gradient-to-r from-charcoal/40 to-transparent"
       />
+
+      {/* SPYLT-inspired floating gold coins (decorative, low opacity) */}
+      <FloatingCoins count={5} className="opacity-50" />
 
       <motion.div
         variants={stagger(0.15)}
