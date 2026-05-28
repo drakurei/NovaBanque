@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaBanque — Espace client</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body { background: #050507; min-height: 100vh; }
+
+    .halo { position: fixed; border-radius: 50%; filter: blur(140px); pointer-events: none; z-index: 0; }
+    .halo-a { width: 700px; height: 700px; background: #4F46FF; opacity: 0.16; top: -200px; left: -200px; }
+    .halo-b { width: 600px; height: 600px; background: #7C5BFF; opacity: 0.12; bottom: -180px; right: -180px; }
+
+    .login-wrap {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 140px 24px 80px;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 480px;
+      padding: 56px 48px 48px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(22,25,36,0.7), rgba(8,8,16,0.7));
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .login-card .small {
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #6E5BFF;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .login-card h1 {
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      font-size: clamp(28px, 3.5vw, 42px);
+      color: white;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .login-card h1 .italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; color: #6E5BFF; }
+    .login-card .sub {
+      text-align: center;
+      color: rgba(255,255,255,0.55);
+      font-size: 13px;
+      line-height: 1.55;
+      margin-bottom: 36px;
+    }
+
+    .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+    .field label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+    .field input {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font: inherit;
+      font-size: 15px;
+      color: white;
+      transition: border-color .25s, background .25s;
+    }
+    .field input:focus {
+      outline: none;
+      border-color: #6E5BFF;
+      background: rgba(110,91,255,0.06);
+    }
+
+    .login-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin: 8px 0 24px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+    }
+    .login-row label { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+    .login-row input { accent-color: #6E5BFF; }
+    .login-row a { color: #6E5BFF; transition: color .2s; }
+    .login-row a:hover { color: #9685FF; }
+
+    .login-submit {
+      width: 100%;
+      padding: 16px 28px;
+      border-radius: 999px;
+      background: #4F46FF;
+      border: 1px solid #6E5BFF;
+      color: white;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background .25s;
+      font-family: inherit;
+    }
+    .login-submit:hover { background: #6E5BFF; }
+
+    .login-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 28px 0;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .login-divider::before,
+    .login-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .login-passkey {
+      width: 100%;
+      padding: 14px 28px;
+      border-radius: 999px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: white;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      transition: border-color .25s, background .25s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: inherit;
+    }
+    .login-passkey:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.03); }
+    .login-passkey svg { width: 16px; height: 16px; }
+
+    .login-foot {
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 32px;
+    }
+    .login-foot a { color: #B5A8FF; transition: color .2s; }
+    .login-foot a:hover { color: white; }
+
+    .security-band {
+      max-width: 480px;
+      margin: 24px auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+    }
+    .security-band span { padding: 10px; border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; }
+  </style>
+</head>
+<body>
+
+  <div class="halo halo-a"></div>
+  <div class="halo halo-b"></div>
+
+  <header class="site-header" data-header style="opacity:1;">
+    <nav class="container nav">
+      <a href="index.html" class="logo">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1"/><circle cx="10" cy="10" r="4" fill="currentColor"/></svg>
+        <span>NovaBanque</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="prestige.html" class="nav-link">Prestige</a></li>
+        <li><a href="dashboard.html" class="nav-link">Patrimoine</a></li>
+        <li><a href="security.html" class="nav-link">Sécurité</a></li>
+        <li><a href="features.html" class="nav-link">Features</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="espace-client.html" class="btn btn-ghost" style="color:white;">Espace client</a>
+        <a href="contact.html" class="btn btn-primary">Ouvrir un compte</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="login-wrap">
+      <div>
+        <div class="login-card">
+          <p class="small">— Espace client</p>
+          <h1>Connexion <span class="italic">sécurisée.</span></h1>
+          <p class="sub">Accédez à votre patrimoine en temps réel. Authentification forte requise.</p>
+
+          <form onsubmit="event.preventDefault(); alert('Authentification : démo. Backend non connecté.');">
+            <div class="field">
+              <label for="identifiant">Identifiant</label>
+              <input id="identifiant" name="identifiant" type="text" autocomplete="username" required placeholder="N° client à 10 chiffres" />
+            </div>
+
+            <div class="field">
+              <label for="motdepasse">Mot de passe</label>
+              <input id="motdepasse" name="motdepasse" type="password" autocomplete="current-password" required placeholder="••••••••" />
+            </div>
+
+            <div class="login-row">
+              <label><input type="checkbox" /> Se souvenir de moi</label>
+              <a href="#">Mot de passe oublié ?</a>
+            </div>
+
+            <button type="submit" class="login-submit">Se connecter</button>
+
+            <div class="login-divider">ou</div>
+
+            <button type="button" class="login-passkey" onclick="alert('Passkey : démo. WebAuthn à brancher.');">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Se connecter avec une passkey
+            </button>
+
+            <p class="login-foot">
+              Pas encore client ? <a href="contact.html">Prendre rendez-vous →</a>
+            </p>
+          </form>
+        </div>
+
+        <div class="security-band" aria-hidden="true">
+          <span>TLS 1.3</span>
+          <span>3FA</span>
+          <span>FINMA</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <p class="eyebrow">Nous contacter</p>
+        <a href="mailto:private@novabanque.ch" class="footer-email">private@novabanque.ch</a>
+        <div class="footer-social"><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">X</a></div>
+      </div>
+      <div class="footer-cols">
+        <div><p class="col-title">Pages</p><ul><li><a href="prestige.html">Prestige</a></li><li><a href="dashboard.html">Patrimoine</a></li><li><a href="security.html">Sécurité</a></li><li><a href="features.html">Features</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div><p class="col-title">Maison</p><ul><li><a href="#">À propos</a></li><li><a href="#">Presse</a></li><li><a href="#">Carrières</a></li></ul></div>
+        <div><p class="col-title">Légal</p><ul><li><a href="mentions-legales.html">Mentions légales</a></li><li><a href="mentions-legales.html#confidentialite">Confidentialité</a></li></ul></div>
+      </div>
+    </div>
+    <div class="footer-wordmark">NovaBanque</div>
+    <p class="footer-mention">© 2026 NovaBanque SA · Genève · Surveillé par FINMA</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.3/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
