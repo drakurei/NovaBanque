@@ -122,24 +122,24 @@ export default function FooterMassive() {
         </motion.div>
       </motion.div>
 
-      {/* MASSIVE WORDMARK */}
-      <div className="relative mt-24 lg:mt-32 px-2 lg:px-6 overflow-hidden">
+      {/* Wordmark — sized to fit comfortably (not screen-overflowing) */}
+      <div className="relative mt-20 lg:mt-24 px-6 overflow-hidden">
         <motion.h2
-          initial={{ opacity: 0, y: 80 }}
+          initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display font-bold text-center leading-[0.85] tracking-tighter w-full"
+          className="font-display font-bold text-center leading-[0.85] tracking-tighter w-full max-w-[1440px] mx-auto"
           style={{
-            fontSize: "clamp(80px, 21vw, 380px)",
+            fontSize: "clamp(56px, 13vw, 200px)",
             background:
-              "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.5) 60%, rgba(91,71,255,0.3) 100%)",
+              "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.6) 60%, rgba(91,71,255,0.4) 100%)",
             WebkitBackgroundClip: "text",
             backgroundClip: "text",
             color: "transparent",
           }}
         >
-          NOVABANQUE
+          NovaBanque
         </motion.h2>
       </div>
 
