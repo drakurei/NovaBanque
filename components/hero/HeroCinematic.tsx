@@ -6,6 +6,7 @@ import { images } from "@/lib/images";
 import { cities } from "@/lib/content";
 import { fadeUp, stagger, easeEditorial } from "@/lib/motion";
 import EditorialLink from "@/components/primitives/EditorialLink";
+import LetterReveal from "@/components/primitives/LetterReveal";
 import { useGsapParallax } from "@/lib/useGsapParallax";
 
 export default function HeroCinematic() {
@@ -59,13 +60,15 @@ export default function HeroCinematic() {
           — Maison de patrimoine. Genève.
         </motion.p>
 
-        <motion.h1
-          variants={fadeUp}
-          className="font-display text-ivoire text-5xl sm:text-7xl lg:text-[110px] leading-[0.96] tracking-tight max-w-5xl"
-        >
-          Là où le patrimoine <br />
-          rencontre <span className="italic">le Léman.</span>
-        </motion.h1>
+        <h1 className="font-display text-ivoire text-5xl sm:text-7xl lg:text-[110px] leading-[0.96] tracking-tight max-w-5xl overflow-hidden">
+          <span className="block overflow-hidden">
+            <LetterReveal text="Là où le patrimoine" delay={0.3} />
+          </span>
+          <span className="block overflow-hidden">
+            <LetterReveal text="rencontre " delay={0.7} />
+            <LetterReveal text="le Léman." delay={0.95} italic />
+          </span>
+        </h1>
 
         <motion.p
           variants={fadeUp}
@@ -76,10 +79,16 @@ export default function HeroCinematic() {
         </motion.p>
 
         <motion.div variants={fadeUp} className="flex flex-wrap gap-10 mt-10">
-          <EditorialLink href="/services" light size="lg">
+          <EditorialLink href="/services" light size="lg" magnetic>
             Découvrir nos services privés
           </EditorialLink>
-          <EditorialLink href="/rendez-vous" light size="lg" arrow={false}>
+          <EditorialLink
+            href="/rendez-vous"
+            light
+            size="lg"
+            arrow={false}
+            magnetic
+          >
             Prendre rendez-vous
           </EditorialLink>
         </motion.div>

@@ -61,3 +61,11 @@
     color: var(--color-or-soft);
   }
 }
+
+/* Custom cursor : hide native cursor on devices where the custom one runs */
+@media (hover: hover) and (pointer: fine) {
+  html.custom-cursor-active,
+  html.custom-cursor-active * {
+    cursor: none !important;
+  }
+}

@@ -76,6 +76,7 @@ export default function PropertiesHorizontal() {
   return (
     <section
       ref={sectionRef}
+      data-theme="dark"
       className="bg-charcoal text-ivoire py-32 lg:py-0 lg:h-screen lg:overflow-hidden"
     >
       <div className="lg:h-full lg:flex lg:items-center">

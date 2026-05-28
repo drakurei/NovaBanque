@@ -11,6 +11,7 @@ export default function BankerPortrait() {
   return (
     <section
       id="banker"
+      data-theme="dark"
       className="relative h-screen min-h-[640px] w-full overflow-hidden"
     >
       <Image
