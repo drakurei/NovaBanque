@@ -7,7 +7,11 @@
 (() => {
   'use strict';
 
-  gsap.registerPlugin(ScrollTrigger);
+  // Enregistre ScrollTrigger uniquement si la lib est chargée — évite que les pages
+  // qui ne l'incluent pas cassent l'init du reste du JS (scroll, Lenis, etc.).
+  if (typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+  }
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
@@ -35,7 +39,9 @@
     }
     requestAnimationFrame(raf);
 
-    lenis.on('scroll', ScrollTrigger.update);
+    if (typeof ScrollTrigger !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+    }
     gsap.ticker.lagSmoothing(0);
   }
 
@@ -119,6 +125,7 @@
   // ====================================================
   function initScrollAnimations() {
     if (prefersReducedMotion) return;
+    if (typeof ScrollTrigger === 'undefined') return;
 
     // A. Text mask reveal pour .huge-mask
     document.querySelectorAll('.huge-mask').forEach((heading) => {
@@ -216,6 +223,7 @@
   // ====================================================
   function initHorizontalGallery() {
     if (prefersReducedMotion) return;
+    if (typeof ScrollTrigger === 'undefined') return;
 
     const section = document.querySelector('.h-gallery');
     const pin = document.querySelector('.h-gallery-pin');
