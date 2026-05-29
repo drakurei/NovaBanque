@@ -129,8 +129,8 @@
     .huge-mask .line-inner { display: inline-block; transform: translateY(110%); will-change: transform; }
     .huge-mask .italic { font-family: "Fraunces", Georgia, serif; font-style: italic; font-weight: 400; color: #6E5BFF; }
 
-    /* PILIERS PINNED — 250vh = 4 piliers × ~62vh chacun = scroll fluide sans lasser */
-    .pillars-pinned { position: relative; height: 250vh; }
+    /* PILIERS PINNED — 180vh = 4 piliers × ~45vh chacun = scroll snappy */
+    .pillars-pinned { position: relative; height: 180vh; }
     .pillars-track {
       position: sticky;
       top: 0;
@@ -210,14 +210,9 @@
 
     .h-gallery-track {
       display: flex;
-      gap: 24px;
-      padding: 0 12vw;
+      gap: 20px;
+      padding: 0 6vw;            /* était 12vw — divise par 2 la marge horizontale */
       will-change: transform;
-    }
-    /* Spacer fantôme en fin de track (réduit pour ne pas allonger inutilement le pin) */
-    .h-gallery-track::after {
-      content: "";
-      flex: 0 0 2vw;
     }
     .h-card {
       position: relative;
@@ -329,7 +324,7 @@
     /* ============ CTA RENDEZ-VOUS — buffer entre gallery et footer ============ */
     .cta-rdv {
       position: relative;
-      padding: 140px 24px 180px;
+      padding: 100px 24px 120px;
       text-align: center;
       z-index: 2;
     }

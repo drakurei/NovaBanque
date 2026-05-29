@@ -25,13 +25,19 @@
     if (prefersReducedMotion) return;
 
     lenis = new Lenis({
-      duration: 0.8,                                            // était 1.0 — plus réactif
+      duration: 0.7,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       smoothWheel: true,
-      touchMultiplier: 2.2,                                     // un peu plus de réponse au touch
-      wheelMultiplier: 1.25,                                    // était 1.05 — un wheel envoie plus loin
+      touchMultiplier: 2.4,
+      wheelMultiplier: 1.35,
+      infinite: false,
     });
+
+    // Recalcule la hauteur connue par Lenis si le DOM change (ScrollTrigger pin spacing, etc.)
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.addEventListener('refresh', () => lenis && lenis.resize && lenis.resize());
+    }
 
     function raf(time) {
       lenis.raf(time);
@@ -241,25 +247,29 @@
     const getDistance = () => track.scrollWidth - window.innerWidth;
 
     // Animation principale : on translate le track
+    // end factor 0.7 → on convertit 1px de scroll en ~1.4px de translation horizontale.
+    // Résultat : le pin ne dure que 70% de la distance réelle de la track → user atteint
+    // le footer plus vite, et la traversée horizontale reste fluide grâce à scrub 0.3.
+    const PIN_FACTOR = 0.7;
     const tween = gsap.to(track, {
       x: () => -getDistance(),
       ease: 'none',
       scrollTrigger: {
         trigger: pin,
         start: 'top top',
-        end: () => `+=${getDistance()}`,
+        end: () => `+=${getDistance() * PIN_FACTOR}`,
         pin: true,
-        scrub: 0.4,                  // était 1 — la track suit beaucoup plus vite le scroll
+        scrub: 0.3,
         invalidateOnRefresh: true,
         anticipatePin: 1,
       }
     });
 
-    // Progress bar + counter synchronisés
+    // Progress bar + counter synchronisés (même end factor que le pin principal)
     ScrollTrigger.create({
       trigger: pin,
       start: 'top top',
-      end: () => `+=${getDistance()}`,
+      end: () => `+=${getDistance() * PIN_FACTOR}`,
       scrub: true,
       onUpdate: (self) => {
         const p = self.progress;
@@ -542,6 +552,15 @@
     } else {
       runPreloader();
     }
+
+    // Recalcule toutes les positions ScrollTrigger une fois que les fonts/images sont chargées —
+    // sinon la hauteur totale du document peut être mal estimée et le scroll "se bloque" avant
+    // d'atteindre le footer.
+    window.addEventListener('load', () => {
+      if (typeof ScrollTrigger !== 'undefined') {
+        setTimeout(() => ScrollTrigger.refresh(), 100);
+      }
+    });
 
     console.log(
       '%cNovaBanque · Prestige loaded',
